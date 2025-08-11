@@ -1,0 +1,163 @@
+"use client";
+
+import Link from "next/link";
+import { Bell, Settings, User, ChevronDown, Menu, X } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
+
+interface HeaderProps {
+  onToggleSidebar: () => void;
+  isSidebarOpen: boolean;
+}
+
+export default function Header({
+  onToggleSidebar,
+  isSidebarOpen,
+}: HeaderProps) {
+  const pathname = usePathname();
+  const isActive = pathname === "/setting";
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <header className="absolute top-0 z-1 bg-white px-4 mt-2 lg:pr-[50px] py-4 overflow-x-hidden w-full">
+      {/* Mobile menu button and Logo */}
+       <div className="flex gap-3 px-6 justify-between ">
+         <div className="flex items-center col-gap-6 lg:gap-9">
+        <div className="flex items-center space-x-4">
+          {/* Mobile menu button */}
+          <button
+            onClick={onToggleSidebar}
+            className="lg:hidden p-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-gray-200"
+          >
+            {isSidebarOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
+          </button>
+
+          {/* Logo */}
+          <div className="flex items-center space-x-2">
+            <div className="items-center justify-center">
+              <img src="/logo.png" alt="" />
+            </div>
+          </div>
+        </div>
+        <nav className="hidden xl:flex items-center space-x-6">
+          <div className="flex flex-wrap gap-4">
+            <Link
+              href="/inventory"
+              className="w-44 text-[#144A6C] text-center font-regular transition-colors whitespace-nowrap bg-[#FAFAFA] px-4 py-2 rounded-lg shadow-sm border border-[#F0F0F0]"
+            >
+              Add Inventory
+            </Link>
+            <Link
+              href="/patient"
+              className="w-44 text-center text-[#144A6C] font-regular transition-colors whitespace-nowrap bg-[#FAFAFA] px-4 py-2 rounded-lg shadow-sm border border-[#F0F0F0]"
+            >
+              Add Patient
+            </Link>
+            <Link
+              href="/doctors"
+              className="w-44 text-center text-[#144A6C] font-regular transition-colors whitespace-nowrap bg-[#FAFAFA] px-4 py-2 rounded-lg shadow-sm border border-[#F0F0F0]"
+            >
+              Add Doctor
+            </Link>
+            <Link
+              href="/clinic"
+              className="w-44 text-center text-[#144A6C] font-regular transition-colors whitespace-nowrap bg-[#FAFAFA] px-4 py-2 rounded-lg shadow-sm border border-[#F0F0F0]"
+            >
+              Add Clinic
+            </Link>
+          </div>
+        </nav>
+      </div>
+        {/* Right side actions */}
+      <div className="flex items-center space-x-2 lg:space-x-4">
+        {/* Settings - Hidden on small screens */}
+        <Link
+          href="/setting"
+          className={`text-[#144A6C] text-center font-regular transition-colors whitespace-nowrap px-4 py-2 rounded-lg shadow-sm border md:flex items-center space-x-2 justify-center
+        ${isActive
+              ? "bg-[#144A6C] border-[#144A6C] text-[#fff]"
+              : "bg-[#FAFAFA] border-[#F0F0F0]"
+            }`}
+        >
+          <Settings className="w-4 h-4" />
+          <span className="hidden lg:block">Settings</span>
+        </Link>
+        {/* Notification Dropdown */}
+        <div className="relative" ref={dropdownRef}>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="w-auto lg:w-[44] text-[#144A6C] text-center font-medium transition-colors whitespace-nowrap bg-[#FAFAFA] px-4 py-2 rounded-lg shadow-sm border border-[#F0F0F0] flex items-center space-x-2 justify-center"
+          >
+            <Bell className="w-4 h-4" />
+            <span className="hidden lg:block">Notification</span>
+            <ChevronDown className="w-3 h-3 hidden lg:block" />
+          </button>
+
+          {isOpen && (
+            <div className="absolute right-0 mt-2 w-72 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+              <div className="p-4 border-b border-gray-100 font-semibold text-[#144A6C]">
+                Notifications
+              </div>
+
+              <ul className="max-h-60 overflow-y-auto divide-y divide-gray-100">
+                {/* Example notifications */}
+                <li className="px-4 py-3 hover:bg-gray-50 cursor-pointer">
+                  <p className="text-sm font-medium text-gray-700">
+                    Appointment booked with Dr. Ayesha
+                  </p>
+                  <p className="text-xs text-gray-400">2 hours ago</p>
+                </li>
+                <li className="px-4 py-3 hover:bg-gray-50 cursor-pointer">
+                  <p className="text-sm font-medium text-gray-700">
+                    New message from patient Ahmed
+                  </p>
+                  <p className="text-xs text-gray-400">1 day ago</p>
+                </li>
+                <li className="px-4 py-3 hover:bg-gray-50 cursor-pointer">
+                  <p className="text-sm font-medium text-gray-700">
+                    Lab report ready for review
+                  </p>
+                  <p className="text-xs text-gray-400">3 days ago</p>
+                </li>
+              </ul>
+
+              <div className="p-3 text-center border-t border-gray-100">
+                <button className="text-sm text-[#144A6C] hover:underline">
+                  View all notifications
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Avatar */}
+        <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+          <img src="/admin.png" alt="" />
+        </div>
+      </div>
+       </div>
+    
+    </header>
+  );
+}
