@@ -384,96 +384,103 @@ export default function Patient() {
                                 </div>
                                 <hr />
                               </div>
-                              <form className="w-full max-w-4xl mx-auto mt-5">
-                                <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                  <div className="w-full px-3 mb-6 md:mb-0 text-start">
-                                    <label
-                                      className="text-[#757575]"
-                                      htmlFor="grid-address"
-                                    >
-                                      Ful Name
-                                    </label>
-                                    <input
-                                      className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                      id="grid-address"
-                                      type="text"
-                                    />
+                              <div style={{
+                                maxHeight: "500px",
+                                minHeight: "400px",
+                                overflowY: "auto",
+                              }}>
+                                <form className="w-full max-w-4xl mx-auto mt-5">
+                                  <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                    <div className="w-full px-3 mb-6 md:mb-0 text-start">
+                                      <label
+                                        className="text-[#757575]"
+                                        htmlFor="grid-address"
+                                      >
+                                        Ful Name
+                                      </label>
+                                      <input
+                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                        id="grid-address"
+                                        type="text"
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                    <label
-                                      className="text-[#757575]"
-                                      htmlFor="grid-address"
-                                    >
-                                      Sex
-                                    </label>
-                                    <input
-                                      className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                      id="grid-address"
-                                      type="text"
-                                    />
-                                  </div>
+                                  <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                      <label
+                                        className="text-[#757575]"
+                                        htmlFor="grid-address"
+                                      >
+                                        Sex
+                                      </label>
+                                      <input
+                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                        id="grid-address"
+                                        type="text"
+                                      />
+                                    </div>
 
-                                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                    <label
-                                      className="text-[#757575]"
-                                      htmlFor="grid-address"
-                                    >
-                                      Phone Number
-                                    </label>
-                                    <input
-                                      className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                      id="grid-address"
-                                      type="number"
-                                    />
+                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                      <label
+                                        className="text-[#757575]"
+                                        htmlFor="grid-address"
+                                      >
+                                        Phone Number
+                                      </label>
+                                      <input
+                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                        id="grid-address"
+                                        type="number"
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                    <label
-                                      className="text-[#757575]"
-                                      htmlFor="grid-address"
-                                    >
-                                      Birth Date
-                                    </label>
-                                    <input
-                                      className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                      id="datepicker"
-                                      type="text"
-                                    />
-                                  </div>
+                                  <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                      <label
+                                        className="text-[#757575]"
+                                        htmlFor="grid-address"
+                                      >
+                                        Birth Date
+                                      </label>
+                                      <input
+                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                        id="datepicker"
+                                        type="text"
+                                      />
+                                    </div>
 
-                                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                    <label
-                                      className="text-[#757575]"
-                                      htmlFor="grid-address"
-                                    >
-                                      Age
-                                    </label>
-                                    <input
-                                      className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                      id="grid-address"
-                                      type="number"
-                                    />
+                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                      <label
+                                        className="text-[#757575]"
+                                        htmlFor="grid-address"
+                                      >
+                                        Age
+                                      </label>
+                                      <input
+                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                        id="grid-address"
+                                        type="number"
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                  <div className="w-full px-3 mb-6 md:mb-0 text-start">
-                                    <label
-                                      className="text-[#757575]"
-                                      htmlFor="grid-address"
-                                    >
-                                      Address
-                                    </label>
-                                    <input
-                                      className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                      id="grid-address"
-                                      type="text"
-                                    />
+                                  <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                    <div className="w-full px-3 mb-6 md:mb-0 text-start">
+                                      <label
+                                        className="text-[#757575]"
+                                        htmlFor="grid-address"
+                                      >
+                                        Address
+                                      </label>
+                                      <input
+                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                        id="grid-address"
+                                        type="text"
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                              </form>
+                                </form>
+                              </div>
+
                             </div>
                           </div>
                           <div className="bg-white  gap-2 py-3 sm:flex sm:flex-row-reverse border-t border-[#E5E7EB]  mt-5">
@@ -518,7 +525,7 @@ export default function Patient() {
               <div className="card-body flex-1 flex flex-col overflow-hidden">
                 <div className="w-full overflow-x-auto">
                   <table className="min-w-full">
-                   <thead className="bg-gray-50">
+                    <thead className="bg-gray-50">
                       <tr className="pt-4 pr-8 pb-3 pl-8 rounded-bl-lg">
                         <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
                           ID No

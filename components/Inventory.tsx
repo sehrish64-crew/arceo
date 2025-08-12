@@ -730,222 +730,230 @@ export default function Patient() {
                                                                 </div>
                                                                 <hr />
                                                             </div>
-                                                            <form className="w-full max-w-4xl mx-auto mt-5">
-                                                                <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                                    <div className="w-full px-3 mb-6 md:mb-0 text-start">
-                                                                        <label
-                                                                            className="text-[#757575]"
-                                                                            htmlFor="grid-address"
-                                                                        >
-                                                                            Material Name
-                                                                        </label>
-                                                                        <input
-                                                                            className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                            id="grid-address"
-                                                                            type="text"
-                                                                        />
-                                                                    </div>
-                                                                </div>
-                                                                <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                        <label
-                                                                            className="text-[#757575]"
-                                                                            htmlFor="grid-address"
-                                                                        >
-                                                                            Patient
-                                                                        </label>
-                                                                        <Listbox
-                                                                            value={selectedUser}
-                                                                            onChange={setSelectedUser}
-                                                                        >
-                                                                            <div className="mt-2 relative">
-                                                                                <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
-                                                                                    <span className="block truncate">
-                                                                                        {selectedUser.fullName}
-                                                                                    </span>
-                                                                                    <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                                                                                        <ChevronDownIcon
-                                                                                            className="h-5 w-5 text-[#144A6C]"
-                                                                                            aria-hidden="true"
-                                                                                        />
-                                                                                    </span>
-                                                                                </Listbox.Button>
+                                                            <div style={{
+                                                                maxHeight: "500px",
+                                                                minHeight: "400px",
+                                                                overflowY: "auto",
+                                                            }}>
 
-                                                                                <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                                                                    {userList.map((user) => (
-                                                                                        <Listbox.Option
-                                                                                            key={user.id}
-                                                                                            value={user}
-                                                                                            className={({ active }) =>
-                                                                                                `relative cursor-default select-none py-2 pl-10 pr-4 ${active
-                                                                                                    ? "bg-[#144A6C] text-white"
-                                                                                                    : "text-gray-900"
-                                                                                                }`
-                                                                                            }
-                                                                                        >
-                                                                                            {({ selected }) => (
-                                                                                                <>
-                                                                                                    <span
-                                                                                                        className={`block truncate ${selected
-                                                                                                            ? "font-medium"
-                                                                                                            : "font-normal"
-                                                                                                            }`}
-                                                                                                    >
-                                                                                                        {user.fullName}
-                                                                                                    </span>
-                                                                                                    {selected && (
-                                                                                                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-[#144A6C]">
-                                                                                                            <CheckIcon
-                                                                                                                className="h-5 w-5"
-                                                                                                                aria-hidden="true"
-                                                                                                            />
+                                                                <form className="w-full max-w-4xl mx-auto mt-5">
+                                                                    <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                                                        <div className="w-full px-3 mb-6 md:mb-0 text-start">
+                                                                            <label
+                                                                                className="text-[#757575]"
+                                                                                htmlFor="grid-address"
+                                                                            >
+                                                                                Material Name
+                                                                            </label>
+                                                                            <input
+                                                                                className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                                                                id="grid-address"
+                                                                                type="text"
+                                                                            />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                                                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                                                            <label
+                                                                                className="text-[#757575]"
+                                                                                htmlFor="grid-address"
+                                                                            >
+                                                                                Patient
+                                                                            </label>
+                                                                            <Listbox
+                                                                                value={selectedUser}
+                                                                                onChange={setSelectedUser}
+                                                                            >
+                                                                                <div className="mt-2 relative">
+                                                                                    <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
+                                                                                        <span className="block truncate">
+                                                                                            {selectedUser.fullName}
+                                                                                        </span>
+                                                                                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                                                                            <ChevronDownIcon
+                                                                                                className="h-5 w-5 text-[#144A6C]"
+                                                                                                aria-hidden="true"
+                                                                                            />
+                                                                                        </span>
+                                                                                    </Listbox.Button>
+
+                                                                                    <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                                                                        {userList.map((user) => (
+                                                                                            <Listbox.Option
+                                                                                                key={user.id}
+                                                                                                value={user}
+                                                                                                className={({ active }) =>
+                                                                                                    `relative cursor-default select-none py-2 pl-10 pr-4 ${active
+                                                                                                        ? "bg-[#144A6C] text-white"
+                                                                                                        : "text-gray-900"
+                                                                                                    }`
+                                                                                                }
+                                                                                            >
+                                                                                                {({ selected }) => (
+                                                                                                    <>
+                                                                                                        <span
+                                                                                                            className={`block truncate ${selected
+                                                                                                                ? "font-medium"
+                                                                                                                : "font-normal"
+                                                                                                                }`}
+                                                                                                        >
+                                                                                                            {user.fullName}
                                                                                                         </span>
-                                                                                                    )}
-                                                                                                </>
-                                                                                            )}
-                                                                                        </Listbox.Option>
-                                                                                    ))}
-                                                                                </Listbox.Options>
-                                                                            </div>
-                                                                        </Listbox>
+                                                                                                        {selected && (
+                                                                                                            <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-[#144A6C]">
+                                                                                                                <CheckIcon
+                                                                                                                    className="h-5 w-5"
+                                                                                                                    aria-hidden="true"
+                                                                                                                />
+                                                                                                            </span>
+                                                                                                        )}
+                                                                                                    </>
+                                                                                                )}
+                                                                                            </Listbox.Option>
+                                                                                        ))}
+                                                                                    </Listbox.Options>
+                                                                                </div>
+                                                                            </Listbox>
+                                                                        </div>
+
+                                                                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                                                            <label
+                                                                                className="text-[#757575]"
+                                                                                htmlFor="grid-address"
+                                                                            >
+                                                                                Package Quantity
+                                                                            </label>
+                                                                            <input
+                                                                                className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                                                                id="grid-address"
+                                                                                type="number"
+                                                                            />
+                                                                        </div>
                                                                     </div>
 
-                                                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                        <label
-                                                                            className="text-[#757575]"
-                                                                            htmlFor="grid-address"
-                                                                        >
-                                                                            Package Quantity
-                                                                        </label>
-                                                                        <input
-                                                                            className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                            id="grid-address"
-                                                                            type="number"
-                                                                        />
-                                                                    </div>
-                                                                </div>
+                                                                    <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                                                        <div className="w-full px-3 mb-6 md:mb-0 text-start">
+                                                                            <label
+                                                                                className="text-[#757575]"
+                                                                                htmlFor="grid-address"
+                                                                            >
+                                                                                Cost Type
+                                                                            </label>
+                                                                            <Listbox
+                                                                                value={selectedCostType}
+                                                                                onChange={setSelectedCostType}
+                                                                            >
+                                                                                <div className="mt-2 relative">
+                                                                                    <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
+                                                                                        <span className="block truncate">
+                                                                                            {selectedCostType.label}
+                                                                                        </span>
+                                                                                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                                                                            <ChevronDownIcon
+                                                                                                className="h-5 w-5 text-[#144A6C]"
+                                                                                                aria-hidden="true"
+                                                                                            />
+                                                                                        </span>
+                                                                                    </Listbox.Button>
 
-                                                                <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                                    <div className="w-full px-3 mb-6 md:mb-0 text-start">
-                                                                        <label
-                                                                            className="text-[#757575]"
-                                                                            htmlFor="grid-address"
-                                                                        >
-                                                                            Cost Type
-                                                                        </label>
-                                                                        <Listbox
-                                                                            value={selectedCostType}
-                                                                            onChange={setSelectedCostType}
-                                                                        >
-                                                                            <div className="mt-2 relative">
-                                                                                <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
-                                                                                    <span className="block truncate">
-                                                                                        {selectedCostType.label}
-                                                                                    </span>
-                                                                                    <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                                                                                        <ChevronDownIcon
-                                                                                            className="h-5 w-5 text-[#144A6C]"
-                                                                                            aria-hidden="true"
-                                                                                        />
-                                                                                    </span>
-                                                                                </Listbox.Button>
-
-                                                                                <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                                                                    {costTypes.map((type) => (
-                                                                                        <Listbox.Option
-                                                                                            key={type.id}
-                                                                                            value={type}
-                                                                                            className={({ active }) =>
-                                                                                                `relative cursor-default select-none py-2 pl-10 pr-4 ${active
-                                                                                                    ? "bg-[#144A6C] text-white"
-                                                                                                    : "text-gray-900"
-                                                                                                }`
-                                                                                            }
-                                                                                        >
-                                                                                            {({ selected }) => (
-                                                                                                <>
-                                                                                                    <span
-                                                                                                        className={`block truncate ${selected
-                                                                                                            ? "font-medium"
-                                                                                                            : "font-normal"
-                                                                                                            }`}
-                                                                                                    >
-                                                                                                        {type.label}
-                                                                                                    </span>
-                                                                                                    {selected && (
-                                                                                                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-[#144A6C]">
-                                                                                                            <CheckIcon
-                                                                                                                className="h-5 w-5"
-                                                                                                                aria-hidden="true"
-                                                                                                            />
+                                                                                    <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                                                                        {costTypes.map((type) => (
+                                                                                            <Listbox.Option
+                                                                                                key={type.id}
+                                                                                                value={type}
+                                                                                                className={({ active }) =>
+                                                                                                    `relative cursor-default select-none py-2 pl-10 pr-4 ${active
+                                                                                                        ? "bg-[#144A6C] text-white"
+                                                                                                        : "text-gray-900"
+                                                                                                    }`
+                                                                                                }
+                                                                                            >
+                                                                                                {({ selected }) => (
+                                                                                                    <>
+                                                                                                        <span
+                                                                                                            className={`block truncate ${selected
+                                                                                                                ? "font-medium"
+                                                                                                                : "font-normal"
+                                                                                                                }`}
+                                                                                                        >
+                                                                                                            {type.label}
                                                                                                         </span>
-                                                                                                    )}
-                                                                                                </>
-                                                                                            )}
-                                                                                        </Listbox.Option>
-                                                                                    ))}
-                                                                                </Listbox.Options>
-                                                                            </div>
-                                                                        </Listbox>
+                                                                                                        {selected && (
+                                                                                                            <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-[#144A6C]">
+                                                                                                                <CheckIcon
+                                                                                                                    className="h-5 w-5"
+                                                                                                                    aria-hidden="true"
+                                                                                                                />
+                                                                                                            </span>
+                                                                                                        )}
+                                                                                                    </>
+                                                                                                )}
+                                                                                            </Listbox.Option>
+                                                                                        ))}
+                                                                                    </Listbox.Options>
+                                                                                </div>
+                                                                            </Listbox>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                        <label
-                                                                            className="text-[#757575]"
-                                                                            htmlFor="grid-address"
-                                                                        >
-                                                                            Base Stock
-                                                                        </label>
-                                                                        <input
-                                                                            className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                            type="text"
-                                                                        />
-                                                                    </div>
+                                                                    <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                                                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                                                            <label
+                                                                                className="text-[#757575]"
+                                                                                htmlFor="grid-address"
+                                                                            >
+                                                                                Base Stock
+                                                                            </label>
+                                                                            <input
+                                                                                className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                                                                type="text"
+                                                                            />
+                                                                        </div>
 
-                                                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                        <label
-                                                                            className="text-[#757575]"
-                                                                            htmlFor="grid-address"
-                                                                        >
-                                                                            Reorder limit
-                                                                        </label>
-                                                                        <input
-                                                                            className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                            id="grid-address"
-                                                                            type="number"
-                                                                        />
+                                                                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                                                            <label
+                                                                                className="text-[#757575]"
+                                                                                htmlFor="grid-address"
+                                                                            >
+                                                                                Reorder limit
+                                                                            </label>
+                                                                            <input
+                                                                                className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                                                                id="grid-address"
+                                                                                type="number"
+                                                                            />
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                        <label
-                                                                            className="text-[#757575]"
-                                                                            htmlFor="grid-address"
-                                                                        >
-                                                                            Unit Cost
-                                                                        </label>
-                                                                        <input
-                                                                            className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                            type="text"
-                                                                        />
-                                                                    </div>
+                                                                    <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                                                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                                                            <label
+                                                                                className="text-[#757575]"
+                                                                                htmlFor="grid-address"
+                                                                            >
+                                                                                Unit Cost
+                                                                            </label>
+                                                                            <input
+                                                                                className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                                                                type="text"
+                                                                            />
+                                                                        </div>
 
-                                                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                        <label
-                                                                            className="text-[#757575]"
-                                                                            htmlFor="grid-address"
-                                                                        >
-                                                                            VAT Cost
-                                                                        </label>
-                                                                        <input
-                                                                            className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                            id="grid-address"
-                                                                            type="number"
-                                                                        />
+                                                                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                                                            <label
+                                                                                className="text-[#757575]"
+                                                                                htmlFor="grid-address"
+                                                                            >
+                                                                                VAT Cost
+                                                                            </label>
+                                                                            <input
+                                                                                className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                                                                id="grid-address"
+                                                                                type="number"
+                                                                            />
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </form>
+                                                                </form>
+                                                            </div>
+
                                                         </div>
                                                     </div>
                                                     <div className="bg-white  gap-2 py-3 sm:flex sm:flex-row-reverse border-t border-[#E5E7EB]  mt-5">
@@ -1222,7 +1230,7 @@ export default function Patient() {
                                         <div className="card-body flex-1 flex flex-col overflow-hidden">
                                             <div className="w-full overflow-x-auto">
                                                 <table className="min-w-full">
-                                                   <thead className="bg-gray-50">
+                                                    <thead className="bg-gray-50">
                                                         <tr className="pt-4 pr-8 pb-3 pl-8 rounded-bl-lg">
                                                             <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
                                                                 ID No

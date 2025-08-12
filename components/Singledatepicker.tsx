@@ -10,7 +10,7 @@ interface MyComponentState {
     inputValue: string;
 }
 
-export default class Singledatepicker extends Component<{}, MyComponentState> {
+export default class Singledatepicker extends Component<{}, MyComponentState & { showBelow?: boolean }> {
     wrapperRef = createRef<HTMLDivElement>();
 
     constructor(props: {}) {
@@ -20,9 +20,11 @@ export default class Singledatepicker extends Component<{}, MyComponentState> {
             selectedDate: today,
             showPicker: false,
             inputValue: this.formatDate(today),
+            showBelow: true,
         };
         this.handleSelect = this.handleSelect.bind(this);
         this.handleClickOutside = this.handleClickOutside.bind(this);
+        this.handleTogglePicker = this.handleTogglePicker.bind(this);
     }
 
     componentDidMount() {
@@ -42,6 +44,18 @@ export default class Singledatepicker extends Component<{}, MyComponentState> {
         }
     }
 
+    handleTogglePicker() {
+        if (this.wrapperRef.current) {
+            const rect = this.wrapperRef.current.getBoundingClientRect();
+            const spaceBelow = window.innerHeight - rect.bottom;
+            const showBelow = spaceBelow > 300; // adjust based on calendar height
+            this.setState((prev) => ({
+                showPicker: !prev.showPicker,
+                showBelow,
+            }));
+        }
+    }
+
     formatDate(date: Date) {
         return `${date.getFullYear()}-${(date.getMonth() + 1)
             .toString()
@@ -52,30 +66,27 @@ export default class Singledatepicker extends Component<{}, MyComponentState> {
         this.setState({
             selectedDate: date,
             inputValue: this.formatDate(date),
-            showPicker: false, // close picker on select (optional)
+            showPicker: false,
         });
     }
 
     render() {
-        const { selectedDate, showPicker, inputValue } = this.state;
+        const { selectedDate, showPicker, inputValue, showBelow } = this.state;
 
         return (
             <div className="relative inline-block w-full" ref={this.wrapperRef}>
-                {/* Input Field */}
                 <div className="relative">
                     <input
                         type="text"
                         value={inputValue}
                         readOnly
-                        onClick={() => this.setState({ showPicker: !showPicker })}
-                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB] "
+                        onClick={this.handleTogglePicker}
+                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
                     />
-
                 </div>
 
-                {/* Single Date Picker */}
                 {showPicker && (
-                    <div className="absolute z-10 mt-2 top-4">
+                    <div className={`absolute z-10 ${showBelow ? "mt-2 top-full" : "mb-2 bottom-full"}`}>
                         <Calendar
                             date={selectedDate}
                             onChange={this.handleSelect}
@@ -86,3 +97,4 @@ export default class Singledatepicker extends Component<{}, MyComponentState> {
         );
     }
 }
+

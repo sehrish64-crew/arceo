@@ -9,85 +9,75 @@ const ChartTimeline = () => {
 
     useEffect(() => {
         const options = {
-            colors: ['#144A6C'],
-            series: [
-                {
-                    data: [
-                        [1327359600000, 30.95],
-                        [1327446000000, 31.34],
-                        [1327532400000, 31.18],
-                        [1327618800000, 31.05],
-                        // 🔻 Truncated for brevity — insert full dataset here
-                        [1361919600000, 39.60],
-                    ],
-                },
-            ],
             chart: {
-                id: 'area-datetime',
                 type: 'area',
                 height: 350,
-                zoom: {
-                    autoScaleYaxis: true,
+                toolbar: { show: false },
+                zoom: { enabled: false },
+            },
+            colors: ['#144A6C'],
+            dataLabels: { enabled: false },
+            stroke: {
+                curve: 'smooth',
+                width: 2,
+            },
+            series: [
+                {
+                    name: 'Total Patients',
+                    data: [45, 50, 55, 60, 65, 70, 75, 80], // one value per month
                 },
-            },
-            annotations: {
-                yaxis: [
-                    {
-                        y: 30,
-                        borderColor: '#999',
-                        label: {
-                            show: true,
-                            text: 'Support',
-                            style: {
-                                color: '#fff',
-                                background: '#144A6C',
-                            },
-                        },
-                    },
-                ],
-                stroke: {
-                    curve: 'smooth',
-                },
-                xaxis: [
-                    {
-                        x: new Date('14 Nov 2012').getTime(),
-                        borderColor: '#999',
-                        yAxisIndex: 0,
-                        label: {
-                            show: true,
-                            text: 'Rally',
-                            style: {
-                                color: '#fff',
-                                background: '#144A6C',
-                            },
-                        },
-                    },
-                ],
-            },
-            dataLabels: {
-                enabled: false,
-            },
-            markers: {
-                size: 0,
-                style: 'hollow',
-            },
+            ],
             xaxis: {
-                type: 'datetime',
-                min: new Date('01 Mar 2012').getTime(),
-                tickAmount: 6,
-            },
-            tooltip: {
-                x: {
-                    format: 'dd MMM yyyy',
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'sep', 'oct', 'nov', 'dec'],
+                title: {
+                    text: 'Month',
+                    style: {
+                        color: '#6B7280',
+                        fontWeight: 500,
+                    },
                 },
+                labels: {
+                    rotate: 0,
+                    style: {
+                        fontSize: '12px',
+                        colors: '#6B7280',
+                    },
+                },
+                axisBorder: {
+                    show: false,
+                },
+                axisTicks: {
+                    show: false,
+                },
+            },
+            yaxis: {
+                title: {
+                    text: 'Number of Patients',
+                    style: { color: '#6B7280', fontWeight: 500 },
+                },
+                min: 0,
+                max: 100,
+                tickAmount: 5,
             },
             fill: {
                 type: 'gradient',
                 gradient: {
                     shadeIntensity: 1,
-                    opacityFrom: 0.7,
-                    opacityTo: 0.9,
+                    opacityFrom: 0.2,
+                    opacityTo: 0.1,
                     stops: [0, 100],
+                },
+            },
+            tooltip: {
+                y: {
+                    formatter: (val: number) => `${val} patients`,
+                },
+            },
+            grid: {
+                borderColor: '#E5E7EB',
+                row: {
+                    colors: ['transparent'], // no rows
+                    opacity: 0.5,
                 },
             },
         };
@@ -101,6 +91,7 @@ const ChartTimeline = () => {
             chartInstance.current?.destroy();
         };
     }, []);
+
 
     const zoomChart = (start: string, end: string) => {
         chartInstance.current?.zoomX(
@@ -129,7 +120,7 @@ const ChartTimeline = () => {
                 >
                     Total Patients
                 </button>
-                
+
             </div>
 
             <div id="chart-timeline" ref={chartRef} />

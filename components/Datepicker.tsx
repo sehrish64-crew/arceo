@@ -75,7 +75,7 @@ export default class MyComponent extends Component<{}, MyComponentState> {
             value={inputValue}
             readOnly
             onClick={() => this.setState({ showPicker: !showPicker })}
-            className="w-[170px] border border-[#F0F0F0] pl-10 pr-10 pt-2 pb-2 rounded-lg text-sm text-[#333] cursor-pointer"
+            className="w-[265px] border border-[#F0F0F0] pl-10 pr-10 pt-2 pb-2 rounded-lg text-sm text-[#333] cursor-pointer"
           />
           {/* Icon */}
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">

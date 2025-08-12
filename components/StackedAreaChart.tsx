@@ -47,63 +47,111 @@ const StackedAreaChart: React.FC = () => {
 
   if (!isClient) return null;
 
-const options: ApexOptions = {
-  chart: {
-    type: "area",
-    height: 350,
-    stacked: true,
-    events: {
-      selection: function (
-        chart,
-        e
-      ) {
-        console.log(new Date(e.xaxis.min));
-      }
-    }
-  },
-  colors: ["#144A6C", "#177606", "#EF2D2D"],
-  dataLabels: {
-    enabled: false,
-  },
-  stroke: {
-    curve: "smooth",
-  },
-  fill: {
-    type: "gradient",
-    gradient: {
-      opacityFrom: 0.6,
-      opacityTo: 0.8,
+  const options: ApexOptions = {
+    chart: {
+      type: "area",
+      height: 350,
+      stacked: false,
+      toolbar: { show: false },
+      zoom: { enabled: false },
     },
-  },
-  legend: {
-    position: "top",
-    horizontalAlign: "left",
-  },
-  xaxis: {
-    type: "datetime",
-  },
-};
+    colors: ["#144A6C", "#177606", "#EF2D2D"], // blue, green, red
+    dataLabels: {
+      enabled: false,
+    },
+    stroke: {
+      curve: "smooth",
+      width: 2,
+    },
+    fill: {
+      type: "gradient",
+      gradient: {
+        shadeIntensity: 1,
+        opacityFrom: 0.2,
+        opacityTo: 0.05,
+        stops: [0, 100],
+      },
+    },
+    legend: {
+      position: "top",
+      horizontalAlign: "left",
+      markers: {
+        width: 12,
+        height: 12,
+        radius: 12, // ✅ Valid property here
+      } as any,
+      fontSize: '14px',
+      fontWeight: 500,
+    },
+    xaxis: {
+      type: "datetime",
+      labels: {
+        format: "MMM",
+        style: {
+          fontSize: '12px',
+          colors: '#6B7280',
+        },
+      },
+      title: {
+        text: "Month",
+        style: {
+          color: "#6B7280",
+          fontWeight: 500,
+        },
+      },
+      axisBorder: { show: false },
+      axisTicks: { show: false },
+    },
+    yaxis: {
+      title: {
+        text: "Numbers are in $ (000)",
+        style: {
+          color: "#6B7280",
+          fontWeight: 500,
+        },
+      },
+      labels: {
+        style: {
+          fontSize: '12px',
+          colors: '#6B7280',
+        },
+      },
+      min: 0,
+      tickAmount: 5,
+    },
+    grid: {
+      borderColor: '#E5E7EB',
+    },
+    tooltip: {
+      x: {
+        format: "MMM yyyy"
+      },
+      y: {
+        formatter: (val: number) => `$${val}k`,
+      },
+    },
+  };
 
   const series = [
     {
       name: 'Total Sales',
-      data: generateDayWiseTimeSeries(new Date('11 Feb 2017 GMT').getTime(), 20, {
-        min: 10,
-        max: 60
+      data: generateDayWiseTimeSeries(new Date('2025-01-01').getTime(), 8, {
+        min: 40,
+        max: 90
       })
     },
     {
       name: 'Sales',
-      data: generateDayWiseTimeSeries(new Date('11 Feb 2017 GMT').getTime(), 20, {
-        min: 10,
-        max: 20
+      data: generateDayWiseTimeSeries(new Date('2025-01-01').getTime(), 8, {
+        min: 20,
+        max: 50
       })
     },
     {
       name: 'Fixed Expenses',
-      data: generateDayWiseTimeSeries(new Date('11 Feb 2017 GMT').getTime(), 20, {
+      data: generateDayWiseTimeSeries(new Date('2025-01-01').getTime(), 8, {
         min: 10,
-        max: 15
+        max: 30
       })
     }
   ];

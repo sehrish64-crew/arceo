@@ -420,7 +420,7 @@ export default function DoctorProfileTabs() {
                                                         </span>
                                                       </Listbox.Button>
 
-                                                      <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                                      <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                                                         {patients.map(
                                                           (patient) => (
                                                             <Listbox.Option
@@ -491,7 +491,7 @@ export default function DoctorProfileTabs() {
                                                         </span>
                                                       </Listbox.Button>
 
-                                                      <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                                      <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                                                         {treatments.map(
                                                           (treatment) => (
                                                             <Listbox.Option
@@ -562,7 +562,7 @@ export default function DoctorProfileTabs() {
                                                         </span>
                                                       </Listbox.Button>
 
-                                                      <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                                      <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                                                         {bookingMonths.map(
                                                           (month) => (
                                                             <Listbox.Option
@@ -629,7 +629,7 @@ export default function DoctorProfileTabs() {
                                                         </span>
                                                       </Listbox.Button>
 
-                                                      <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                                      <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                                                         {openSlots.map((slot) => (
                                                           <Listbox.Option
                                                             key={slot.id}

@@ -4,6 +4,7 @@ import { Search, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Listbox } from "@headlessui/react";
 import { ChevronDownIcon, CheckIcon } from "@heroicons/react/20/solid";
+import Singledatepicker from "../components/Singledatepicker"
 interface Doctor {
   id: string;
   fullName: string;
@@ -336,8 +337,8 @@ export default function ClinicPage() {
                       </div>
                       {/* Modal panel */}
                       <div
-                        className={`inline-block align-bottom bg-white  rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 
-                        sm:align-middle w-full max-w-4xl mx-auto 
+                        className={`inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 
+    sm:align-middle w-full max-w-4xl mx-auto
               ${ModalAnimation ? "scale-100 skew-y-0" : "scale-0 skew-y-6"}
               duration-500 ease-out
             `}
@@ -404,138 +405,160 @@ export default function ClinicPage() {
                                 </div>
                                 <hr />
                               </div>
-                              <form className="w-full max-w-4xl mx-auto mt-5">
-                                <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                  <div className="w-full px-3 mb-6 md:mb-0 text-start">
-                                    <label className="text-[#757575]" htmlFor="clinic-name">
-                                      Name
-                                    </label>
-                                    <input
-                                      className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                      id="clinic-name"
-                                      type="text"
-                                    />
-                                  </div>
-                                </div>
-
-                                <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                    <label className="text-[#757575]" htmlFor="clinic-email">
-                                      Email Address
-                                    </label>
-                                    <input
-                                      className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                      id="clinic-email"
-                                      type="email"
-                                    />
+                              <div style={{
+                                maxHeight: "500px",
+                                minHeight: "400px",
+                                overflowY: "auto",
+                              }}>
+                                <form className="w-full max-w-4xl mx-auto mt-5">
+                                  <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                    <div className="w-full px-3 mb-6 md:mb-0 text-start">
+                                      <label className="text-[#757575]" htmlFor="clinic-name">
+                                        Name
+                                      </label>
+                                      <input
+                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                        id="clinic-name"
+                                        type="text"
+                                      />
+                                    </div>
                                   </div>
 
-                                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                    <label className="text-[#757575]" htmlFor="clinic-phone">
-                                      Phone Number
-                                    </label>
-                                    <input
-                                      className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                      id="clinic-phone"
-                                      type="tel"
-                                    />
-                                  </div>
-                                </div>
+                                  <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                      <label className="text-[#757575]" htmlFor="clinic-email">
+                                        Email Address
+                                      </label>
+                                      <input
+                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                        id="clinic-email"
+                                        type="email"
+                                      />
+                                    </div>
 
-                                <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                  <div className="w-full px-3 mb-6 md:mb-0 text-start">
-                                    <label className="text-[#757575]" htmlFor="clinic-address">
-                                      Address
-                                    </label>
-                                    <input
-                                      className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                      id="clinic-address"
-                                      type="text"
-                                    />
+                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                      <label className="text-[#757575]" htmlFor="clinic-phone">
+                                        Phone Number
+                                      </label>
+                                      <input
+                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                        id="clinic-phone"
+                                        type="tel"
+                                      />
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                  <div className="w-full px-3 mb-6 md:mb-0 text-start">
-                                    <label className="text-[#757575]" htmlFor="clinic-address">
-                                      Package
-                                    </label>
-                                    <Listbox
-                                      value={selectedTreatment}
-                                      onChange={
-                                        setSelectedTreatment
-                                      }
-                                    >
-                                      <div className="mt-2 relative">
-                                        <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
-                                          <span className="block truncate">
-                                            {selectedTreatment.name}
-                                          </span>
-                                          <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                                            <ChevronDownIcon
-                                              className="h-5 w-5 text-[#144A6C]"
-                                              aria-hidden="true"
-                                            />
-                                          </span>
-                                        </Listbox.Button>
 
-                                        <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                          {treatments.map(
-                                            (treatment) => (
-                                              <Listbox.Option
-                                                key={treatment.id}
-                                                value={treatment}
-                                                className={({
-                                                  active,
-                                                }) =>
-                                                  `relative cursor-default select-none py-2 pl-10 pr-4 ${active
-                                                    ? "bg-[#144A6C] text-white"
-                                                    : "text-gray-900"
-                                                  }`
-                                                }
-                                              >
-                                                {({ selected }) => (
-                                                  <>
-                                                    <span
-                                                      className={`block truncate ${selected
-                                                        ? "font-medium"
-                                                        : "font-normal"
-                                                        }`}
-                                                    >
-                                                      {
-                                                        treatment.name
-                                                      }
-                                                    </span>
-                                                    {selected && (
-                                                      <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600">
-                                                        <CheckIcon
-                                                          className="h-5 w-5"
-                                                          aria-hidden="true"
-                                                        />
+                                  <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                    <div className="w-full px-3 mb-6 md:mb-0 text-start">
+                                      <label className="text-[#757575]" htmlFor="clinic-address">
+                                        Address
+                                      </label>
+                                      <input
+                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                        id="clinic-address"
+                                        type="text"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                    <div className="w-full px-3 mb-6 md:mb-0 text-start">
+                                      <label className="text-[#757575]" htmlFor="clinic-address">
+                                        Package
+                                      </label>
+                                      <Listbox
+                                        value={selectedTreatment}
+                                        onChange={
+                                          setSelectedTreatment
+                                        }
+                                      >
+                                        <div className="mt-2 relative">
+                                          <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
+                                            <span className="block truncate">
+                                              {selectedTreatment.name}
+                                            </span>
+                                            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                              <ChevronDownIcon
+                                                className="h-5 w-5 text-[#144A6C]"
+                                                aria-hidden="true"
+                                              />
+                                            </span>
+                                          </Listbox.Button>
+
+                                          <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                            {treatments.map(
+                                              (treatment) => (
+                                                <Listbox.Option
+                                                  key={treatment.id}
+                                                  value={treatment}
+                                                  className={({
+                                                    active,
+                                                  }) =>
+                                                    `relative cursor-default select-none py-2 pl-10 pr-4 ${active
+                                                      ? "bg-[#144A6C] text-white"
+                                                      : "text-gray-900"
+                                                    }`
+                                                  }
+                                                >
+                                                  {({ selected }) => (
+                                                    <>
+                                                      <span
+                                                        className={`block truncate ${selected
+                                                          ? "font-medium"
+                                                          : "font-normal"
+                                                          }`}
+                                                      >
+                                                        {
+                                                          treatment.name
+                                                        }
                                                       </span>
-                                                    )}
-                                                  </>
-                                                )}
-                                              </Listbox.Option>
-                                            )
-                                          )}
-                                        </Listbox.Options>
+                                                      {selected && (
+                                                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600">
+                                                          <CheckIcon
+                                                            className="h-5 w-5"
+                                                            aria-hidden="true"
+                                                          />
+                                                        </span>
+                                                      )}
+                                                    </>
+                                                  )}
+                                                </Listbox.Option>
+                                              )
+                                            )}
+                                          </Listbox.Options>
+                                        </div>
+                                      </Listbox>
+                                    </div>
+                                  </div>
+                                  <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                    <div className="w-full px-3 mb-6 md:mb-0 text-start">
+                                      <label className="text-[#757575]" htmlFor="clinic-address">
+                                        Date
+                                      </label>
+                                      <div className="relative">
+                                        <Singledatepicker />
+                                        <div className="absolute top-5 right-3 text-gray-500 pointer-events-none">
+                                          <svg
+                                            width={16}
+                                            height={18}
+                                            viewBox="0 0 16 18"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                          >
+                                            <path
+                                              d="M1.25 7.5H14.75M5 4.5V1.5M11 4.5V1.5M6.05 16.5H9.95C11.6302 16.5 12.4702 16.5 13.112 16.173C13.6765 15.8854 14.1354 15.4265 14.423 14.862C14.75 14.2202 14.75 13.3802 14.75 11.7V7.8C14.75 6.11984 14.75 5.27976 14.423 4.63803C14.1354 4.07354 13.6765 3.6146 13.112 3.32698C12.4702 3 11.6302 3 9.95 3H6.05C4.36984 3 3.52976 3 2.88803 3.32698C2.32354 3.6146 1.8646 4.07354 1.57698 4.63803C1.25 5.27976 1.25 6.11984 1.25 7.8V11.7C1.25 13.3802 1.25 14.2202 1.57698 14.862C1.8646 15.4265 2.32354 15.8854 2.88803 16.173C3.52976 16.5 4.36984 16.5 6.05 16.5Z"
+                                              stroke="#A1A5AA"
+                                              strokeWidth="1.5"
+                                              strokeLinecap="round"
+                                            />
+                                          </svg>
+                                        </div>
                                       </div>
-                                    </Listbox>
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                  <div className="w-full px-3 mb-6 md:mb-0 text-start">
-                                    <label className="text-[#757575]" htmlFor="clinic-address">
-                                      Date
-                                    </label>
-                                    <input
-                                      className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                      id="clinic-address"
-                                      type="date"
-                                    />
-                                  </div>
-                                </div>
-                              </form>
+                                </form>
+
+                              </div>
+
                             </div>
                           </div>
                           <div className="bg-white  gap-2 py-3 sm:flex sm:flex-row-reverse border-t border-[#E5E7EB]  mt-5">
@@ -580,7 +603,7 @@ export default function ClinicPage() {
               <div className="card-body flex-1 flex flex-col overflow-hidden">
                 <div className="w-full overflow-x-auto">
                   <table className="min-w-full">
-                   <thead className="bg-gray-50">
+                    <thead className="bg-gray-50">
                       <tr className="pt-4 pr-8 pb-3 pl-8 rounded-bl-lg">
                         <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
                           ID No

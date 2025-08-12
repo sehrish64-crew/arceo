@@ -9,7 +9,7 @@ import ChangePasswordForm from "../components/ChangePasswordForm";
 import SessionForm from "../components/SessionsForm";
 import IsrTaxes from "../components/Isrtaxes";
 import MaterialCostForm from "../components/MaterialCostForm";
-
+import Singledatepicker from "../components/Singledatepicker"
 
 const Apex = dynamic(() => import("./Apexchart"), {
     ssr: false,
@@ -154,120 +154,120 @@ export default function Patient() {
     );
     return (
         <>
-           
-       {isOpen1 && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="dialog-title"
-          className="relative z-10"
-        >
-          {/* <div className="fixed inset-0 bg-gradient-to-br from-[#144A6C]/60 to-[#144A6C]/20 backdrop-blur-md transition-opacity" /> */}
-          <div className="fixed inset-0 bg-[#000]/60 backdrop-blur-md transition-opacity overflow-y-auto">
-            <div className="flex items-center justify-center min-h-screen px-4 py-8 text-center">
-              {/* Background overlay */}
-              <div
-                className="fixed inset-0 transition-opacity"
-                aria-hidden="true"
-              >
-                <div className="absolute inset-0"></div>
-              </div>
-              {/* Modal panel */}
-              <div
-                className={`inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 
+
+            {isOpen1 && (
+                <div
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="dialog-title"
+                    className="relative z-10"
+                >
+                    {/* <div className="fixed inset-0 bg-gradient-to-br from-[#144A6C]/60 to-[#144A6C]/20 backdrop-blur-md transition-opacity" /> */}
+                    <div className="fixed inset-0 bg-[#000]/60 backdrop-blur-md transition-opacity overflow-y-auto">
+                        <div className="flex items-center justify-center min-h-screen px-4 py-8 text-center">
+                            {/* Background overlay */}
+                            <div
+                                className="fixed inset-0 transition-opacity"
+                                aria-hidden="true"
+                            >
+                                <div className="absolute inset-0"></div>
+                            </div>
+                            {/* Modal panel */}
+                            <div
+                                className={`inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 
                         sm:align-middle w-full max-w-2xl mx-auto 
               ${ModalAnimation1 ? "scale-100 skew-y-0" : "scale-0 skew-y-6"}
               duration-500 ease-out
             `}
-              >
-                <div className="bg-white  px-4 pt-5 pb-4 sm:p-8 sm:pb-6">
-                  <div className="sm:flex sm:items-start">
-                    <div className="mt-3 text-center sm:mt-0 sm:text-left w-full">
-                      <div className="flex gap-2 pb-4 w-100">
-                        <div className="user-icon">
-                          <svg
-                            width={44}
-                            height={44}
-                            viewBox="0 0 44 44"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <rect width={44} height={44} rx={22} fill="#FAF5F5" />
-                            <rect
-                              x="0.5"
-                              y="0.5"
-                              width={43}
-                              height={43}
-                              rx="21.5"
-                              stroke="url(#paint0_linear_90_2081)"
-                              strokeOpacity="0.3"
-                            />
-                            <path
-                              d="M27.7435 27.0297L28.4934 27.0364L27.7435 27.0297ZM15.333 16.25C14.9188 16.25 14.583 16.5857 14.583 17C14.583 17.4142 14.9188 17.75 15.333 17.75V16.25ZM28.6663 17.75C29.0806 17.75 29.4163 17.4142 29.4163 17C29.4163 16.5857 29.0806 16.25 28.6663 16.25V17.75ZM21.083 20.3333C21.083 19.9191 20.7472 19.5833 20.333 19.5833C19.9188 19.5833 19.583 19.9191 19.583 20.3333H21.083ZM19.583 27C19.583 27.4142 19.9188 27.75 20.333 27.75C20.7472 27.75 21.083 27.4142 21.083 27H19.583ZM24.4163 20.3333C24.4163 19.9191 24.0806 19.5833 23.6663 19.5833C23.2521 19.5833 22.9163 19.9191 22.9163 20.3333H24.4163ZM22.9163 27C22.9163 27.4142 23.2521 27.75 23.6663 27.75C24.0806 27.75 24.4163 27.4142 24.4163 27H22.9163ZM27.833 17L27.083 16.9933L26.9935 27.023L27.7435 27.0297L28.4934 27.0364L28.583 17.0067L27.833 17ZM24.4103 30.3333V29.5833H19.4997V30.3333V31.0833H24.4103V30.3333ZM16.1663 17H15.4163V27H16.1663H16.9163V17H16.1663ZM15.333 17V17.75H16.1663V17V16.25H15.333V17ZM16.1663 17V17.75H18.6663V17V16.25H16.1663V17ZM18.6663 17V17.75H25.333V17V16.25H18.6663V17ZM25.333 17V17.75H27.833V17V16.25H25.333V17ZM27.833 17V17.75H28.6663V17V16.25H27.833V17ZM18.6663 16.6296H19.4163C19.4163 15.488 20.4875 14.4166 21.9997 14.4166V13.6666V12.9166C19.83 12.9166 17.9163 14.4984 17.9163 16.6296H18.6663ZM21.9997 13.6666V14.4166C23.5119 14.4166 24.583 15.488 24.583 16.6296H25.333H26.083C26.083 14.4984 24.1694 12.9166 21.9997 12.9166V13.6666ZM18.6663 16.6296H17.9163V17H18.6663H19.4163V16.6296H18.6663ZM25.333 16.6296H24.583V17H25.333H26.083V16.6296H25.333ZM19.4997 30.3333V29.5833C18.0729 29.5833 16.9163 28.4267 16.9163 27H16.1663H15.4163C15.4163 29.2551 17.2445 31.0833 19.4997 31.0833V30.3333ZM27.7435 27.0297L26.9935 27.023C26.9808 28.4407 25.828 29.5833 24.4103 29.5833V30.3333V31.0833C26.6512 31.0833 28.4734 29.2773 28.4934 27.0364L27.7435 27.0297ZM20.333 20.3333H19.583V27H20.333H21.083V20.3333H20.333ZM23.6663 20.3333H22.9163V27H23.6663H24.4163V20.3333H23.6663Z"
-                              fill="#EF2D2D"
-                            />
-                            <defs>
-                              <linearGradient
-                                id="paint0_linear_90_2081"
-                                x1={22}
-                                y1={0}
-                                x2={22}
-                                y2={44}
-                                gradientUnits="userSpaceOnUse"
-                              >
-                                <stop stopColor="white" />
-                                <stop offset={1} stopColor="white" stopOpacity={0} />
-                              </linearGradient>
-                            </defs>
-                          </svg>
+                            >
+                                <div className="bg-white  px-4 pt-5 pb-4 sm:p-8 sm:pb-6">
+                                    <div className="sm:flex sm:items-start">
+                                        <div className="mt-3 text-center sm:mt-0 sm:text-left w-full">
+                                            <div className="flex gap-2 pb-4 w-100">
+                                                <div className="user-icon">
+                                                    <svg
+                                                        width={44}
+                                                        height={44}
+                                                        viewBox="0 0 44 44"
+                                                        fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <rect width={44} height={44} rx={22} fill="#FAF5F5" />
+                                                        <rect
+                                                            x="0.5"
+                                                            y="0.5"
+                                                            width={43}
+                                                            height={43}
+                                                            rx="21.5"
+                                                            stroke="url(#paint0_linear_90_2081)"
+                                                            strokeOpacity="0.3"
+                                                        />
+                                                        <path
+                                                            d="M27.7435 27.0297L28.4934 27.0364L27.7435 27.0297ZM15.333 16.25C14.9188 16.25 14.583 16.5857 14.583 17C14.583 17.4142 14.9188 17.75 15.333 17.75V16.25ZM28.6663 17.75C29.0806 17.75 29.4163 17.4142 29.4163 17C29.4163 16.5857 29.0806 16.25 28.6663 16.25V17.75ZM21.083 20.3333C21.083 19.9191 20.7472 19.5833 20.333 19.5833C19.9188 19.5833 19.583 19.9191 19.583 20.3333H21.083ZM19.583 27C19.583 27.4142 19.9188 27.75 20.333 27.75C20.7472 27.75 21.083 27.4142 21.083 27H19.583ZM24.4163 20.3333C24.4163 19.9191 24.0806 19.5833 23.6663 19.5833C23.2521 19.5833 22.9163 19.9191 22.9163 20.3333H24.4163ZM22.9163 27C22.9163 27.4142 23.2521 27.75 23.6663 27.75C24.0806 27.75 24.4163 27.4142 24.4163 27H22.9163ZM27.833 17L27.083 16.9933L26.9935 27.023L27.7435 27.0297L28.4934 27.0364L28.583 17.0067L27.833 17ZM24.4103 30.3333V29.5833H19.4997V30.3333V31.0833H24.4103V30.3333ZM16.1663 17H15.4163V27H16.1663H16.9163V17H16.1663ZM15.333 17V17.75H16.1663V17V16.25H15.333V17ZM16.1663 17V17.75H18.6663V17V16.25H16.1663V17ZM18.6663 17V17.75H25.333V17V16.25H18.6663V17ZM25.333 17V17.75H27.833V17V16.25H25.333V17ZM27.833 17V17.75H28.6663V17V16.25H27.833V17ZM18.6663 16.6296H19.4163C19.4163 15.488 20.4875 14.4166 21.9997 14.4166V13.6666V12.9166C19.83 12.9166 17.9163 14.4984 17.9163 16.6296H18.6663ZM21.9997 13.6666V14.4166C23.5119 14.4166 24.583 15.488 24.583 16.6296H25.333H26.083C26.083 14.4984 24.1694 12.9166 21.9997 12.9166V13.6666ZM18.6663 16.6296H17.9163V17H18.6663H19.4163V16.6296H18.6663ZM25.333 16.6296H24.583V17H25.333H26.083V16.6296H25.333ZM19.4997 30.3333V29.5833C18.0729 29.5833 16.9163 28.4267 16.9163 27H16.1663H15.4163C15.4163 29.2551 17.2445 31.0833 19.4997 31.0833V30.3333ZM27.7435 27.0297L26.9935 27.023C26.9808 28.4407 25.828 29.5833 24.4103 29.5833V30.3333V31.0833C26.6512 31.0833 28.4734 29.2773 28.4934 27.0364L27.7435 27.0297ZM20.333 20.3333H19.583V27H20.333H21.083V20.3333H20.333ZM23.6663 20.3333H22.9163V27H23.6663H24.4163V20.3333H23.6663Z"
+                                                            fill="#EF2D2D"
+                                                        />
+                                                        <defs>
+                                                            <linearGradient
+                                                                id="paint0_linear_90_2081"
+                                                                x1={22}
+                                                                y1={0}
+                                                                x2={22}
+                                                                y2={44}
+                                                                gradientUnits="userSpaceOnUse"
+                                                            >
+                                                                <stop stopColor="white" />
+                                                                <stop offset={1} stopColor="white" stopOpacity={0} />
+                                                            </linearGradient>
+                                                        </defs>
+                                                    </svg>
 
+                                                </div>
+                                                <h3 className="text-lg font-regular text-[#144A6C] text-start mt-2 font-normal">
+                                                    Delete
+                                                </h3>
+                                            </div>
+                                            <div className="mt-3">
+                                                <span className="text-[#A1A5AA]">
+                                                    Are you sure you want to delete this? Once deleted, this action can not be undone.
+                                                </span>
+                                            </div>
+                                            <form>
+
+                                                <div className="bg-white  gap-2 py-3 sm:flex sm:flex-row-reverse border-t border-[#E5E7EB] mt-5">
+                                                    <button
+                                                        type="button"
+                                                        className="bg-[#EF2D2D] border border-[#EF2D2D] pl-4 pr-4 py-2 text-white flex items-center space-x-2 rounded-lg transition-colors whitespace-nowrap justify-center text-center"
+                                                        onClick={() => {
+                                                            setIsOpen1(false);
+                                                            setModalAnimation1(false);
+                                                        }}
+                                                    >
+                                                        Delete
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        className="bg-[#fff] pl-4 pr-4 py-2 text-[#144A6C] flex items-center space-x-2 rounded-lg transition-colors whitespace-nowrap justify-center text-center border border-[#EBEBEB]"
+                                                        onClick={() => {
+                                                            setTimeout(() => {
+                                                                setIsOpen1(false);
+                                                            }, 500);
+                                                            setModalAnimation1(false);
+                                                        }}
+                                                    >
+                                                        Cancel
+                                                    </button>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
-                        <h3 className="text-lg font-regular text-[#144A6C] text-start mt-2 font-normal">
-                          Delete
-                        </h3>
-                      </div>
-                      <div className="mt-3">
-                        <span className="text-[#A1A5AA]">
-                          Are you sure you want to delete this? Once deleted, this action can not be undone.
-                        </span>
-                      </div>
-                      <form>
-
-                        <div className="bg-white  gap-2 py-3 sm:flex sm:flex-row-reverse border-t border-[#E5E7EB] mt-5">
-                          <button
-                            type="button"
-                            className="bg-[#EF2D2D] border border-[#EF2D2D] pl-4 pr-4 py-2 text-white flex items-center space-x-2 rounded-lg transition-colors whitespace-nowrap justify-center text-center"
-                            onClick={() => {
-                              setIsOpen1(false);
-                              setModalAnimation1(false);
-                            }}
-                          >
-                            Delete
-                          </button>
-                          <button
-                            type="button"
-                            className="bg-[#fff] pl-4 pr-4 py-2 text-[#144A6C] flex items-center space-x-2 rounded-lg transition-colors whitespace-nowrap justify-center text-center border border-[#EBEBEB]"
-                            onClick={() => {
-                              setTimeout(() => {
-                                setIsOpen1(false);
-                              }, 500);
-                              setModalAnimation1(false);
-                            }}
-                          >
-                            Cancel
-                          </button>
-
-                        </div>
-                      </form>
                     </div>
-                  </div>
-
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+            )}
             {isOpen && (
                 <div
                     role="dialog"
@@ -443,6 +443,7 @@ export default function Patient() {
                 {/* Header - Same background as sidebar */}
                 <div className="pb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 flex-shrink-0 lg:rounded-tr-lg">
                     <h1 className="text-3xl font-regular text-[#144A6C]">Setting</h1>
+                    <button className="bg-[#fff] text-[#144A6C] py-1 px-5 border border-[#144A6C] rounded-lg hover:bg-[#144A6C] hover:text-[#fff]">Update</button>
                 </div>
                 <div className="xl:col-span-2 space-y-0">
                     <div className="flex md:space-x-4 space-x-0 md:flex-row flex-row md:ml-4 ml-0 overflow-x-auto">
@@ -620,192 +621,212 @@ export default function Patient() {
                                                                                         </div>
                                                                                     </div>
 
-                                                                                    {/* Form Fields here, updated if needed */}
-                                                                                    <form className="w-full max-w-4xl mx-auto mt-5">
-                                                                                        <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                                                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                                                <label className="text-[#757575]" htmlFor="clinic-email">
-                                                                                                    Full Name
-                                                                                                </label>
-                                                                                                <input
-                                                                                                    className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                                                    id="clinic-email"
-                                                                                                    type="text"
-                                                                                                />
-                                                                                            </div>
+                                                                                    <div style={{
+                                                                                        maxHeight: "500px",
+                                                                                        minHeight: "400px",
+                                                                                        overflowY: "auto",
+                                                                                    }}>
+                                                                                        <form className="w-full max-w-4xl mx-auto mt-5">
+                                                                                            <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                                                                                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                                                                                    <label className="text-[#757575]" htmlFor="clinic-email">
+                                                                                                        Full Name
+                                                                                                    </label>
+                                                                                                    <input
+                                                                                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                                                                                        id="clinic-email"
+                                                                                                        type="text"
+                                                                                                    />
+                                                                                                </div>
 
-                                                                                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                                                <label className="text-[#757575]" htmlFor="clinic-phone">
-                                                                                                    Specialty
-                                                                                                </label>
-                                                                                                <Listbox value={selectedFrequency} onChange={setSelectedFrequency}>
-                                                                                                    <div className="mt-2 relative">
-                                                                                                        <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
-                                                                                                            <span className="block truncate">{selectedFrequency.name}</span>
-                                                                                                            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                                                                                                                <ChevronDownIcon
-                                                                                                                    className="h-5 w-5 text-[#144A6C]"
-                                                                                                                    aria-hidden="true"
-                                                                                                                />
-                                                                                                            </span>
-                                                                                                        </Listbox.Button>
+                                                                                                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                                                                                    <label className="text-[#757575]" htmlFor="clinic-phone">
+                                                                                                        Specialty
+                                                                                                    </label>
+                                                                                                    <Listbox value={selectedFrequency} onChange={setSelectedFrequency}>
+                                                                                                        <div className="mt-2 relative">
+                                                                                                            <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
+                                                                                                                <span className="block truncate">{selectedFrequency.name}</span>
+                                                                                                                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                                                                                                    <ChevronDownIcon
+                                                                                                                        className="h-5 w-5 text-[#144A6C]"
+                                                                                                                        aria-hidden="true"
+                                                                                                                    />
+                                                                                                                </span>
+                                                                                                            </Listbox.Button>
 
-                                                                                                        <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                                                                                            {frequencyOptions.map((frequency) => (
-                                                                                                                <Listbox.Option
-                                                                                                                    key={frequency.id}
-                                                                                                                    value={frequency}
-                                                                                                                    className={({ active }) =>
-                                                                                                                        `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-[#144A6C] text-white" : "text-gray-900"
-                                                                                                                        }`
-                                                                                                                    }
-                                                                                                                >
-                                                                                                                    {({ selected }) => (
-                                                                                                                        <>
-                                                                                                                            <span
-                                                                                                                                className={`block truncate ${selected ? "font-medium" : "font-normal"
-                                                                                                                                    }`}
-                                                                                                                            >
-                                                                                                                                {frequency.name}
-                                                                                                                            </span>
-                                                                                                                            {selected && (
-                                                                                                                                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600">
-                                                                                                                                    <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                                                                            <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                                                                                                {frequencyOptions.map((frequency) => (
+                                                                                                                    <Listbox.Option
+                                                                                                                        key={frequency.id}
+                                                                                                                        value={frequency}
+                                                                                                                        className={({ active }) =>
+                                                                                                                            `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-[#144A6C] text-white" : "text-gray-900"
+                                                                                                                            }`
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        {({ selected }) => (
+                                                                                                                            <>
+                                                                                                                                <span
+                                                                                                                                    className={`block truncate ${selected ? "font-medium" : "font-normal"
+                                                                                                                                        }`}
+                                                                                                                                >
+                                                                                                                                    {frequency.name}
                                                                                                                                 </span>
-                                                                                                                            )}
-                                                                                                                        </>
-                                                                                                                    )}
-                                                                                                                </Listbox.Option>
-                                                                                                            ))}
-                                                                                                        </Listbox.Options>
-                                                                                                    </div>
-                                                                                                </Listbox>
+                                                                                                                                {selected && (
+                                                                                                                                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600">
+                                                                                                                                        <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                                                                                                    </span>
+                                                                                                                                )}
+                                                                                                                            </>
+                                                                                                                        )}
+                                                                                                                    </Listbox.Option>
+                                                                                                                ))}
+                                                                                                            </Listbox.Options>
+                                                                                                        </div>
+                                                                                                    </Listbox>
 
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                                                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                                                <label className="text-[#757575]" htmlFor="clinic-email">
-                                                                                                    Email Address
-                                                                                                </label>
-                                                                                                <input
-                                                                                                    className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                                                    id="clinic-email"
-                                                                                                    type="text"
-                                                                                                />
+                                                                                                </div>
                                                                                             </div>
 
-                                                                                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                                                <label className="text-[#757575]" htmlFor="clinic-phone">
-                                                                                                    Phone Number
-                                                                                                </label>
-                                                                                                <input
-                                                                                                    className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                                                    id="clinic-email"
-                                                                                                    type="text"
-                                                                                                />
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                                                            <div className="w-full px-3 mb-6 md:mb-0 text-start">
-                                                                                                <label className="text-[#757575]" htmlFor="clinic-email">
-                                                                                                    Per hour salary
-                                                                                                </label>
-                                                                                                <input
-                                                                                                    className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                                                    id="clinic-email"
-                                                                                                    type="text"
-                                                                                                />
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                                                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                                                <label className="text-[#757575]" htmlFor="clinic-email">
-                                                                                                    License Number
-                                                                                                </label>
-                                                                                                <input
-                                                                                                    className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                                                    id="clinic-email"
-                                                                                                    type="text"
-                                                                                                />
-                                                                                            </div>
+                                                                                            <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                                                                                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                                                                                    <label className="text-[#757575]" htmlFor="clinic-email">
+                                                                                                        Email Address
+                                                                                                    </label>
+                                                                                                    <input
+                                                                                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                                                                                        id="clinic-email"
+                                                                                                        type="text"
+                                                                                                    />
+                                                                                                </div>
 
-                                                                                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                                                <label className="text-[#757575]" htmlFor="clinic-phone">
-                                                                                                    License Expiry
-                                                                                                </label>
-                                                                                                <input
-                                                                                                    className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                                                    id="clinic-email"
-                                                                                                    type="date"
-                                                                                                />
+                                                                                                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                                                                                    <label className="text-[#757575]" htmlFor="clinic-phone">
+                                                                                                        Phone Number
+                                                                                                    </label>
+                                                                                                    <input
+                                                                                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                                                                                        id="clinic-email"
+                                                                                                        type="text"
+                                                                                                    />
+                                                                                                </div>
                                                                                             </div>
-                                                                                        </div>
-                                                                                        <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                                                            <div className="w-full px-3 mb-6 md:mb-0 text-start">
-                                                                                                <label className="text-[#757575]" htmlFor="clinic-email">
-                                                                                                    Address
-                                                                                                </label>
-                                                                                                <input
-                                                                                                    className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                                                    id="clinic-email"
-                                                                                                    type="text"
-                                                                                                />
+                                                                                            <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                                                                                <div className="w-full px-3 mb-6 md:mb-0 text-start">
+                                                                                                    <label className="text-[#757575]" htmlFor="clinic-email">
+                                                                                                        Per hour salary
+                                                                                                    </label>
+                                                                                                    <input
+                                                                                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                                                                                        id="clinic-email"
+                                                                                                        type="text"
+                                                                                                    />
+                                                                                                </div>
                                                                                             </div>
-                                                                                        </div>
-                                                                                        <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                                                            <div className="w-full px-3 mb-6 md:mb-0 text-start">
-                                                                                                <label className="text-[#757575]" htmlFor="clinic-email">
-                                                                                                    Languages
-                                                                                                </label>
-                                                                                                <Listbox value={selectedLanguage} onChange={setSelectedLanguage}>
-                                                                                                    <div className="mt-2 relative">
-                                                                                                        {/* Button */}
-                                                                                                        <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
-                                                                                                            <span className="block truncate">{selectedLanguage.name}</span>
-                                                                                                            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                                                                                                                <ChevronDownIcon
-                                                                                                                    className="h-5 w-5 text-[#144A6C]"
-                                                                                                                    aria-hidden="true"
+                                                                                            <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                                                                                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                                                                                    <label className="text-[#757575]" htmlFor="clinic-email">
+                                                                                                        License Number
+                                                                                                    </label>
+                                                                                                    <input
+                                                                                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                                                                                        id="clinic-email"
+                                                                                                        type="text"
+                                                                                                    />
+                                                                                                </div>
+
+                                                                                                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                                                                                    <label className="text-[#757575]" htmlFor="clinic-phone">
+                                                                                                        License Expiry
+                                                                                                    </label>
+                                                                                                    <div className="relative">
+                                                                                                        <Singledatepicker />
+                                                                                                        <div className="absolute top-5 right-3 text-gray-500 pointer-events-none">
+                                                                                                            <svg
+                                                                                                                width={16}
+                                                                                                                height={18}
+                                                                                                                viewBox="0 0 16 18"
+                                                                                                                fill="none"
+                                                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                                            >
+                                                                                                                <path
+                                                                                                                    d="M1.25 7.5H14.75M5 4.5V1.5M11 4.5V1.5M6.05 16.5H9.95C11.6302 16.5 12.4702 16.5 13.112 16.173C13.6765 15.8854 14.1354 15.4265 14.423 14.862C14.75 14.2202 14.75 13.3802 14.75 11.7V7.8C14.75 6.11984 14.75 5.27976 14.423 4.63803C14.1354 4.07354 13.6765 3.6146 13.112 3.32698C12.4702 3 11.6302 3 9.95 3H6.05C4.36984 3 3.52976 3 2.88803 3.32698C2.32354 3.6146 1.8646 4.07354 1.57698 4.63803C1.25 5.27976 1.25 6.11984 1.25 7.8V11.7C1.25 13.3802 1.25 14.2202 1.57698 14.862C1.8646 15.4265 2.32354 15.8854 2.88803 16.173C3.52976 16.5 4.36984 16.5 6.05 16.5Z"
+                                                                                                                    stroke="#A1A5AA"
+                                                                                                                    strokeWidth="1.5"
+                                                                                                                    strokeLinecap="round"
                                                                                                                 />
-                                                                                                            </span>
-                                                                                                        </Listbox.Button>
-
-                                                                                                        {/* Options */}
-                                                                                                        <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                                                                                            {languageOptions.map((language) => (
-                                                                                                                <Listbox.Option
-                                                                                                                    key={language.id}
-                                                                                                                    value={language}
-                                                                                                                    className={({ active }) =>
-                                                                                                                        `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-[#144A6C] text-white" : "text-gray-900"
-                                                                                                                        }`
-                                                                                                                    }
-                                                                                                                >
-                                                                                                                    {({ selected }) => (
-                                                                                                                        <>
-                                                                                                                            <span
-                                                                                                                                className={`block truncate ${selected ? "font-medium" : "font-normal"
-                                                                                                                                    }`}
-                                                                                                                            >
-                                                                                                                                {language.name}
-                                                                                                                            </span>
-                                                                                                                            {selected && (
-                                                                                                                                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600">
-                                                                                                                                    <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                                                                                                                                </span>
-                                                                                                                            )}
-                                                                                                                        </>
-                                                                                                                    )}
-                                                                                                                </Listbox.Option>
-                                                                                                            ))}
-                                                                                                        </Listbox.Options>
+                                                                                                            </svg>
+                                                                                                        </div>
                                                                                                     </div>
-                                                                                                </Listbox>
+                                                                                                </div>
                                                                                             </div>
-                                                                                        </div>
-                                                                                    </form>
+                                                                                            <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                                                                                <div className="w-full px-3 mb-6 md:mb-0 text-start">
+                                                                                                    <label className="text-[#757575]" htmlFor="clinic-email">
+                                                                                                        Address
+                                                                                                    </label>
+                                                                                                    <input
+                                                                                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                                                                                        id="clinic-email"
+                                                                                                        type="text"
+                                                                                                    />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                                                                                <div className="w-full px-3 mb-6 md:mb-0 text-start">
+                                                                                                    <label className="text-[#757575]" htmlFor="clinic-email">
+                                                                                                        Languages
+                                                                                                    </label>
+                                                                                                    <Listbox value={selectedLanguage} onChange={setSelectedLanguage}>
+                                                                                                        <div className="mt-2 relative">
+                                                                                                            {/* Button */}
+                                                                                                            <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
+                                                                                                                <span className="block truncate">{selectedLanguage.name}</span>
+                                                                                                                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                                                                                                    <ChevronDownIcon
+                                                                                                                        className="h-5 w-5 text-[#144A6C]"
+                                                                                                                        aria-hidden="true"
+                                                                                                                    />
+                                                                                                                </span>
+                                                                                                            </Listbox.Button>
+
+                                                                                                            {/* Options */}
+                                                                                                            <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                                                                                                {languageOptions.map((language) => (
+                                                                                                                    <Listbox.Option
+                                                                                                                        key={language.id}
+                                                                                                                        value={language}
+                                                                                                                        className={({ active }) =>
+                                                                                                                            `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-[#144A6C] text-white" : "text-gray-900"
+                                                                                                                            }`
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        {({ selected }) => (
+                                                                                                                            <>
+                                                                                                                                <span
+                                                                                                                                    className={`block truncate ${selected ? "font-medium" : "font-normal"
+                                                                                                                                        }`}
+                                                                                                                                >
+                                                                                                                                    {language.name}
+                                                                                                                                </span>
+                                                                                                                                {selected && (
+                                                                                                                                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600">
+                                                                                                                                        <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                                                                                                    </span>
+                                                                                                                                )}
+                                                                                                                            </>
+                                                                                                                        )}
+                                                                                                                    </Listbox.Option>
+                                                                                                                ))}
+                                                                                                            </Listbox.Options>
+                                                                                                        </div>
+                                                                                                    </Listbox>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </form>
+                                                                                    </div>
+
                                                                                 </div>
                                                                             </div>
 
@@ -846,7 +867,7 @@ export default function Patient() {
                                             </div>
                                             <div className="w-full overflow-x-auto mt-3">
                                                 <table className="min-w-full">
-                                                   <thead className="bg-gray-50">
+                                                    <thead className="bg-gray-50">
                                                         <tr>
                                                             <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">ID No</th>
                                                             <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">Full Name</th>

@@ -5,6 +5,7 @@ import { Listbox } from "@headlessui/react";
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/20/solid";
 import ClinicalNoteEditor from "./Ckeditor";
 import PrescriptionSection from "./PrescriptionSection";
+import Singledatepicker from "../components/Singledatepicker"
 import React from "react";
 
 export default function Patientdetail() {
@@ -490,11 +491,25 @@ export default function Patientdetail() {
                         >
                           Birthdate:
                         </label>
-                        <input
-                          className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                          id="datepicker"
-                          type="date"
-                        />
+                        <div className="relative">
+                          <Singledatepicker />
+                          <div className="absolute top-5 right-3 text-gray-500 pointer-events-none">
+                            <svg
+                              width={16}
+                              height={18}
+                              viewBox="0 0 16 18"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M1.25 7.5H14.75M5 4.5V1.5M11 4.5V1.5M6.05 16.5H9.95C11.6302 16.5 12.4702 16.5 13.112 16.173C13.6765 15.8854 14.1354 15.4265 14.423 14.862C14.75 14.2202 14.75 13.3802 14.75 11.7V7.8C14.75 6.11984 14.75 5.27976 14.423 4.63803C14.1354 4.07354 13.6765 3.6146 13.112 3.32698C12.4702 3 11.6302 3 9.95 3H6.05C4.36984 3 3.52976 3 2.88803 3.32698C2.32354 3.6146 1.8646 4.07354 1.57698 4.63803C1.25 5.27976 1.25 6.11984 1.25 7.8V11.7C1.25 13.3802 1.25 14.2202 1.57698 14.862C1.8646 15.4265 2.32354 15.8854 2.88803 16.173C3.52976 16.5 4.36984 16.5 6.05 16.5Z"
+                                stroke="#A1A5AA"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                              />
+                            </svg>
+                          </div>
+                        </div>
                       </div>
                       <div className="field" style={{ width: "100%" }}>
                         <label
@@ -842,7 +857,7 @@ export default function Patientdetail() {
                               </span>
                             </Listbox.Button>
 
-                            <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                            <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                               {openSlots.map((slot) => (
                                 <Listbox.Option
                                   key={slot.id}
@@ -904,7 +919,7 @@ export default function Patientdetail() {
                               </span>
                             </Listbox.Button>
 
-                            <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                            <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                               {treatments.map((treatment) => (
                                 <Listbox.Option
                                   key={treatment.id}
@@ -972,7 +987,7 @@ export default function Patientdetail() {
                               </span>
                             </Listbox.Button>
 
-                            <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                            <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                               {lunchTimeSlots.map((slot) => (
                                 <Listbox.Option
                                   key={slot.id}
@@ -1034,7 +1049,7 @@ export default function Patientdetail() {
                               </span>
                             </Listbox.Button>
 
-                            <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                            <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                               {FrequencyfiveOptions.map((slot) => (
                                 <Listbox.Option
                                   key={slot.id}
@@ -1102,7 +1117,7 @@ export default function Patientdetail() {
                               </span>
                             </Listbox.Button>
 
-                            <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                            <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                               {mealOptions.map((meal) => (
                                 <Listbox.Option
                                   key={meal.id}
@@ -1164,7 +1179,7 @@ export default function Patientdetail() {
                               </span>
                             </Listbox.Button>
 
-                            <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                            <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                               {FrequencytwoOptions.map((slot) => (
                                 <Listbox.Option
                                   key={slot.id}
@@ -1232,7 +1247,7 @@ export default function Patientdetail() {
                               </span>
                             </Listbox.Button>
 
-                            <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                            <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                               {snackSlotOptions.map((slot) => (
                                 <Listbox.Option
                                   key={slot.id}
@@ -1294,7 +1309,7 @@ export default function Patientdetail() {
                               </span>
                             </Listbox.Button>
 
-                            <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                            <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                               {FrequencythreeOptions.map((slot) => (
                                 <Listbox.Option
                                   key={slot.id}
@@ -1362,7 +1377,7 @@ export default function Patientdetail() {
                               </span>
                             </Listbox.Button>
 
-                            <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                            <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                               {dinnerSlotOptions.map((slot) => (
                                 <Listbox.Option
                                   key={slot.id}
@@ -1424,7 +1439,7 @@ export default function Patientdetail() {
                               </span>
                             </Listbox.Button>
 
-                            <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                            <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                               {FrequencyfourOptions.map((slot) => (
                                 <Listbox.Option
                                   key={slot.id}
@@ -1572,7 +1587,7 @@ export default function Patientdetail() {
                             </span>
                           </Listbox.Button>
 
-                          <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                          <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                             {activities.map((activity) => (
                               <Listbox.Option
                                 key={activity.id}
@@ -1629,7 +1644,7 @@ export default function Patientdetail() {
                             </span>
                           </Listbox.Button>
 
-                          <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                          <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                             {smokeOptions.map((option) => (
                               <Listbox.Option
                                 key={option.id}
@@ -1687,7 +1702,7 @@ export default function Patientdetail() {
                             </span>
                           </Listbox.Button>
 
-                          <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                          <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                             {alcoholOptions.map((option) => (
                               <Listbox.Option
                                 key={option.id}
@@ -1751,7 +1766,7 @@ export default function Patientdetail() {
                             </span>
                           </Listbox.Button>
 
-                          <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                          <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                             {teethOptions.map((option) => (
                               <Listbox.Option
                                 key={option.id}
@@ -1808,7 +1823,7 @@ export default function Patientdetail() {
                             </span>
                           </Listbox.Button>
 
-                          <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                          <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                             {flossOptions.map((option) => (
                               <Listbox.Option
                                 key={option.id}
@@ -2231,7 +2246,7 @@ export default function Patientdetail() {
                               </span>
                             </Listbox.Button>
 
-                            <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                            <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                               {options.map((option) => (
                                 <Listbox.Option
                                   key={option.id}
@@ -2365,14 +2380,27 @@ export default function Patientdetail() {
                         </label>
 
                         <div className="mt-2 relative w-full">
-                          <input
-                            id="datepicker"
-                            type="date"
-                            className="block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                            placeholder="Select date"
-                          />
+                           <div className="relative">
+                                      <Singledatepicker />
+                                      <div className="absolute top-5 right-3 text-gray-500 pointer-events-none">
+                                        <svg
+                                          width={16}
+                                          height={18}
+                                          viewBox="0 0 16 18"
+                                          fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            d="M1.25 7.5H14.75M5 4.5V1.5M11 4.5V1.5M6.05 16.5H9.95C11.6302 16.5 12.4702 16.5 13.112 16.173C13.6765 15.8854 14.1354 15.4265 14.423 14.862C14.75 14.2202 14.75 13.3802 14.75 11.7V7.8C14.75 6.11984 14.75 5.27976 14.423 4.63803C14.1354 4.07354 13.6765 3.6146 13.112 3.32698C12.4702 3 11.6302 3 9.95 3H6.05C4.36984 3 3.52976 3 2.88803 3.32698C2.32354 3.6146 1.8646 4.07354 1.57698 4.63803C1.25 5.27976 1.25 6.11984 1.25 7.8V11.7C1.25 13.3802 1.25 14.2202 1.57698 14.862C1.8646 15.4265 2.32354 15.8854 2.88803 16.173C3.52976 16.5 4.36984 16.5 6.05 16.5Z"
+                                            stroke="#A1A5AA"
+                                            strokeWidth="1.5"
+                                            strokeLinecap="round"
+                                          />
+                                        </svg>
+                                      </div>
+                                    </div>
 
-                         
+
                         </div>
                       </div>
 
@@ -3905,7 +3933,7 @@ export default function Patientdetail() {
                 <div className="mt-5">
                   <div className="w-full overflow-x-auto mt-3">
                     <table className="min-w-full">
-                     <thead className="bg-gray-50">
+                      <thead className="bg-gray-50">
                         <tr className="pt-4 pr-8 pb-3 pl-8 rounded-bl-lg">
                           <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
                             ID No
@@ -4248,7 +4276,7 @@ export default function Patientdetail() {
                                                   </span>
                                                 </Listbox.Button>
 
-                                                <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                                <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                                                   {specialties.map(
                                                     (specialty) => (
                                                       <Listbox.Option
@@ -4317,7 +4345,7 @@ export default function Patientdetail() {
                                                   </span>
                                                 </Listbox.Button>
 
-                                                <Listbox.Options className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                                <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                                                   {locations.map((location) => (
                                                     <Listbox.Option
                                                       key={location.id}
@@ -4707,7 +4735,7 @@ export default function Patientdetail() {
                 <div className="mt-5">
                   <div className="w-full overflow-x-auto mt-3">
                     <table className="min-w-full">
-                     <thead className="bg-gray-50">
+                      <thead className="bg-gray-50">
                         <tr className="pt-4 pr-8 pb-3 pl-8 rounded-bl-lg">
                           <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
                             ID No

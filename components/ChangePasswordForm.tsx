@@ -42,7 +42,7 @@ export default function ChangePasswordForm() {
         </div>
 
         {/* Show Password Checkbox */}
-        <div className="flex items-center gap-2 md:pl-48 pl-0">
+        <div className="flex items-center gap-2 md:pl-48 pl-0 ml-8">
           <input
             id="showPassword"
             type="checkbox"
