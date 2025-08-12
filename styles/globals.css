@@ -350,3 +350,7 @@ hr{
 .truncate{
   color: #667085!important;
 }
+.rdrCalendarWrapper{
+      border: solid 1px #ccc;
+    border-radius: 12px;
+}

@@ -75,7 +75,7 @@ export default class Singledatepicker extends Component<{}, MyComponentState> {
 
                 {/* Single Date Picker */}
                 {showPicker && (
-                    <div className="absolute z-10 mt-2">
+                    <div className="absolute z-10 mt-2 top-4">
                         <Calendar
                             date={selectedDate}
                             onChange={this.handleSelect}
