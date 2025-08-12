@@ -742,7 +742,8 @@ export default function Patient() {
                                                                 maxHeight: "500px",
                                                                 minHeight: "400px",
                                                                 overflowY: "auto",
-                                                            }}> <form className="w-full max-w-4xl mx-auto mt-5">
+                                                            }}>
+                                                                <form className="w-full max-w-4xl mx-auto mt-5">
                                                                     <div className="flex flex-wrap -mx-3 mt-2 mb-4">
                                                                         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
                                                                             <label className="text-[#757575]" htmlFor="clinic-email">
@@ -955,11 +956,10 @@ export default function Patient() {
                                                                                     <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
                                                                                         Cost Without VAT
                                                                                     </th>
-
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody className="bg-white divide-y divide-[#EAECF0]">
-                                                                                {subscriptions.length === 0 ? (
+                                                                                {subscriptionsTable.length === 0 ? (
                                                                                     <tr>
                                                                                         <td
                                                                                             colSpan={8}
@@ -1007,7 +1007,7 @@ export default function Patient() {
                                                                                         </td>
                                                                                     </tr>
                                                                                 ) : (
-                                                                                    subscriptions.map((sub) => (
+                                                                                    subscriptionsTable.map((sub) => (
                                                                                         <tr key={sub.id} className="hover:bg-gray-50">
                                                                                             <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
                                                                                                 {sub.user}
@@ -1018,16 +1018,25 @@ export default function Patient() {
                                                                                             <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
                                                                                                 {sub.plan}
                                                                                             </td>
-                                                                                            <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
-                                                                                                {sub.startDate}
+                                                                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                                                                <input
+                                                                                                    type="number"
+                                                                                                    className="w-20 px-2 py-1 border rounded text-sm text-[#475467]"
+                                                                                                    placeholder="0"
+                                                                                                // Add onChange handler and value binding as needed
+                                                                                                />
+                                                                                            </td>
+                                                                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                                                                <input
+                                                                                                    type="number"
+                                                                                                    className="w-20 px-2 py-1 border rounded text-sm text-[#475467]"
+                                                                                                    placeholder="0.00"
+                                                                                                // Add onChange handler and value binding as needed
+                                                                                                />
                                                                                             </td>
                                                                                             <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
-                                                                                                {sub.endDate}
+                                                                                                ${sub.amount.toFixed(2)}
                                                                                             </td>
-                                                                                            <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
-                                                                                                {sub.date}
-                                                                                            </td>
-
                                                                                         </tr>
                                                                                     ))
                                                                                 )}
@@ -1041,11 +1050,17 @@ export default function Patient() {
                                                                                     Margin
                                                                                 </label>
                                                                                 <div className="flex gap-2">
-
-                                                                                    <Listbox value={selectedProfit} onChange={setSelectedProfit}>
-                                                                                        <div className="relative mt-2">
-                                                                                            <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
-                                                                                                {/* <span className="block truncate">{selectedProfit.name}</span> */}
+                                                                                    {/* Dropdown (Listbox) */}
+                                                                                    <Listbox value={selectedProfit} onChange={handleDropdownChange} disabled={inputValue !== ""}>
+                                                                                        <div className="relative mt-2 w-56">
+                                                                                            <Listbox.Button
+                                                                                                className={`relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] sm:text-sm
+          ${inputValue !== "" ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
+        `}
+                                                                                            >
+                                                                                                <span className="block truncate">
+                                                                                                    {selectedProfit ? selectedProfit.name : "Select margin"}
+                                                                                                </span>
                                                                                                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                                                                                     <ChevronDownIcon className="h-5 w-5 text-[#144A6C]" aria-hidden="true" />
                                                                                                 </span>
@@ -1057,7 +1072,8 @@ export default function Patient() {
                                                                                                         key={profit.id}
                                                                                                         value={profit}
                                                                                                         className={({ active }) =>
-                                                                                                            `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-[#144A6C] text-white" : "text-gray-900"}`
+                                                                                                            `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-[#144A6C] text-white" : "text-gray-900"
+                                                                                                            }`
                                                                                                         }
                                                                                                     >
                                                                                                         {({ selected }) => (
@@ -1078,12 +1094,18 @@ export default function Patient() {
                                                                                         </div>
                                                                                     </Listbox>
 
+                                                                                    {/* Input Field */}
                                                                                     <input
-                                                                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                                        id="clinic-address"
-                                                                                        type="text" value="$"
+                                                                                        className={`mt-2 block w-56 shadow-sm text-gray-700 border rounded-lg py-3 pl-3 leading-tight focus:outline-none
+      ${selectedProfit !== null ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
+    `}
+                                                                                        type="text"
+                                                                                        value={inputValue}
+                                                                                        onChange={handleInputChange}
+                                                                                        disabled={selectedProfit !== null}
                                                                                     />
                                                                                 </div>
+
                                                                             </div>
                                                                             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
                                                                                 <label className="text-[#757575]" htmlFor="clinic-phone">
@@ -1091,11 +1113,15 @@ export default function Patient() {
                                                                                 </label>
                                                                                 <div className="flex gap-2">
 
-                                                                                    <Listbox value={selectedIncrease} onChange={setSelectedIncrease}>
+                                                                                    <Listbox value={selectedIncrease} onChange={handleDropdownChange1} disabled={inputValue1 !== ""}>
                                                                                         <div className="relative mt-2">
-                                                                                            <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
+                                                                                            <Listbox.Button
+                                                                                                className={`relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] sm:text-sm
+          ${inputValue1 !== "" ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
+        `}
+                                                                                            >
                                                                                                 <span className="block truncate">
-                                                                                                    {selectedIncrease.name} — {selectedIncrease.discount}
+                                                                                                    {selectedProfit ? `${selectedIncrease.name} — ${selectedIncrease.discount}` : "Select Discount"}
                                                                                                 </span>
                                                                                                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                                                                                     <ChevronDownIcon className="h-5 w-5 text-[#144A6C]" aria-hidden="true" />
@@ -1130,15 +1156,19 @@ export default function Patient() {
                                                                                         </div>
                                                                                     </Listbox>
                                                                                     <input
-                                                                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                                        id="clinic-address"
-                                                                                        type="text" value="$"
+                                                                                        className={`mt-2 block w-56 shadow-sm text-gray-700 border rounded-lg py-3 pl-3 leading-tight focus:outline-none
+      ${selectedProfit1 !== null ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
+    `}
+                                                                                        type="text"
+                                                                                        value={inputValue1}
+                                                                                        onChange={handleInputChange1}
+                                                                                        disabled={selectedProfit1 !== null}
                                                                                     />
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div className="mt-3">
+                                                                    <div className="mt03">
                                                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
                                                                             {/* Notes Box */}
                                                                             <div className="border border-gray-200 rounded-lg p-4">
@@ -1181,7 +1211,9 @@ export default function Patient() {
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </form> </div>
+
+                                                                </form>
+                                                            </div>
 
                                                         </div>
                                                     </div>
@@ -1298,7 +1330,7 @@ export default function Patient() {
                                                                             <label className="text-[#757575]" htmlFor="clinic-email">
                                                                                 Doctor
                                                                             </label>
-                                                                            <Listbox value={selectedClient} onChange={setSelectedClient} >
+                                                                            <Listbox value={selectedClient} onChange={setSelectedClient}>
                                                                                 <div className="mt-2 relative">
                                                                                     <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
                                                                                         <span className="block truncate">
@@ -1343,7 +1375,7 @@ export default function Patient() {
                                                                             <label className="text-[#757575]" htmlFor="clinic-phone">
                                                                                 Patient
                                                                             </label>
-                                                                            <Listbox value={selectedPatient} onChange={setSelectedPatient} >
+                                                                            <Listbox value={selectedPatient} onChange={setSelectedPatient}>
                                                                                 <div className="mt-2 relative">
                                                                                     <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
                                                                                         <span className="block truncate">
@@ -1390,7 +1422,7 @@ export default function Patient() {
                                                                             <label className="text-[#757575]" htmlFor="clinic-address">
                                                                                 Treatment
                                                                             </label>
-                                                                            <Listbox value={selectedCheckup} onChange={setSelectedCheckup} >
+                                                                            <Listbox value={selectedCheckup} onChange={setSelectedCheckup}>
                                                                                 <div className="mt-2 relative">
                                                                                     <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
                                                                                         <span className="block truncate">{selectedCheckup.name}</span>
@@ -1435,22 +1467,50 @@ export default function Patient() {
                                                                             <label className="text-[#757575]" htmlFor="clinic-email">
                                                                                 Visit Date
                                                                             </label>
-                                                                            <input
-                                                                                className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                                id="clinic-address"
-                                                                                type="date"
-                                                                            />
+                                                                            <div className="relative">
+                                                                                <Singledatepicker />
+                                                                                <div className="absolute top-5 right-3 text-gray-500 pointer-events-none">
+                                                                                    <svg
+                                                                                        width={16}
+                                                                                        height={18}
+                                                                                        viewBox="0 0 16 18"
+                                                                                        fill="none"
+                                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                                    >
+                                                                                        <path
+                                                                                            d="M1.25 7.5H14.75M5 4.5V1.5M11 4.5V1.5M6.05 16.5H9.95C11.6302 16.5 12.4702 16.5 13.112 16.173C13.6765 15.8854 14.1354 15.4265 14.423 14.862C14.75 14.2202 14.75 13.3802 14.75 11.7V7.8C14.75 6.11984 14.75 5.27976 14.423 4.63803C14.1354 4.07354 13.6765 3.6146 13.112 3.32698C12.4702 3 11.6302 3 9.95 3H6.05C4.36984 3 3.52976 3 2.88803 3.32698C2.32354 3.6146 1.8646 4.07354 1.57698 4.63803C1.25 5.27976 1.25 6.11984 1.25 7.8V11.7C1.25 13.3802 1.25 14.2202 1.57698 14.862C1.8646 15.4265 2.32354 15.8854 2.88803 16.173C3.52976 16.5 4.36984 16.5 6.05 16.5Z"
+                                                                                            stroke="#A1A5AA"
+                                                                                            strokeWidth="1.5"
+                                                                                            strokeLinecap="round"
+                                                                                        />
+                                                                                    </svg>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
 
                                                                         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
                                                                             <label className="text-[#757575]" htmlFor="clinic-phone">
                                                                                 Next Visit Date
                                                                             </label>
-                                                                            <input
-                                                                                className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                                id="clinic-address"
-                                                                                type="date"
-                                                                            />
+                                                                            <div className="relative">
+                                                                                <Singledatepicker />
+                                                                                <div className="absolute top-5 right-3 text-gray-500 pointer-events-none">
+                                                                                    <svg
+                                                                                        width={16}
+                                                                                        height={18}
+                                                                                        viewBox="0 0 16 18"
+                                                                                        fill="none"
+                                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                                    >
+                                                                                        <path
+                                                                                            d="M1.25 7.5H14.75M5 4.5V1.5M11 4.5V1.5M6.05 16.5H9.95C11.6302 16.5 12.4702 16.5 13.112 16.173C13.6765 15.8854 14.1354 15.4265 14.423 14.862C14.75 14.2202 14.75 13.3802 14.75 11.7V7.8C14.75 6.11984 14.75 5.27976 14.423 4.63803C14.1354 4.07354 13.6765 3.6146 13.112 3.32698C12.4702 3 11.6302 3 9.95 3H6.05C4.36984 3 3.52976 3 2.88803 3.32698C2.32354 3.6146 1.8646 4.07354 1.57698 4.63803C1.25 5.27976 1.25 6.11984 1.25 7.8V11.7C1.25 13.3802 1.25 14.2202 1.57698 14.862C1.8646 15.4265 2.32354 15.8854 2.88803 16.173C3.52976 16.5 4.36984 16.5 6.05 16.5Z"
+                                                                                            stroke="#A1A5AA"
+                                                                                            strokeWidth="1.5"
+                                                                                            strokeLinecap="round"
+                                                                                        />
+                                                                                    </svg>
+                                                                                </div>
+                                                                            </div>
 
                                                                         </div>
                                                                     </div>
@@ -1477,11 +1537,10 @@ export default function Patient() {
                                                                                     <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
                                                                                         Cost Without VAT
                                                                                     </th>
-
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody className="bg-white divide-y divide-[#EAECF0]">
-                                                                                {subscriptions.length === 0 ? (
+                                                                                {subscriptionsTable.length === 0 ? (
                                                                                     <tr>
                                                                                         <td
                                                                                             colSpan={8}
@@ -1529,7 +1588,7 @@ export default function Patient() {
                                                                                         </td>
                                                                                     </tr>
                                                                                 ) : (
-                                                                                    subscriptions.map((sub) => (
+                                                                                    subscriptionsTable.map((sub) => (
                                                                                         <tr key={sub.id} className="hover:bg-gray-50">
                                                                                             <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
                                                                                                 {sub.user}
@@ -1540,16 +1599,25 @@ export default function Patient() {
                                                                                             <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
                                                                                                 {sub.plan}
                                                                                             </td>
-                                                                                            <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
-                                                                                                {sub.startDate}
+                                                                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                                                                <input
+                                                                                                    type="number"
+                                                                                                    className="w-20 px-2 py-1 border rounded text-sm text-[#475467]"
+                                                                                                    placeholder="0"
+                                                                                                // Add onChange handler and value binding as needed
+                                                                                                />
+                                                                                            </td>
+                                                                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                                                                <input
+                                                                                                    type="number"
+                                                                                                    className="w-20 px-2 py-1 border rounded text-sm text-[#475467]"
+                                                                                                    placeholder="0.00"
+                                                                                                // Add onChange handler and value binding as needed
+                                                                                                />
                                                                                             </td>
                                                                                             <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
-                                                                                                {sub.endDate}
+                                                                                                ${sub.amount.toFixed(2)}
                                                                                             </td>
-                                                                                            <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
-                                                                                                {sub.date}
-                                                                                            </td>
-
                                                                                         </tr>
                                                                                     ))
                                                                                 )}
@@ -1564,7 +1632,7 @@ export default function Patient() {
                                                                                 </label>
                                                                                 <div className="flex gap-2">
                                                                                     {/* Dropdown (Listbox) */}
-                                                                                    <Listbox value={selectedProfit} onChange={handleDropdownChange} disabled={inputValue !== ""} >
+                                                                                    <Listbox value={selectedProfit} onChange={handleDropdownChange} disabled={inputValue !== ""}>
                                                                                         <div className="relative mt-2 w-56">
                                                                                             <Listbox.Button
                                                                                                 className={`relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] sm:text-sm
@@ -1626,7 +1694,7 @@ export default function Patient() {
                                                                                 </label>
                                                                                 <div className="flex gap-2">
 
-                                                                                    <Listbox value={selectedIncrease} onChange={handleDropdownChange1} disabled={inputValue1 !== ""} >
+                                                                                    <Listbox value={selectedIncrease} onChange={handleDropdownChange1} disabled={inputValue1 !== ""}>
                                                                                         <div className="relative mt-2">
                                                                                             <Listbox.Button
                                                                                                 className={`relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] sm:text-sm
@@ -1724,6 +1792,7 @@ export default function Patient() {
                                                                             </div>
                                                                         </div>
                                                                     </div>
+
                                                                 </form>
                                                             </div>
 
@@ -2381,11 +2450,10 @@ export default function Patient() {
                                                                                                             <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
                                                                                                                 Cost Without VAT
                                                                                                             </th>
-
                                                                                                         </tr>
                                                                                                     </thead>
                                                                                                     <tbody className="bg-white divide-y divide-[#EAECF0]">
-                                                                                                        {subscriptions.length === 0 ? (
+                                                                                                        {subscriptionsTable.length === 0 ? (
                                                                                                             <tr>
                                                                                                                 <td
                                                                                                                     colSpan={8}
@@ -2433,7 +2501,7 @@ export default function Patient() {
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                         ) : (
-                                                                                                            subscriptions.map((sub) => (
+                                                                                                            subscriptionsTable.map((sub) => (
                                                                                                                 <tr key={sub.id} className="hover:bg-gray-50">
                                                                                                                     <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
                                                                                                                         {sub.user}
@@ -2444,16 +2512,25 @@ export default function Patient() {
                                                                                                                     <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
                                                                                                                         {sub.plan}
                                                                                                                     </td>
-                                                                                                                    <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
-                                                                                                                        {sub.startDate}
+                                                                                                                    <td className="px-6 py-4 whitespace-nowrap">
+                                                                                                                        <input
+                                                                                                                            type="number"
+                                                                                                                            className="w-20 px-2 py-1 border rounded text-sm text-[#475467]"
+                                                                                                                            placeholder="0"
+                                                                                                                        // Add onChange handler and value binding as needed
+                                                                                                                        />
+                                                                                                                    </td>
+                                                                                                                    <td className="px-6 py-4 whitespace-nowrap">
+                                                                                                                        <input
+                                                                                                                            type="number"
+                                                                                                                            className="w-20 px-2 py-1 border rounded text-sm text-[#475467]"
+                                                                                                                            placeholder="0.00"
+                                                                                                                        // Add onChange handler and value binding as needed
+                                                                                                                        />
                                                                                                                     </td>
                                                                                                                     <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
-                                                                                                                        {sub.endDate}
+                                                                                                                        ${sub.amount.toFixed(2)}
                                                                                                                     </td>
-                                                                                                                    <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
-                                                                                                                        {sub.date}
-                                                                                                                    </td>
-
                                                                                                                 </tr>
                                                                                                             ))
                                                                                                         )}

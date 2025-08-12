@@ -23,7 +23,7 @@ const materialsList: Material[] = [
 ];
 
 const MaterialTable = () => {
-    
+
     const [rows, setRows] = useState<Row[]>([
         {
             id: Date.now(),
@@ -52,41 +52,41 @@ const MaterialTable = () => {
     };
 
     const handleChange = (
-  index: number,
-  field: keyof Row,
-  value: string
-) => {
-  const updatedRows = [...rows];
+        index: number,
+        field: keyof Row,
+        value: string
+    ) => {
+        const updatedRows = [...rows];
 
-  if (field === 'materialId') {
-    const selectedMaterial = materialsList.find(
-      (material) => material.id.toString() === value
-    );
+        if (field === 'materialId') {
+            const selectedMaterial = materialsList.find(
+                (material) => material.id.toString() === value
+            );
 
-    if (selectedMaterial) {
-      updatedRows[index] = {
-        ...updatedRows[index],
-        materialId: selectedMaterial.id.toString(),
-        uom: selectedMaterial.uom,
-        amount: selectedMaterial.amount.toString(),
-      };
-    } else {
-      updatedRows[index] = {
-        ...updatedRows[index],
-        materialId: '',
-        uom: '',
-        amount: '',
-      };
-    }
-  } else if (field !== 'id') {
-    updatedRows[index] = {
-      ...updatedRows[index],
-      [field]: value,
+            if (selectedMaterial) {
+                updatedRows[index] = {
+                    ...updatedRows[index],
+                    materialId: selectedMaterial.id.toString(),
+                    uom: selectedMaterial.uom,
+                    amount: selectedMaterial.amount.toString(),
+                };
+            } else {
+                updatedRows[index] = {
+                    ...updatedRows[index],
+                    materialId: '',
+                    uom: '',
+                    amount: '',
+                };
+            }
+        } else if (field !== 'id') {
+            updatedRows[index] = {
+                ...updatedRows[index],
+                [field]: value,
+            };
+        }
+
+        setRows(updatedRows);
     };
-  }
-
-  setRows(updatedRows);
-};
 
 
 
@@ -127,7 +127,7 @@ const MaterialTable = () => {
     return (
         <div className="overflow-x-auto">
             <table className="min-w-full">
-               <thead className="bg-gray-50">
+                <thead className="bg-gray-50">
                     <tr>
                         <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
                             Material Name
@@ -154,12 +154,14 @@ const MaterialTable = () => {
                             {/* Material Dropdown */}
                             <td className="px-6 py-4">
                                 <select
-                                    className="border border-[#fff] rounded px-2 py-1 w-full"
+                                    className="border border-[#fff] rounded px-2 py-1 w-full placeholder-shown:text-gray-400"
                                     value={row.materialId}
-                                    onChange={(e) =>
-                                        handleChange(index, 'materialId', e.target.value)
-                                    }
+                                    onChange={(e) => handleChange(index, 'materialId', e.target.value)}
+                                    required
                                 >
+                                    <option value="" disabled hidden className="text-[#475467]">
+                                        Select
+                                    </option>
                                     {materialsList.map((material) => (
                                         <option key={material.id} value={material.id}>
                                             {material.name}

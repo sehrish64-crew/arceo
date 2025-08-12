@@ -286,14 +286,17 @@ export default function Patient() {
             paid: "$ 1000",
         },
     ];
+    const [expenseType, setExpenseType] = useState('Fixed');
+    const [occurrence, setOccurrence] = useState('One-time');
 
     const frequencyOptions = [
-        { id: 1, name: "Daily" },
-        { id: 2, name: "Weekly" },
-        { id: 3, name: "Monthly" },
-        { id: 4, name: "Yearly" },
+        { id: 1, name: 'Daily' },
+        { id: 2, name: 'Weekly' },
+        { id: 3, name: 'Monthly' },
+        { id: 4, name: 'Yearly' },
     ];
-    const [selectedFrequency, setSelectedFrequency] = useState(frequencyOptions[0]);
+    const [selectedFrequency, setSelectedFrequency] = useState(frequencyOptions[2]); // Default to 
+
 
     const [selectedMaterial, setSelectedMaterial] = useState(null);
     const [selectedCostType, setSelectedCostType] = useState(costTypes[0]);
@@ -536,74 +539,74 @@ export default function Patient() {
                                                 <span className="text-[#475467]">Invoice #</span>
                                                 <h3>784D77DA</h3>
                                             </div>
-                                              <div style={{
-                                maxHeight: "500px",
-                                minHeight: "400px",
-                                overflowY: "auto",
-                              }}>
-                                          <form className="w-full max-w-4xl mx-auto mt-5">
-                                                <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                    <div className="w-full px-3 mb-6 md:mb-0 text-start">
-                                                        <label
-                                                            className="text-[#757575]"
-                                                            htmlFor="grid-address"
-                                                        >
-                                                            Check Number
-                                                        </label>
-                                                        <input
-                                                            className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                            id="grid-address"
-                                                            type="text"
-                                                        />
+                                            <div style={{
+                                                maxHeight: "500px",
+                                                minHeight: "400px",
+                                                overflowY: "auto",
+                                            }}>
+                                                <form className="w-full max-w-4xl mx-auto mt-5">
+                                                    <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                                        <div className="w-full px-3 mb-6 md:mb-0 text-start">
+                                                            <label
+                                                                className="text-[#757575]"
+                                                                htmlFor="grid-address"
+                                                            >
+                                                                Check Number
+                                                            </label>
+                                                            <input
+                                                                className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                                                id="grid-address"
+                                                                type="text"
+                                                            />
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                    <div className="w-full px-3 mb-6 md:mb-0 text-start">
-                                                        <label
-                                                            className="text-[#757575]"
-                                                            htmlFor="grid-address"
-                                                        >
-                                                            Date
-                                                        </label>
-                                                        <div className="relative">
-                                                            <Singledatepicker />
-                                                            <div className="absolute top-5 right-3 text-gray-500 pointer-events-none">
-                                                                <svg
-                                                                    width={16}
-                                                                    height={18}
-                                                                    viewBox="0 0 16 18"
-                                                                    fill="none"
-                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                >
-                                                                    <path
-                                                                        d="M1.25 7.5H14.75M5 4.5V1.5M11 4.5V1.5M6.05 16.5H9.95C11.6302 16.5 12.4702 16.5 13.112 16.173C13.6765 15.8854 14.1354 15.4265 14.423 14.862C14.75 14.2202 14.75 13.3802 14.75 11.7V7.8C14.75 6.11984 14.75 5.27976 14.423 4.63803C14.1354 4.07354 13.6765 3.6146 13.112 3.32698C12.4702 3 11.6302 3 9.95 3H6.05C4.36984 3 3.52976 3 2.88803 3.32698C2.32354 3.6146 1.8646 4.07354 1.57698 4.63803C1.25 5.27976 1.25 6.11984 1.25 7.8V11.7C1.25 13.3802 1.25 14.2202 1.57698 14.862C1.8646 15.4265 2.32354 15.8854 2.88803 16.173C3.52976 16.5 4.36984 16.5 6.05 16.5Z"
-                                                                        stroke="#A1A5AA"
-                                                                        strokeWidth="1.5"
-                                                                        strokeLinecap="round"
-                                                                    />
-                                                                </svg>
+                                                    <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                                        <div className="w-full px-3 mb-6 md:mb-0 text-start">
+                                                            <label
+                                                                className="text-[#757575]"
+                                                                htmlFor="grid-address"
+                                                            >
+                                                                Date
+                                                            </label>
+                                                            <div className="relative">
+                                                                <Singledatepicker />
+                                                                <div className="absolute top-5 right-3 text-gray-500 pointer-events-none">
+                                                                    <svg
+                                                                        width={16}
+                                                                        height={18}
+                                                                        viewBox="0 0 16 18"
+                                                                        fill="none"
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                    >
+                                                                        <path
+                                                                            d="M1.25 7.5H14.75M5 4.5V1.5M11 4.5V1.5M6.05 16.5H9.95C11.6302 16.5 12.4702 16.5 13.112 16.173C13.6765 15.8854 14.1354 15.4265 14.423 14.862C14.75 14.2202 14.75 13.3802 14.75 11.7V7.8C14.75 6.11984 14.75 5.27976 14.423 4.63803C14.1354 4.07354 13.6765 3.6146 13.112 3.32698C12.4702 3 11.6302 3 9.95 3H6.05C4.36984 3 3.52976 3 2.88803 3.32698C2.32354 3.6146 1.8646 4.07354 1.57698 4.63803C1.25 5.27976 1.25 6.11984 1.25 7.8V11.7C1.25 13.3802 1.25 14.2202 1.57698 14.862C1.8646 15.4265 2.32354 15.8854 2.88803 16.173C3.52976 16.5 4.36984 16.5 6.05 16.5Z"
+                                                                            stroke="#A1A5AA"
+                                                                            strokeWidth="1.5"
+                                                                            strokeLinecap="round"
+                                                                        />
+                                                                    </svg>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                    <div className="w-full px-3 mb-6 md:mb-0 text-start">
-                                                        <label
-                                                            className="text-[#757575]"
-                                                            htmlFor="grid-address"
-                                                        >
-                                                            Amount
-                                                        </label>
-                                                        <input
-                                                            className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                            id="grid-address"
-                                                            type="text"
-                                                        />
+                                                    <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                                        <div className="w-full px-3 mb-6 md:mb-0 text-start">
+                                                            <label
+                                                                className="text-[#757575]"
+                                                                htmlFor="grid-address"
+                                                            >
+                                                                Amount
+                                                            </label>
+                                                            <input
+                                                                className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                                                id="grid-address"
+                                                                type="text"
+                                                            />
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </form>
-                              </div>
-                                  
+                                                </form>
+                                            </div>
+
                                         </div>
                                     </div>
                                     <div className="bg-white  gap-2 py-3 sm:flex sm:flex-row-reverse border-t border-[#E5E7EB]  mt-5">
@@ -2344,200 +2347,194 @@ export default function Patient() {
                                                                                         </div>
                                                                                     </div>
 
-                                                                                    {/* Form Fields here, updated if needed */}
-                                                                                    <form className="w-full max-w-4xl mx-auto mt-5">
-                                                                                        <div className="flex flex-col gap-6">
-                                                                                            <div className="flex justify-between">
-                                                                                                {/* Expense Type */}
-                                                                                                <div>
-                                                                                                    <label className="block text-sm font-normal text-gray-700 mb-1">Expense Type</label>
-                                                                                                    <div className="flex gap-4">
-                                                                                                        <label className="inline-flex items-center">
-                                                                                                            <input
-                                                                                                                type="radio"
-                                                                                                                name="expenseType"
-                                                                                                                value="Fixed"
-                                                                                                                className="form-radio text-blue-600"
-                                                                                                            />
-                                                                                                            <span className="ml-2 font-normal">Fixed</span>
-                                                                                                        </label>
-                                                                                                        <label className="inline-flex items-center">
-                                                                                                            <input
-                                                                                                                type="radio"
-                                                                                                                name="expenseType"
-                                                                                                                value="Variable"
-                                                                                                                className="form-radio text-blue-600"
-                                                                                                            />
-                                                                                                            <span className="ml-2">Variable</span>
-                                                                                                        </label>
-                                                                                                    </div>
-                                                                                                </div>
-
-                                                                                                {/* Occurrence */}
-                                                                                                <div>
-                                                                                                    <label className="block text-sm font-normal text-gray-700 mb-1">Occurrence</label>
-                                                                                                    <div className="flex gap-4">
-                                                                                                        <label className="inline-flex items-center">
-                                                                                                            <input
-                                                                                                                type="radio"
-                                                                                                                name="occurrence"
-                                                                                                                value="One-time"
-                                                                                                                className="form-radio text-blue-600"
-                                                                                                            />
-                                                                                                            <span className="ml-2">One-time</span>
-                                                                                                        </label>
-                                                                                                        <label className="inline-flex items-center">
-                                                                                                            <input
-                                                                                                                type="radio"
-                                                                                                                name="occurrence"
-                                                                                                                value="Recurring"
-                                                                                                                className="form-radio text-blue-600"
-                                                                                                            />
-                                                                                                            <span className="ml-2">Recurring</span>
-                                                                                                        </label>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                                                            <div className="w-full px-3 mb-6 md:mb-0 text-start">
-                                                                                                <label className="text-[#757575]" htmlFor="clinic-name">
-                                                                                                    Expense Name
-                                                                                                </label>
-                                                                                                <input
-                                                                                                    className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                                                    id="clinic-name"
-                                                                                                    type="text"
-                                                                                                />
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                                                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                                                <label className="text-[#757575]" htmlFor="clinic-email">
-                                                                                                    Email Address
-                                                                                                </label>
-                                                                                                <input
-                                                                                                    className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                                                    id="clinic-email"
-                                                                                                    type="email"
-                                                                                                />
-                                                                                            </div>
-
-                                                                                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                                                <label className="text-[#757575]" htmlFor="clinic-phone">
-                                                                                                    Phone Number
-                                                                                                </label>
-                                                                                                <input
-                                                                                                    className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                                                    id="clinic-phone"
-                                                                                                    type="tel"
-                                                                                                />
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                                                            <div className="w-full px-3 mb-6 md:mb-0 text-start">
-                                                                                                <label className="text-[#757575]" htmlFor="clinic-address">
-                                                                                                    Frequency
-                                                                                                </label>
-                                                                                                <Listbox value={selectedFrequency} onChange={setSelectedFrequency}>
-                                                                                                    <div className="mt-2 relative">
-                                                                                                        <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
-                                                                                                            <span className="block truncate">{selectedFrequency.name}</span>
-                                                                                                            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                                                                                                                <ChevronDownIcon
-                                                                                                                    className="h-5 w-5 text-[#144A6C]"
-                                                                                                                    aria-hidden="true"
+                                                                                    <div style={{
+                                                                                        maxHeight: "500px",
+                                                                                        minHeight: "400px",
+                                                                                        overflowY: "auto",
+                                                                                    }}>
+                                                                                        <form className="w-full max-w-4xl mx-auto mt-5">
+                                                                                            <div className="flex flex-col gap-6">
+                                                                                                <div className="flex flex-col md:flex-row gap-3">
+                                                                                                    {/* Expense Type */}
+                                                                                                    <div>
+                                                                                                        <label className="text-start block text-sm font-normal text-gray-700 mb-1">Expense Type</label>
+                                                                                                        <div className="flex gap-4">
+                                                                                                            <label className="inline-flex items-center">
+                                                                                                                <input
+                                                                                                                    type="radio"
+                                                                                                                    name="expenseType"
+                                                                                                                    value="Fixed"
+                                                                                                                    checked={expenseType === 'Fixed'}
+                                                                                                                    onChange={() => setExpenseType('Fixed')}
+                                                                                                                    className="form-radio text-blue-600"
                                                                                                                 />
-                                                                                                            </span>
-                                                                                                        </Listbox.Button>
-
-                                                                                                        <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                                                                                            {frequencyOptions.map((frequency) => (
-                                                                                                                <Listbox.Option
-                                                                                                                    key={frequency.id}
-                                                                                                                    value={frequency}
-                                                                                                                    className={({ active }) =>
-                                                                                                                        `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-[#144A6C] text-white" : "text-gray-900"
-                                                                                                                        }`
-                                                                                                                    }
-                                                                                                                >
-                                                                                                                    {({ selected }) => (
-                                                                                                                        <>
-                                                                                                                            <span
-                                                                                                                                className={`block truncate ${selected ? "font-medium" : "font-normal"
-                                                                                                                                    }`}
-                                                                                                                            >
-                                                                                                                                {frequency.name}
-                                                                                                                            </span>
-                                                                                                                            {selected && (
-                                                                                                                                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600">
-                                                                                                                                    <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                                                                                                                                </span>
-                                                                                                                            )}
-                                                                                                                        </>
-                                                                                                                    )}
-                                                                                                                </Listbox.Option>
-                                                                                                            ))}
-                                                                                                        </Listbox.Options>
+                                                                                                                <span className="ml-2 font-normal">Fixed</span>
+                                                                                                            </label>
+                                                                                                            <label className="inline-flex items-center">
+                                                                                                                <input
+                                                                                                                    type="radio"
+                                                                                                                    name="expenseType"
+                                                                                                                    value="Variable"
+                                                                                                                    checked={expenseType === 'Variable'}
+                                                                                                                    onChange={() => setExpenseType('Variable')}
+                                                                                                                    className="form-radio text-blue-600"
+                                                                                                                />
+                                                                                                                <span className="ml-2">Variable</span>
+                                                                                                            </label>
+                                                                                                        </div>
                                                                                                     </div>
-                                                                                                </Listbox>
 
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                                                            <div className="w-full px-3 mb-6 md:mb-0 text-start">
-                                                                                                <label className="text-[#757575]" htmlFor="clinic-address">
-                                                                                                    Number of Period
-                                                                                                </label>
-                                                                                                <input
-                                                                                                    className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                                                    id="clinic-address"
-                                                                                                    type="text"
-                                                                                                />
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                                                            <div className="w-full px-3 mb-6 md:mb-0 text-start">
-                                                                                                <label className="text-[#757575]" htmlFor="clinic-address">
-                                                                                                    Date
-                                                                                                </label>
-                                                                                                <div className="relative">
-                                                                                                    <Singledatepicker />
-                                                                                                    <div className="absolute top-5 right-3 text-gray-500 pointer-events-none">
-                                                                                                        <svg
-                                                                                                            width={16}
-                                                                                                            height={18}
-                                                                                                            viewBox="0 0 16 18"
-                                                                                                            fill="none"
-                                                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                                                        >
-                                                                                                            <path
-                                                                                                                d="M1.25 7.5H14.75M5 4.5V1.5M11 4.5V1.5M6.05 16.5H9.95C11.6302 16.5 12.4702 16.5 13.112 16.173C13.6765 15.8854 14.1354 15.4265 14.423 14.862C14.75 14.2202 14.75 13.3802 14.75 11.7V7.8C14.75 6.11984 14.75 5.27976 14.423 4.63803C14.1354 4.07354 13.6765 3.6146 13.112 3.32698C12.4702 3 11.6302 3 9.95 3H6.05C4.36984 3 3.52976 3 2.88803 3.32698C2.32354 3.6146 1.8646 4.07354 1.57698 4.63803C1.25 5.27976 1.25 6.11984 1.25 7.8V11.7C1.25 13.3802 1.25 14.2202 1.57698 14.862C1.8646 15.4265 2.32354 15.8854 2.88803 16.173C3.52976 16.5 4.36984 16.5 6.05 16.5Z"
-                                                                                                                stroke="#A1A5AA"
-                                                                                                                strokeWidth="1.5"
-                                                                                                                strokeLinecap="round"
-                                                                                                            />
-                                                                                                        </svg>
+                                                                                                    {/* Occurrence */}
+                                                                                                    <div className="md:pl-48 pl-0">
+                                                                                                        <label className="text-start block text-sm font-normal text-gray-700 mb-1">Occurrence</label>
+                                                                                                        <div className="flex gap-4">
+                                                                                                            <label className="inline-flex items-center">
+                                                                                                                <input
+                                                                                                                    type="radio"
+                                                                                                                    name="occurrence"
+                                                                                                                    value="One-time"
+                                                                                                                    checked={occurrence === 'One-time'}
+                                                                                                                    onChange={() => setOccurrence('One-time')}
+                                                                                                                    className="form-radio text-blue-600"
+                                                                                                                />
+                                                                                                                <span className="ml-2">One-time</span>
+                                                                                                            </label>
+                                                                                                            <label className="inline-flex items-center">
+                                                                                                                <input
+                                                                                                                    type="radio"
+                                                                                                                    name="occurrence"
+                                                                                                                    value="Recurring"
+                                                                                                                    checked={occurrence === 'Recurring'}
+                                                                                                                    onChange={() => setOccurrence('Recurring')}
+                                                                                                                    className="form-radio text-blue-600"
+                                                                                                                />
+                                                                                                                <span className="ml-2">Recurring</span>
+                                                                                                            </label>
+                                                                                                        </div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
-                                                                                        </div>
-                                                                                        <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                                                            <div className="w-full px-3 mb-6 md:mb-0 text-start">
-                                                                                                <label className="text-[#757575]" htmlFor="clinic-address">
-                                                                                                    Amount
-                                                                                                </label>
-                                                                                                <input
-                                                                                                    className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                                                    id="clinic-address"
-                                                                                                    type="text"
-                                                                                                />
+
+                                                                                            <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                                                                                <div className="w-full px-3 mb-6 md:mb-0 text-start">
+                                                                                                    <label className="text-[#757575]" htmlFor="expense-name">
+                                                                                                        Expense Name
+                                                                                                    </label>
+                                                                                                    <input
+                                                                                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                                                                                        id="expense-name"
+                                                                                                        type="text"
+                                                                                                    />
+                                                                                                </div>
                                                                                             </div>
-                                                                                        </div>
-                                                                                    </form>
+
+                                                                                            {occurrence === 'Recurring' && (
+                                                                                                <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                                                                                    <div className="w-full px-3 mb-6 md:mb-0 text-start">
+                                                                                                        <label className="text-[#757575]" htmlFor="frequency">
+                                                                                                            Frequency
+                                                                                                        </label>
+                                                                                                        <Listbox value={selectedFrequency} onChange={setSelectedFrequency}>
+                                                                                                            <div className="mt-2 relative">
+                                                                                                                <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
+                                                                                                                    <span className="block truncate">{selectedFrequency.name}</span>
+                                                                                                                    <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                                                                                                        <ChevronDownIcon
+                                                                                                                            className="h-5 w-5 text-[#144A6C]"
+                                                                                                                            aria-hidden="true"
+                                                                                                                        />
+                                                                                                                    </span>
+                                                                                                                </Listbox.Button>
+
+                                                                                                                <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                                                                                                    {frequencyOptions.map((frequency) => (
+                                                                                                                        <Listbox.Option
+                                                                                                                            key={frequency.id}
+                                                                                                                            value={frequency}
+                                                                                                                            className={({ active }) =>
+                                                                                                                                `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-[#144A6C] text-white" : "text-gray-900"
+                                                                                                                                }`
+                                                                                                                            }
+                                                                                                                        >
+                                                                                                                            {({ selected }) => (
+                                                                                                                                <>
+                                                                                                                                    <span
+                                                                                                                                        className={`block truncate ${selected ? "font-medium" : "font-normal"
+                                                                                                                                            }`}
+                                                                                                                                    >
+                                                                                                                                        {frequency.name}
+                                                                                                                                    </span>
+                                                                                                                                    {selected && (
+                                                                                                                                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600">
+                                                                                                                                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                                                                                                        </span>
+                                                                                                                                    )}
+                                                                                                                                </>
+                                                                                                                            )}
+                                                                                                                        </Listbox.Option>
+                                                                                                                    ))}
+                                                                                                                </Listbox.Options>
+                                                                                                            </div>
+                                                                                                        </Listbox>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            )}
+
+                                                                                            {/* Rest of your form fields */}
+                                                                                            <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                                                                                <div className="w-full px-3 mb-6 md:mb-0 text-start">
+                                                                                                    <label className="text-[#757575]" htmlFor="number-of-period">
+                                                                                                        Number of Period
+                                                                                                    </label>
+                                                                                                    <input
+                                                                                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                                                                                        id="number-of-period"
+                                                                                                        type="text"
+                                                                                                    />
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                                                                                <div className="w-full px-3 mb-6 md:mb-0 text-start">
+                                                                                                    <label className="text-[#757575]" htmlFor="date">
+                                                                                                        Date
+                                                                                                    </label>
+                                                                                                    <div className="relative">
+                                                                                                        <Singledatepicker />
+                                                                                                        <div className="absolute top-5 right-3 text-gray-500 pointer-events-none">
+                                                                                                            <svg
+                                                                                                                width={16}
+                                                                                                                height={18}
+                                                                                                                viewBox="0 0 16 18"
+                                                                                                                fill="none"
+                                                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                                            >
+                                                                                                                <path
+                                                                                                                    d="M1.25 7.5H14.75M5 4.5V1.5M11 4.5V1.5M6.05 16.5H9.95C11.6302 16.5 12.4702 16.5 13.112 16.173C13.6765 15.8854 14.1354 15.4265 14.423 14.862C14.75 14.2202 14.75 13.3802 14.75 11.7V7.8C14.75 6.11984 14.75 5.27976 14.423 4.63803C14.1354 4.07354 13.6765 3.6146 13.112 3.32698C12.4702 3 11.6302 3 9.95 3H6.05C4.36984 3 3.52976 3 2.88803 3.32698C2.32354 3.6146 1.8646 4.07354 1.57698 4.63803C1.25 5.27976 1.25 6.11984 1.25 7.8V11.7C1.25 13.3802 1.25 14.2202 1.57698 14.862C1.8646 15.4265 2.32354 15.8854 2.88803 16.173C3.52976 16.5 4.36984 16.5 6.05 16.5Z"
+                                                                                                                    stroke="#A1A5AA"
+                                                                                                                    strokeWidth="1.5"
+                                                                                                                    strokeLinecap="round"
+                                                                                                                />
+                                                                                                            </svg>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                                                                                <div className="w-full px-3 mb-6 md:mb-0 text-start">
+                                                                                                    <label className="text-[#757575]" htmlFor="amount">
+                                                                                                        Amount
+                                                                                                    </label>
+                                                                                                    <input
+                                                                                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
+                                                                                                        id="amount"
+                                                                                                        type="text"
+                                                                                                    />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </form>
+                                                                                    </div>
+
                                                                                 </div>
                                                                             </div>
 
