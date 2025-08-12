@@ -12,10 +12,12 @@ interface Doctor {
   appointments: number;
   patients: number;
 }
+import Singledatepicker from "../components/Singledatepicker"
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Listbox } from "@headlessui/react";
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/20/solid";
+
 // import flatpickr from "flatpickr";
 export default function DoctorsTable() {
   const doctors: Doctor[] = [
@@ -539,14 +541,10 @@ export default function DoctorsTable() {
                                     >
                                       License Expiry
                                     </label>
-                                    <div className="relative">
-                                      <input
-                                        id="datepicker"
-                                        type="text"
-                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB] "
-                                      />
 
-                                      <div className="absolute top-3 right-3 text-gray-500 pointer-events-none">
+                                    <div className="relative">
+                                      <Singledatepicker />
+                                      <div className="absolute top-5 right-3 text-gray-500 pointer-events-none">
                                         <svg
                                           width={16}
                                           height={18}
@@ -690,7 +688,7 @@ export default function DoctorsTable() {
               <div className="card-body flex-1 flex flex-col overflow-hidden">
                 <div className="w-full overflow-x-auto">
                   <table className="min-w-full">
-                    <thead className="bg-gray-50 sticky top-0">
+                    <thead className="bg-gray-50">
                       <tr className="pt-4 pr-8 pb-3 pl-8 rounded-bl-lg">
                         <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
                           ID No
@@ -786,49 +784,49 @@ export default function DoctorsTable() {
                         filteredDoctors.map((doctor) => (
                           <tr key={doctor.id} className="hover:bg-gray-50">
                             <td
-                              className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
+                              className="cursor-pointer px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
                               onClick={() => router.push("/doctorprofile")}
                             >
                               {doctor.id}
                             </td>
                             <td
-                              className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
+                              className="cursor-pointer px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
                               onClick={() => router.push("/doctorprofile")}
                             >
                               {doctor.fullName}
                             </td>
                             <td
-                              className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
+                              className="cursor-pointer px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
                               onClick={() => router.push("/doctorprofile")}
                             >
                               {doctor.specialty}
                             </td>
                             <td
-                              className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
+                              className="cursor-pointer px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
                               onClick={() => router.push("/doctorprofile")}
                             >
                               {doctor.phone}
                             </td>
                             <td
-                              className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
+                              className="cursor-pointer px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
                               onClick={() => router.push("/doctorprofile")}
                             >
                               {doctor.email}
                             </td>
                             <td
-                              className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
+                              className="cursor-pointer px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
                               onClick={() => router.push("/doctorprofile")}
                             >
                               {doctor.address}
                             </td>
                             <td
-                              className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
+                              className="cursor-pointer px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
                               onClick={() => router.push("/doctorprofile")}
                             >
                               {doctor.appointments}
                             </td>
                             <td
-                              className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
+                              className="cursor-pointer px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
                               onClick={() => router.push("/doctorprofile")}
                             >
                               {doctor.patients}

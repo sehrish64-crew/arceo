@@ -374,7 +374,7 @@ export default function Patientdetail() {
                   onClick={() => setSelectedTab(idx)}
                   className={`clip-path-custom-shape py-3 px-6 text-sm font-medium border-b-2 mb-0 md:-mb-px focus:outline-none whitespace-nowrap  ${selectedTab === idx
                     ? "border-[#144A6C] text-[#144A6C] bg-[#FFFFFF80]"
-                    : "text-gray-500 border-transparent"
+                    : "text-gray-500 border-transparent opacity-50"
                     }`}
                 >
                   {tab}
@@ -3905,7 +3905,7 @@ export default function Patientdetail() {
                 <div className="mt-5">
                   <div className="w-full overflow-x-auto mt-3">
                     <table className="min-w-full">
-                      <thead className="bg-gray-50 sticky top-0">
+                     <thead className="bg-gray-50">
                         <tr className="pt-4 pr-8 pb-3 pl-8 rounded-bl-lg">
                           <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
                             ID No
@@ -4707,7 +4707,7 @@ export default function Patientdetail() {
                 <div className="mt-5">
                   <div className="w-full overflow-x-auto mt-3">
                     <table className="min-w-full">
-                      <thead className="bg-gray-50 sticky top-0">
+                     <thead className="bg-gray-50">
                         <tr className="pt-4 pr-8 pb-3 pl-8 rounded-bl-lg">
                           <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
                             ID No

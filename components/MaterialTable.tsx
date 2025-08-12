@@ -127,7 +127,7 @@ const MaterialTable = () => {
     return (
         <div className="overflow-x-auto">
             <table className="min-w-full">
-                <thead className="bg-gray-50 sticky top-0">
+               <thead className="bg-gray-50">
                     <tr>
                         <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
                             Material Name

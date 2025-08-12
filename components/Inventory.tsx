@@ -8,9 +8,12 @@ interface Doctor {
     fullName: string;
     specialty: string;
     phone: string;
+    base: string;
     email: string;
     address: string;
     appointments: string;
+    Reorder: string;
+    Unit: string;
     patients: string;
     packacge: string;
 }
@@ -28,9 +31,12 @@ export default function Patient() {
             fullName: "Maria Thompson",
             specialty: "Square",
             phone: "600",
+            base: "600",
             email: "Materials & Instruments",
             address: "600",
             appointments: "Stock Used",
+            Reorder: "600",
+            Unit: "Stock Used",
             patients: "$169.43",
             packacge: "$169.43",
         },
@@ -39,9 +45,12 @@ export default function Patient() {
             fullName: "Maria Thompson",
             specialty: "Square",
             phone: "600",
+            base: "600",
             email: "Materials & Instruments",
             address: "600",
             appointments: "Stock Used",
+            Reorder: "600",
+            Unit: "Stock Used",
             patients: "$169.43",
             packacge: "$169.43",
         },
@@ -50,9 +59,12 @@ export default function Patient() {
             fullName: "Maria Thompson",
             specialty: "Square",
             phone: "600",
+            base: "600",
             email: "Materials & Instruments",
             address: "600",
             appointments: "Stock Used",
+            Reorder: "600",
+            Unit: "Stock Used",
             patients: "$169.43",
             packacge: "$169.43",
         },
@@ -61,9 +73,12 @@ export default function Patient() {
             fullName: "Maria Thompson",
             specialty: "Square",
             phone: "600",
+            base: "600",
             email: "Materials & Instruments",
             address: "600",
             appointments: "Stock Used",
+            Reorder: "600",
+            Unit: "Stock Used",
             patients: "$169.43",
             packacge: "$169.43",
         },
@@ -72,9 +87,12 @@ export default function Patient() {
             fullName: "Maria Thompson",
             specialty: "Square",
             phone: "600",
+            base: "600",
             email: "Materials & Instruments",
             address: "600",
             appointments: "Stock Used",
+            Reorder: "600",
+            Unit: "Stock Used",
             patients: "$169.43",
             packacge: "$169.43",
         },
@@ -83,9 +101,12 @@ export default function Patient() {
             fullName: "Maria Thompson",
             specialty: "Square",
             phone: "600",
+            base: "600",
             email: "Materials & Instruments",
             address: "600",
             appointments: "Stock Used",
+            Reorder: "600",
+            Unit: "Stock Used",
             patients: "$169.43",
             packacge: "$169.43",
         },
@@ -94,9 +115,12 @@ export default function Patient() {
             fullName: "Maria Thompson",
             specialty: "Square",
             phone: "600",
+            base: "600",
             email: "Materials & Instruments",
             address: "600",
             appointments: "Stock Used",
+            Reorder: "600",
+            Unit: "Stock Used",
             patients: "$169.43",
             packacge: "$169.43",
         },
@@ -105,53 +129,25 @@ export default function Patient() {
             fullName: "Maria Thompson",
             specialty: "Square",
             phone: "600",
+            base: "600",
             email: "Materials & Instruments",
             address: "600",
             appointments: "Stock Used",
+            Reorder: "600",
+            Unit: "Stock Used",
             patients: "$169.43",
             packacge: "$169.43",
-        },
-        {
+        }, {
             id: "738",
             fullName: "Maria Thompson",
             specialty: "Square",
             phone: "600",
+            base: "600",
             email: "Materials & Instruments",
             address: "600",
             appointments: "Stock Used",
-            patients: "$169.43",
-            packacge: "$169.43",
-        },
-        {
-            id: "738",
-            fullName: "Maria Thompson",
-            specialty: "Square",
-            phone: "600",
-            email: "Materials & Instruments",
-            address: "600",
-            appointments: "Stock Used",
-            patients: "$169.43",
-            packacge: "$169.43",
-        },
-        {
-            id: "738",
-            fullName: "Maria Thompson",
-            specialty: "Square",
-            phone: "600",
-            email: "Materials & Instruments",
-            address: "600",
-            appointments: "Stock Used",
-            patients: "$169.43",
-            packacge: "$169.43",
-        },
-        {
-            id: "738",
-            fullName: "Maria Thompson",
-            specialty: "Square",
-            phone: "600",
-            email: "Materials & Instruments",
-            address: "600",
-            appointments: "Stock Used",
+            Reorder: "600",
+            Unit: "Stock Used",
             patients: "$169.43",
             packacge: "$169.43",
         },
@@ -161,9 +157,12 @@ export default function Patient() {
             fullName: "Maria Thompson",
             specialty: "Square",
             phone: "600",
+            base: "600",
             email: "Materials & Instruments",
             address: "600",
             appointments: "Stock Used",
+            Reorder: "600",
+            Unit: "Stock Used",
             patients: "$169.43",
             packacge: "$169.43",
         },
@@ -172,9 +171,12 @@ export default function Patient() {
             fullName: "Maria Thompson",
             specialty: "Square",
             phone: "600",
+            base: "600",
             email: "Materials & Instruments",
             address: "600",
             appointments: "Stock Used",
+            Reorder: "600",
+            Unit: "Stock Used",
             patients: "$169.43",
             packacge: "$169.43",
         },
@@ -183,9 +185,12 @@ export default function Patient() {
             fullName: "Maria Thompson",
             specialty: "Square",
             phone: "600",
+            base: "600",
             email: "Materials & Instruments",
             address: "600",
             appointments: "Stock Used",
+            Reorder: "600",
+            Unit: "Stock Used",
             patients: "$169.43",
             packacge: "$169.43",
         },
@@ -194,9 +199,12 @@ export default function Patient() {
             fullName: "Maria Thompson",
             specialty: "Square",
             phone: "600",
+            base: "600",
             email: "Materials & Instruments",
             address: "600",
             appointments: "Stock Used",
+            Reorder: "600",
+            Unit: "Stock Used",
             patients: "$169.43",
             packacge: "$169.43",
         },
@@ -205,9 +213,12 @@ export default function Patient() {
             fullName: "Maria Thompson",
             specialty: "Square",
             phone: "600",
+            base: "600",
             email: "Materials & Instruments",
             address: "600",
             appointments: "Stock Used",
+            Reorder: "600",
+            Unit: "Stock Used",
             patients: "$169.43",
             packacge: "$169.43",
         },
@@ -216,9 +227,12 @@ export default function Patient() {
             fullName: "Maria Thompson",
             specialty: "Square",
             phone: "600",
+            base: "600",
             email: "Materials & Instruments",
             address: "600",
             appointments: "Stock Used",
+            Reorder: "600",
+            Unit: "Stock Used",
             patients: "$169.43",
             packacge: "$169.43",
         },
@@ -227,9 +241,12 @@ export default function Patient() {
             fullName: "Maria Thompson",
             specialty: "Square",
             phone: "600",
+            base: "600",
             email: "Materials & Instruments",
             address: "600",
             appointments: "Stock Used",
+            Reorder: "600",
+            Unit: "Stock Used",
             patients: "$169.43",
             packacge: "$169.43",
         },
@@ -238,12 +255,29 @@ export default function Patient() {
             fullName: "Maria Thompson",
             specialty: "Square",
             phone: "600",
+            base: "600",
             email: "Materials & Instruments",
             address: "600",
             appointments: "Stock Used",
+            Reorder: "600",
+            Unit: "Stock Used",
+            patients: "$169.43",
+            packacge: "$169.43",
+        }, {
+            id: "738",
+            fullName: "Maria Thompson",
+            specialty: "Square",
+            phone: "600",
+            base: "600",
+            email: "Materials & Instruments",
+            address: "600",
+            appointments: "Stock Used",
+            Reorder: "600",
+            Unit: "Stock Used",
             patients: "$169.43",
             packacge: "$169.43",
         },
+
     ];
     const costTypes = [
         { id: 1, label: "Cash" },
@@ -955,7 +989,7 @@ export default function Patient() {
                                 onClick={() => setSelectedTab(idx)}
                                 className={`clip-path-custom-shape py-3 px-6 text-sm font-medium border-b-2 mb-0 md:-mb-px focus:outline-none  ${selectedTab === idx
                                     ? "border-[#144A6C] text-[#144A6C] bg-[#FFFFFF80]"
-                                    : "text-gray-500 border-transparent"
+                                    : "text-gray-500 border-transparent opacity-50"
                                     }`}
                             >
                                 {tab}
@@ -972,7 +1006,7 @@ export default function Patient() {
                                         <div className="card-body flex-1 flex flex-col overflow-hidden">
                                             <div className="w-full overflow-x-auto">
                                                 <table className="min-w-full">
-                                                    <thead className="bg-gray-50 sticky top-0">
+                                                    <thead className="bg-gray-50">
                                                         <tr className="pt-4 pr-8 pb-3 pl-8 rounded-bl-lg">
                                                             <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
                                                                 ID No
@@ -989,11 +1023,21 @@ export default function Patient() {
                                                             <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
                                                                 Cost Type
                                                             </th>
+
+                                                            <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
+                                                                Base Stock
+                                                            </th>
                                                             <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
                                                                 Total Stock
                                                             </th>
                                                             <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
                                                                 Stock Used
+                                                            </th>
+                                                            <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
+                                                                Reorder Limit
+                                                            </th>
+                                                            <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
+                                                                Unit Cost
                                                             </th>
                                                             <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
                                                                 Total Cost
@@ -1084,6 +1128,9 @@ export default function Patient() {
                                                                         {doctor.phone}
                                                                     </td>
                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                        {doctor.base}
+                                                                    </td>
+                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
                                                                         {doctor.email}
                                                                     </td>
                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -1091,6 +1138,12 @@ export default function Patient() {
                                                                     </td>
                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
                                                                         {doctor.appointments}
+                                                                    </td>
+                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                        {doctor.Reorder}
+                                                                    </td>
+                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                        {doctor.Unit}
                                                                     </td>
                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
                                                                         {doctor.patients}
@@ -1169,7 +1222,7 @@ export default function Patient() {
                                         <div className="card-body flex-1 flex flex-col overflow-hidden">
                                             <div className="w-full overflow-x-auto">
                                                 <table className="min-w-full">
-                                                    <thead className="bg-gray-50 sticky top-0">
+                                                   <thead className="bg-gray-50">
                                                         <tr className="pt-4 pr-8 pb-3 pl-8 rounded-bl-lg">
                                                             <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
                                                                 ID No

@@ -580,7 +580,7 @@ export default function ClinicPage() {
               <div className="card-body flex-1 flex flex-col overflow-hidden">
                 <div className="w-full overflow-x-auto">
                   <table className="min-w-full">
-                    <thead className="bg-gray-50 sticky top-0">
+                   <thead className="bg-gray-50">
                       <tr className="pt-4 pr-8 pb-3 pl-8 rounded-bl-lg">
                         <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
                           ID No
@@ -676,49 +676,49 @@ export default function ClinicPage() {
                         filteredDoctors.map((doctor) => (
                           <tr key={doctor.id} className="hover:bg-gray-50">
                             <td
-                              className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
+                              className="cursor-pointer px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
                               onClick={() => router.push("/clinicprofile")}
                             >
                               {doctor.id}
                             </td>
                             <td
-                              className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
+                              className="cursor-pointer px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
                               onClick={() => router.push("/clinicprofile")}
                             >
                               {doctor.fullName}
                             </td>
                             <td
-                              className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
+                              className="cursor-pointer px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
                               onClick={() => router.push("/clinicprofile")}
                             >
                               {doctor.specialty}
                             </td>
                             <td
-                              className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
+                              className="cursor-pointer px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
                               onClick={() => router.push("/clinicprofile")}
                             >
                               {doctor.phone}
                             </td>
                             <td
-                              className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
+                              className="cursor-pointer px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
                               onClick={() => router.push("/clinicprofile")}
                             >
                               {doctor.email}
                             </td>
                             <td
-                              className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
+                              className="cursor-pointer px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
                               onClick={() => router.push("/clinicprofile")}
                             >
                               {doctor.address}
                             </td>
                             <td
-                              className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
+                              className="cursor-pointer px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
                               onClick={() => router.push("/clinicprofile")}
                             >
                               {doctor.appointments}
                             </td>
                             <td
-                              className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
+                              className="cursor-pointer px-6 py-4 whitespace-nowrap text-sm text-[#475467]"
                               onClick={() => router.push("/clinicprofile")}
                             >
                               {doctor.patients}
