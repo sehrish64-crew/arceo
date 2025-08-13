@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
+import ClinicCard from "../components/ClinicCard";
 const DoctorsTable = [
   {
     id: "D001",
@@ -381,7 +382,9 @@ export default function Clinicprofile() {
                 <>
                   <div className="card">
                     <div className="banner-image">
-                      <img src="/banner.png" alt="" style={{ width: "100%" }} />
+                      <div className="">
+                        <ClinicCard />
+                      </div>
                     </div>
                     <div className="bg-[#F9FAFB] p-4 mt-3 rounded-lg">
                       <div className="md:col-span-2">

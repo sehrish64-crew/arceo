@@ -1,8 +1,51 @@
 // components/ProfileForm.tsx
+"use client"
 import Image from "next/image";
 import Singledatepicker from "../components/Singledatepicker"
+import { Edit } from 'lucide-react';
+import { useState, useRef } from 'react';
 
 export default function ProfileForm() {
+  const [profileImage, setProfileImage] = useState('/profilees.png');
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (event.target?.result) {
+          setProfileImage(event.target.result as string);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const triggerFileInput = () => {
+    fileInputRef.current?.click();
+  };
+
+  const [userProfilePicture, setUserProfilePicture] = useState('/clinic-logo.png');
+  const profileImageInputRef = useRef<HTMLInputElement>(null);
+
+  const handleProfilePhotoUpdate = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedImageFile = event.target.files?.[0];
+    if (selectedImageFile) {
+      const imageFileReader = new FileReader();
+      imageFileReader.onload = (readEvent) => {
+        if (readEvent.target?.result) {
+          setUserProfilePicture(readEvent.target.result as string);
+        }
+      };
+      imageFileReader.readAsDataURL(selectedImageFile);
+    }
+  };
+
+  const openImageSelectionDialog = () => {
+    profileImageInputRef.current?.click();
+  };
+
   return (
     <div className="bg-white rounded-2xl p-6 space-y-8">
       {/* Personal Section */}
@@ -13,13 +56,34 @@ export default function ProfileForm() {
         <div className="flex md:flex-row gap-6 flex-col">
           {/* Profile Image */}
           <div className="flex-shrink-0">
-            <Image
-              src="/profilees.png"
-              alt="Profile"
-              width={300}
-              height={300}
-              className="rounded-full object-cover"
-            />
+            <div className="relative">
+              <div className="flex-shrink-0 relative rounded-full overflow-hidden">
+                <Image
+                  src={profileImage}
+                  alt="Profile"
+                  width={300}
+                  height={300}
+                  className="rounded-full object-cover w-[200px] h-[200px] border-4 border-white shadow-lg"
+                />
+              </div>
+
+              {/* Edit icon button - always visible */}
+              <button
+                onClick={triggerFileInput}
+                className="absolute bottom-4 right-4 bg-white p-3 rounded-full shadow-md hover:bg-gray-100 transition-colors border border-gray-200"
+              >
+                <Edit className="w-5 h-5 text-[#144A6C]" />
+              </button>
+
+              {/* Hidden file input */}
+              <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleImageChange}
+                accept="image/*"
+                className="hidden"
+              />
+            </div>
           </div>
 
           {/* Personal Form */}
@@ -107,13 +171,37 @@ export default function ProfileForm() {
         <div className="flex md:flex-row gap-6 flex-col">
           {/* Clinic Logo */}
           <div className="flex-shrink-0">
-            <Image
-              src="/clinic-logo.png"
-              alt="Clinic Logo"
-              width={300}
-              height={300}
-              className="rounded-full object-cover"
-            />
+            <div className="relative">
+              <div className="flex-shrink-0 relative rounded-full overflow-hidden">
+                <Image
+                  src={userProfilePicture}
+                  alt="User Profile"
+                  width={300}
+                  height={300}
+                  className="rounded-full object-cover w-[200px] h-[200px] border-4 border-white shadow-lg"
+                  priority
+                />
+              </div>
+
+              {/* Edit button - permanently visible */}
+              <button
+                onClick={openImageSelectionDialog}
+                className="absolute bottom-4 right-4 bg-white p-3 rounded-full shadow-md hover:bg-gray-100 transition-colors border border-gray-200"
+                aria-label="Update profile picture"
+                type="button"
+              >
+                <Edit className="w-5 h-5 text-[#144A6C]" />
+              </button>
+
+              {/* Hidden file input element */}
+              <input
+                type="file"
+                ref={profileImageInputRef}
+                onChange={handleProfilePhotoUpdate}
+                accept="image/*"
+                className="hidden"
+              />
+            </div>
           </div>
 
           {/* Clinic Form */}

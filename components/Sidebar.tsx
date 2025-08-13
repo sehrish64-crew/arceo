@@ -137,11 +137,15 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 key={item.label}
                 href={item.href}
                 className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-colors
-            ${pathname === item.href
-                    ? "bg-[#144A6C] text-white font-regular pl-6 [&>svg]:w-6 [&>svg]:h-6"
-                    : "text-gray-700 hover:bg-gray-100"
+      ${item.href === "/"
+                    ? pathname === "/"
+                      ? "bg-[#144A6C] text-white font-regular pl-6 [&>svg]:w-6 [&>svg]:h-6"
+                      : "text-gray-700 hover:bg-gray-100"
+                    : pathname.startsWith(item.href)
+                      ? "bg-[#144A6C] text-white font-regular pl-6 [&>svg]:w-6 [&>svg]:h-6"
+                      : "text-gray-700 hover:bg-gray-100"
                   }
-          `}
+    `}
               >
                 {item.icon}
                 <span className="font-medium">{item.label}</span>
