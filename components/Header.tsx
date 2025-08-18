@@ -147,12 +147,12 @@ export default function Header({
                 </ul>
 
                 <div className="p-3 text-center border-t border-gray-100">
-                  <button
+                  {/* <button
                     className="text-sm text-[#144A6C] hover:underline"
                     onClick={() => setIsNotificationOpen(false)}
                   >
                     View all notifications
-                  </button>
+                  </button> */}
                 </div>
               </div>
             )}

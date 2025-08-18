@@ -28,7 +28,7 @@ export default function ClinicCard() {
         </div>
 
         {/* Right-aligned logo */}
-        <div className="absolute bottom-4 right-4">
+        <div className="absolute bottom-[40px] right-9">
           <Image
             src="/big.png"
             alt="Clinic Logo"

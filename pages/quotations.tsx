@@ -226,18 +226,17 @@ export default function Patient() {
         }
 
     ];
-    const increase = [
-        { id: 1, name: "5%", discount: "2%" },
-        { id: 2, name: "10%", discount: "5%" },
-        { id: 3, name: "15%", discount: "7%" },
-    ];
-
     const profits = [
-        { id: 1, name: "Gross Profit" },
-        { id: 2, name: "Net Profit" },
-        { id: 3, name: "Operating Profit" },
+        { id: "select", name: "Select margin" },
+        { id: 1, name: "10%" },
+        { id: 2, name: "20%" },
     ];
 
+    const increase = [
+        { id: "select", name: "Select discount", discount: "" },
+        { id: 1, name: "Seasonal", discount: "15%" },
+        { id: 2, name: "Loyalty", discount: "10%" },
+    ];
 
     const expensesTable = [
         {
@@ -731,7 +730,7 @@ export default function Patient() {
                                                                     {/* ...Your existing SVG code here... */}
                                                                 </div>
                                                                 <div className="flex flex-col">
-                                                                    <h3 className="text-lg font-regular text-[#144A6C] text-start">
+                                                                    <h3 className="text-lg font-regular text-[#144A6C] text-start mt-2">
                                                                         Edit Quote
                                                                     </h3>
 
@@ -1045,18 +1044,26 @@ export default function Patient() {
                                                                     </div>
                                                                     <div className="mt-3">
                                                                         <div className="flex">
+                                                                            {/* === MARGIN === */}
                                                                             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                                <label className="text-[#757575]" htmlFor="clinic-phone">
-                                                                                    Margin
-                                                                                </label>
+                                                                                <label className="text-[#757575]">Margin</label>
                                                                                 <div className="flex gap-2">
-                                                                                    {/* Dropdown (Listbox) */}
-                                                                                    <Listbox value={selectedProfit} onChange={handleDropdownChange} disabled={inputValue !== ""}>
+                                                                                    {/* Dropdown */}
+                                                                                    <Listbox
+                                                                                        value={selectedProfit}
+                                                                                        onChange={(value) => {
+                                                                                            setSelectedProfit(value);
+                                                                                            if (value.id === "select") {
+                                                                                                setInputValue(""); // optional: clear input
+                                                                                            }
+                                                                                        }}
+                                                                                        disabled={inputValue !== ""}
+                                                                                    >
                                                                                         <div className="relative mt-2 w-56">
                                                                                             <Listbox.Button
                                                                                                 className={`relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] sm:text-sm
-          ${inputValue !== "" ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
-        `}
+                ${inputValue !== "" ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
+              `}
                                                                                             >
                                                                                                 <span className="block truncate">
                                                                                                     {selectedProfit ? selectedProfit.name : "Select margin"}
@@ -1094,34 +1101,41 @@ export default function Patient() {
                                                                                         </div>
                                                                                     </Listbox>
 
-                                                                                    {/* Input Field */}
+                                                                                    {/* Input */}
                                                                                     <input
-                                                                                        className={`mt-2 block w-56 shadow-sm text-gray-700 border rounded-lg py-3 pl-3 leading-tight focus:outline-none
-      ${selectedProfit !== null ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
-    `}
                                                                                         type="text"
                                                                                         value={inputValue}
                                                                                         onChange={handleInputChange}
-                                                                                        disabled={selectedProfit !== null}
+                                                                                        disabled={selectedProfit && selectedProfit.id !== "select"}
+                                                                                        className={`mt-2 block w-56 shadow-sm text-gray-700 border rounded-lg py-3 pl-3 leading-tight focus:outline-none
+            ${selectedProfit && selectedProfit.id !== "select" ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
+          `}
                                                                                     />
                                                                                 </div>
-
                                                                             </div>
-                                                                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                                <label className="text-[#757575]" htmlFor="clinic-phone">
-                                                                                    Discount
-                                                                                </label>
-                                                                                <div className="flex gap-2">
 
-                                                                                    <Listbox value={selectedIncrease} onChange={handleDropdownChange1} disabled={inputValue1 !== ""}>
-                                                                                        <div className="relative mt-2">
+                                                                            {/* === DISCOUNT === */}
+                                                                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                                                                <label className="text-[#757575]">Discount</label>
+                                                                                <div className="flex gap-2">
+                                                                                    <Listbox
+                                                                                        value={selectedIncrease}
+                                                                                        onChange={(value) => {
+                                                                                            setSelectedIncrease(value);
+                                                                                            if (value.id === "select") {
+                                                                                                setInputValue1("");
+                                                                                            }
+                                                                                        }}
+                                                                                        disabled={inputValue1 !== ""}
+                                                                                    >
+                                                                                        <div className="relative mt-2 w-56">
                                                                                             <Listbox.Button
                                                                                                 className={`relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] sm:text-sm
-          ${inputValue1 !== "" ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
-        `}
+                ${inputValue1 !== "" ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
+              `}
                                                                                             >
                                                                                                 <span className="block truncate">
-                                                                                                    {selectedProfit ? `${selectedIncrease.name} — ${selectedIncrease.discount}` : "Select Discount"}
+                                                                                                    {selectedIncrease ? `${selectedIncrease.name} — ${selectedIncrease.discount}` : "Select Discount"}
                                                                                                 </span>
                                                                                                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                                                                                     <ChevronDownIcon className="h-5 w-5 text-[#144A6C]" aria-hidden="true" />
@@ -1155,20 +1169,22 @@ export default function Patient() {
                                                                                             </Listbox.Options>
                                                                                         </div>
                                                                                     </Listbox>
+
                                                                                     <input
-                                                                                        className={`mt-2 block w-56 shadow-sm text-gray-700 border rounded-lg py-3 pl-3 leading-tight focus:outline-none
-      ${selectedProfit1 !== null ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
-    `}
                                                                                         type="text"
                                                                                         value={inputValue1}
                                                                                         onChange={handleInputChange1}
-                                                                                        disabled={selectedProfit1 !== null}
+                                                                                        disabled={selectedIncrease && selectedIncrease.id !== "select"}
+                                                                                        className={`mt-2 block w-56 shadow-sm text-gray-700 border rounded-lg py-3 pl-3 leading-tight focus:outline-none
+            ${selectedIncrease && selectedIncrease.id !== "select" ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
+          `}
                                                                                     />
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div className="mt03">
+
+                                                                    <div className="mt-3">
                                                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
                                                                             {/* Notes Box */}
                                                                             <div className="border border-gray-200 rounded-lg p-4">
@@ -1312,7 +1328,7 @@ export default function Patient() {
                                                                     {/* ...Your existing SVG code here... */}
                                                                 </div>
                                                                 <div className="flex flex-col">
-                                                                    <h3 className="text-lg font-regular text-[#144A6C] text-start">
+                                                                    <h3 className="text-lg font-regular text-[#144A6C] text-start mt-2">
                                                                         Quote # 1248
                                                                     </h3>
 
@@ -1325,475 +1341,492 @@ export default function Patient() {
                                                                 overflowY: "auto",
                                                             }}>
                                                                 <form className="w-full max-w-4xl mx-auto mt-5">
-                                                                    <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                            <label className="text-[#757575]" htmlFor="clinic-email">
-                                                                                Doctor
-                                                                            </label>
-                                                                            <Listbox value={selectedClient} onChange={setSelectedClient}>
-                                                                                <div className="mt-2 relative">
-                                                                                    <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
-                                                                                        <span className="block truncate">
-                                                                                            {selectedClient.name}
-                                                                                        </span>
-                                                                                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                                                                                            <ChevronDownIcon className="h-5 w-5 text-[#144A6C]" aria-hidden="true" />
-                                                                                        </span>
-                                                                                    </Listbox.Button>
+                                                                                            <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                                                                                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                                                                                    <label className="text-[#757575]" htmlFor="clinic-email">
+                                                                                                        Doctor
+                                                                                                    </label>
+                                                                                                    <Listbox value={selectedClient} onChange={setSelectedClient}>
+                                                                                                        <div className="mt-2 relative">
+                                                                                                            <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
+                                                                                                                <span className="block truncate">
+                                                                                                                    {selectedClient.name}
+                                                                                                                </span>
+                                                                                                                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                                                                                                    <ChevronDownIcon className="h-5 w-5 text-[#144A6C]" aria-hidden="true" />
+                                                                                                                </span>
+                                                                                                            </Listbox.Button>
 
-                                                                                    <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                                                                        {clients.map((client) => (
-                                                                                            <Listbox.Option
-                                                                                                key={client.id}
-                                                                                                value={client}
-                                                                                                className={({ active }) =>
-                                                                                                    `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-[#144A6C] text-white" : "text-gray-900"
-                                                                                                    }`
-                                                                                                }
-                                                                                            >
-                                                                                                {({ selected }) => (
-                                                                                                    <>
-                                                                                                        <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
-                                                                                                            {client.name}
-                                                                                                        </span>
-                                                                                                        {selected && (
-                                                                                                            <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600">
-                                                                                                                <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                                                                                                            </span>
-                                                                                                        )}
-                                                                                                    </>
-                                                                                                )}
-                                                                                            </Listbox.Option>
-                                                                                        ))}
-                                                                                    </Listbox.Options>
-                                                                                </div>
-                                                                            </Listbox>
+                                                                                                            <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                                                                                                {clients.map((client) => (
+                                                                                                                    <Listbox.Option
+                                                                                                                        key={client.id}
+                                                                                                                        value={client}
+                                                                                                                        className={({ active }) =>
+                                                                                                                            `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-[#144A6C] text-white" : "text-gray-900"
+                                                                                                                            }`
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        {({ selected }) => (
+                                                                                                                            <>
+                                                                                                                                <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
+                                                                                                                                    {client.name}
+                                                                                                                                </span>
+                                                                                                                                {selected && (
+                                                                                                                                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600">
+                                                                                                                                        <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                                                                                                    </span>
+                                                                                                                                )}
+                                                                                                                            </>
+                                                                                                                        )}
+                                                                                                                    </Listbox.Option>
+                                                                                                                ))}
+                                                                                                            </Listbox.Options>
+                                                                                                        </div>
+                                                                                                    </Listbox>
 
-                                                                        </div>
+                                                                                                </div>
 
-                                                                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                            <label className="text-[#757575]" htmlFor="clinic-phone">
-                                                                                Patient
-                                                                            </label>
-                                                                            <Listbox value={selectedPatient} onChange={setSelectedPatient}>
-                                                                                <div className="mt-2 relative">
-                                                                                    <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
-                                                                                        <span className="block truncate">
-                                                                                            {selectedPatient.name}
-                                                                                        </span>
-                                                                                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                                                                                            <ChevronDownIcon className="h-5 w-5 text-[#144A6C]" aria-hidden="true" />
-                                                                                        </span>
-                                                                                    </Listbox.Button>
+                                                                                                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                                                                                    <label className="text-[#757575]" htmlFor="clinic-phone">
+                                                                                                        Patient
+                                                                                                    </label>
+                                                                                                    <Listbox value={selectedPatient} onChange={setSelectedPatient}>
+                                                                                                        <div className="mt-2 relative">
+                                                                                                            <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
+                                                                                                                <span className="block truncate">
+                                                                                                                    {selectedPatient.name}
+                                                                                                                </span>
+                                                                                                                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                                                                                                    <ChevronDownIcon className="h-5 w-5 text-[#144A6C]" aria-hidden="true" />
+                                                                                                                </span>
+                                                                                                            </Listbox.Button>
 
-                                                                                    <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                                                                        {patients.map((patient) => (
-                                                                                            <Listbox.Option
-                                                                                                key={patient.id}
-                                                                                                value={patient}
-                                                                                                className={({ active }) =>
-                                                                                                    `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-[#144A6C] text-white" : "text-gray-900"
-                                                                                                    }`
-                                                                                                }
-                                                                                            >
-                                                                                                {({ selected }) => (
-                                                                                                    <>
-                                                                                                        <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
-                                                                                                            {patient.name}
-                                                                                                        </span>
-                                                                                                        {selected && (
-                                                                                                            <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600">
-                                                                                                                <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                                                                                                            </span>
-                                                                                                        )}
-                                                                                                    </>
-                                                                                                )}
-                                                                                            </Listbox.Option>
-                                                                                        ))}
-                                                                                    </Listbox.Options>
-                                                                                </div>
-                                                                            </Listbox>
+                                                                                                            <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                                                                                                {patients.map((patient) => (
+                                                                                                                    <Listbox.Option
+                                                                                                                        key={patient.id}
+                                                                                                                        value={patient}
+                                                                                                                        className={({ active }) =>
+                                                                                                                            `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-[#144A6C] text-white" : "text-gray-900"
+                                                                                                                            }`
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        {({ selected }) => (
+                                                                                                                            <>
+                                                                                                                                <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
+                                                                                                                                    {patient.name}
+                                                                                                                                </span>
+                                                                                                                                {selected && (
+                                                                                                                                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600">
+                                                                                                                                        <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                                                                                                    </span>
+                                                                                                                                )}
+                                                                                                                            </>
+                                                                                                                        )}
+                                                                                                                    </Listbox.Option>
+                                                                                                                ))}
+                                                                                                            </Listbox.Options>
+                                                                                                        </div>
+                                                                                                    </Listbox>
 
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                                        <div className="w-full px-3 mb-6 md:mb-0 text-start">
-                                                                            <label className="text-[#757575]" htmlFor="clinic-address">
-                                                                                Treatment
-                                                                            </label>
-                                                                            <Listbox value={selectedCheckup} onChange={setSelectedCheckup}>
-                                                                                <div className="mt-2 relative">
-                                                                                    <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
-                                                                                        <span className="block truncate">{selectedCheckup.name}</span>
-                                                                                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                                                                                            <ChevronDownIcon className="h-5 w-5 text-[#144A6C]" aria-hidden="true" />
-                                                                                        </span>
-                                                                                    </Listbox.Button>
-
-                                                                                    <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                                                                        {checkups.map((checkup) => (
-                                                                                            <Listbox.Option
-                                                                                                key={checkup.id}
-                                                                                                value={checkup}
-                                                                                                className={({ active }) =>
-                                                                                                    `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-[#144A6C] text-white" : "text-gray-900"
-                                                                                                    }`
-                                                                                                }
-                                                                                            >
-                                                                                                {({ selected }) => (
-                                                                                                    <>
-                                                                                                        <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
-                                                                                                            {checkup.name}
-                                                                                                        </span>
-                                                                                                        {selected && (
-                                                                                                            <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600">
-                                                                                                                <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                                                                                                            </span>
-                                                                                                        )}
-                                                                                                    </>
-                                                                                                )}
-                                                                                            </Listbox.Option>
-                                                                                        ))}
-                                                                                    </Listbox.Options>
-                                                                                </div>
-                                                                            </Listbox>
-
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                            <label className="text-[#757575]" htmlFor="clinic-email">
-                                                                                Visit Date
-                                                                            </label>
-                                                                            <div className="relative">
-                                                                                <Singledatepicker />
-                                                                                <div className="absolute top-5 right-3 text-gray-500 pointer-events-none">
-                                                                                    <svg
-                                                                                        width={16}
-                                                                                        height={18}
-                                                                                        viewBox="0 0 16 18"
-                                                                                        fill="none"
-                                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                                    >
-                                                                                        <path
-                                                                                            d="M1.25 7.5H14.75M5 4.5V1.5M11 4.5V1.5M6.05 16.5H9.95C11.6302 16.5 12.4702 16.5 13.112 16.173C13.6765 15.8854 14.1354 15.4265 14.423 14.862C14.75 14.2202 14.75 13.3802 14.75 11.7V7.8C14.75 6.11984 14.75 5.27976 14.423 4.63803C14.1354 4.07354 13.6765 3.6146 13.112 3.32698C12.4702 3 11.6302 3 9.95 3H6.05C4.36984 3 3.52976 3 2.88803 3.32698C2.32354 3.6146 1.8646 4.07354 1.57698 4.63803C1.25 5.27976 1.25 6.11984 1.25 7.8V11.7C1.25 13.3802 1.25 14.2202 1.57698 14.862C1.8646 15.4265 2.32354 15.8854 2.88803 16.173C3.52976 16.5 4.36984 16.5 6.05 16.5Z"
-                                                                                            stroke="#A1A5AA"
-                                                                                            strokeWidth="1.5"
-                                                                                            strokeLinecap="round"
-                                                                                        />
-                                                                                    </svg>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                            <label className="text-[#757575]" htmlFor="clinic-phone">
-                                                                                Next Visit Date
-                                                                            </label>
-                                                                            <div className="relative">
-                                                                                <Singledatepicker />
-                                                                                <div className="absolute top-5 right-3 text-gray-500 pointer-events-none">
-                                                                                    <svg
-                                                                                        width={16}
-                                                                                        height={18}
-                                                                                        viewBox="0 0 16 18"
-                                                                                        fill="none"
-                                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                                    >
-                                                                                        <path
-                                                                                            d="M1.25 7.5H14.75M5 4.5V1.5M11 4.5V1.5M6.05 16.5H9.95C11.6302 16.5 12.4702 16.5 13.112 16.173C13.6765 15.8854 14.1354 15.4265 14.423 14.862C14.75 14.2202 14.75 13.3802 14.75 11.7V7.8C14.75 6.11984 14.75 5.27976 14.423 4.63803C14.1354 4.07354 13.6765 3.6146 13.112 3.32698C12.4702 3 11.6302 3 9.95 3H6.05C4.36984 3 3.52976 3 2.88803 3.32698C2.32354 3.6146 1.8646 4.07354 1.57698 4.63803C1.25 5.27976 1.25 6.11984 1.25 7.8V11.7C1.25 13.3802 1.25 14.2202 1.57698 14.862C1.8646 15.4265 2.32354 15.8854 2.88803 16.173C3.52976 16.5 4.36984 16.5 6.05 16.5Z"
-                                                                                            stroke="#A1A5AA"
-                                                                                            strokeWidth="1.5"
-                                                                                            strokeLinecap="round"
-                                                                                        />
-                                                                                    </svg>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div className="w-full overflow-x-auto mt-3">
-                                                                        <table className="min-w-full">
-                                                                            <thead className="bg-gray-50">
-                                                                                <tr>
-                                                                                    <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
-                                                                                        Material Name
-                                                                                    </th>
-                                                                                    <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
-                                                                                        UOM
-                                                                                    </th>
-                                                                                    <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
-                                                                                        Quantity
-                                                                                    </th>
-                                                                                    <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
-                                                                                        Extra Qty
-                                                                                    </th>
-                                                                                    <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
-                                                                                        Extra Cost
-                                                                                    </th>
-                                                                                    <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
-                                                                                        Cost Without VAT
-                                                                                    </th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody className="bg-white divide-y divide-[#EAECF0]">
-                                                                                {subscriptionsTable.length === 0 ? (
-                                                                                    <tr>
-                                                                                        <td
-                                                                                            colSpan={8}
-                                                                                            className="py-8 px-4 text-center text-gray-400 text-sm"
-                                                                                        >
-                                                                                            <div className="flex flex-col items-center justify-center min-h-[500px]">
-                                                                                                <svg
-                                                                                                    width={221}
-                                                                                                    height={228}
-                                                                                                    viewBox="0 0 221 228"
-                                                                                                    fill="none"
-                                                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                                                >
-                                                                                                    <path
-                                                                                                        d="M23.5351 99.8425C23.5351 99.8425 62.306 98.2899 70.6844 34.5588C78.1247 -22.0405 143.503 3.72142 162.401 26.2833C186.882 55.5102 173.832 105.787 205.501 112.138C237.17 118.49 216.49 189.106 168.418 182.346C108.618 173.938 123.086 208.882 105.134 223.673C92.2506 234.288 39.4234 224.069 37.6628 185.536C36.1812 153.11 22.5034 153.213 12.8086 149.536C-1.17365 144.234 -9.98398 105.83 23.5351 99.8425Z"
-                                                                                                        fill="#CEE5E4"
-                                                                                                    />
-                                                                                                    <path
-                                                                                                        d="M155.334 170.62L117.243 132.98L109.701 140.614L147.792 178.253L155.334 170.62Z"
-                                                                                                        fill="#4CA3A3"
-                                                                                                    />
-                                                                                                    <path
-                                                                                                        d="M169.885 180.733L140.25 151.45C140.085 151.286 139.819 151.288 139.656 151.453L128.439 162.804C128.276 162.969 128.278 163.235 128.443 163.398L158.078 192.682C158.243 192.845 158.509 192.843 158.672 192.678L169.889 181.327C170.052 181.162 170.05 180.896 169.885 180.733Z"
-                                                                                                        fill="#144A6C"
-                                                                                                    />
-                                                                                                    <path
-                                                                                                        d="M83.4827 151.911C109.688 151.911 130.932 130.667 130.932 104.461C130.932 78.2556 109.688 57.0117 83.4827 57.0117C57.2771 57.0117 36.0332 78.2556 36.0332 104.461C36.0332 130.667 57.2771 151.911 83.4827 151.911Z"
-                                                                                                        fill="#144A6C"
-                                                                                                    />
-                                                                                                    <path
-                                                                                                        d="M83.4826 144.168C105.412 144.168 123.19 126.391 123.19 104.461C123.19 82.5314 105.412 64.7539 83.4826 64.7539C61.5529 64.7539 43.7754 82.5314 43.7754 104.461C43.7754 126.391 61.5529 144.168 83.4826 144.168Z"
-                                                                                                        fill="#F5FAFA"
-                                                                                                    />
-                                                                                                    <path
-                                                                                                        d="M163.701 61.5666C152.571 57.9589 140.543 64.0605 136.921 75.2363C133.313 86.3663 139.415 98.3944 150.591 102.017C161.767 105.639 173.764 99.4774 177.372 88.3469C180.98 77.2163 174.832 65.1741 163.701 61.5666ZM160.343 71.928C161.589 72.3318 162.687 73.0965 163.497 74.1252C164.308 75.1538 164.795 76.4 164.896 77.7057C164.997 79.0114 164.709 80.3178 164.066 81.4591C163.424 82.6005 162.458 83.5254 161.289 84.1166C160.12 84.7078 158.802 84.9386 157.503 84.7797C156.203 84.6208 154.979 84.0795 153.987 83.2243C152.995 82.3691 152.28 81.2386 151.931 79.9762C151.583 78.7138 151.617 77.3763 152.03 76.1334C153.145 72.6947 156.904 70.8134 160.343 71.928ZM151.94 97.854C148.242 96.6616 145.074 94.2207 142.978 90.9493C146.9 88.7207 151.002 88.0999 154.712 89.3025C158.422 90.5051 161.439 93.3828 163.248 97.5193C159.632 98.9391 155.634 99.0575 151.94 97.854Z"
-                                                                                                        fill="#2F6587"
-                                                                                                    />
-                                                                                                    <path
-                                                                                                        d="M71.0631 162.989C69.1299 163.976 67.5327 165.513 66.4735 167.408C65.4143 169.302 64.9407 171.469 65.1126 173.632C65.2845 175.796 66.0941 177.86 67.4391 179.564C68.7841 181.267 70.604 182.534 72.6688 183.203C74.7335 183.872 76.9504 183.914 79.039 183.323C81.1276 182.733 82.9941 181.536 84.4026 179.884C85.811 178.233 86.6981 176.201 86.9516 174.045C87.2052 171.89 86.8138 169.707 85.827 167.774C84.5014 165.184 82.2025 163.225 79.4346 162.328C76.6668 161.431 73.6561 161.669 71.0631 162.989ZM73.6193 167.996C74.2214 167.689 74.9012 167.567 75.5726 167.647C76.2439 167.726 76.8765 168.003 77.3901 168.443C77.9037 168.883 78.2751 169.465 78.4573 170.116C78.6395 170.767 78.6242 171.457 78.4134 172.1C78.2026 172.742 77.8058 173.307 77.2733 173.724C76.7408 174.14 76.0965 174.389 75.4223 174.439C74.7481 174.489 74.0743 174.337 73.4864 174.004C72.8985 173.67 72.4229 173.169 72.12 172.565C71.7185 171.759 71.6508 170.828 71.9315 169.972C72.2121 169.117 72.8185 168.407 73.6193 167.996V167.996ZM80.0149 180.526C78.23 181.441 76.1828 181.706 74.2238 181.277C74.8419 179.032 76.1122 177.309 77.9058 176.393C79.6993 175.478 81.8504 175.427 84.0205 176.277C83.2186 178.115 81.8025 179.617 80.0149 180.526V180.526Z"
-                                                                                                        fill="#2F6587"
-                                                                                                    />
-                                                                                                </svg>
-                                                                                                <p className="text-[#144A6C] text-2xl mt-4">No Record Found!</p>
+                                                                                                </div>
                                                                                             </div>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                ) : (
-                                                                                    subscriptionsTable.map((sub) => (
-                                                                                        <tr key={sub.id} className="hover:bg-gray-50">
-                                                                                            <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
-                                                                                                {sub.user}
-                                                                                            </td>
-                                                                                            <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
-                                                                                                {sub.email}
-                                                                                            </td>
-                                                                                            <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
-                                                                                                {sub.plan}
-                                                                                            </td>
-                                                                                            <td className="px-6 py-4 whitespace-nowrap">
-                                                                                                <input
-                                                                                                    type="number"
-                                                                                                    className="w-20 px-2 py-1 border rounded text-sm text-[#475467]"
-                                                                                                    placeholder="0"
-                                                                                                // Add onChange handler and value binding as needed
-                                                                                                />
-                                                                                            </td>
-                                                                                            <td className="px-6 py-4 whitespace-nowrap">
-                                                                                                <input
-                                                                                                    type="number"
-                                                                                                    className="w-20 px-2 py-1 border rounded text-sm text-[#475467]"
-                                                                                                    placeholder="0.00"
-                                                                                                // Add onChange handler and value binding as needed
-                                                                                                />
-                                                                                            </td>
-                                                                                            <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
-                                                                                                ${sub.amount.toFixed(2)}
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                    ))
-                                                                                )}
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                    <div className="mt-3">
-                                                                        <div className="flex">
-                                                                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                                <label className="text-[#757575]" htmlFor="clinic-phone">
-                                                                                    Margin
-                                                                                </label>
-                                                                                <div className="flex gap-2">
-                                                                                    {/* Dropdown (Listbox) */}
-                                                                                    <Listbox value={selectedProfit} onChange={handleDropdownChange} disabled={inputValue !== ""}>
-                                                                                        <div className="relative mt-2 w-56">
-                                                                                            <Listbox.Button
-                                                                                                className={`relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] sm:text-sm
-          ${inputValue !== "" ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
-        `}
-                                                                                            >
-                                                                                                <span className="block truncate">
-                                                                                                    {selectedProfit ? selectedProfit.name : "Select margin"}
-                                                                                                </span>
-                                                                                                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                                                                                                    <ChevronDownIcon className="h-5 w-5 text-[#144A6C]" aria-hidden="true" />
-                                                                                                </span>
-                                                                                            </Listbox.Button>
 
-                                                                                            <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                                                                                {profits.map((profit) => (
-                                                                                                    <Listbox.Option
-                                                                                                        key={profit.id}
-                                                                                                        value={profit}
-                                                                                                        className={({ active }) =>
-                                                                                                            `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-[#144A6C] text-white" : "text-gray-900"
-                                                                                                            }`
-                                                                                                        }
-                                                                                                    >
-                                                                                                        {({ selected }) => (
-                                                                                                            <>
-                                                                                                                <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
-                                                                                                                    {profit.name}
+                                                                                            <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                                                                                <div className="w-full px-3 mb-6 md:mb-0 text-start">
+                                                                                                    <label className="text-[#757575]" htmlFor="clinic-address">
+                                                                                                        Treatment
+                                                                                                    </label>
+                                                                                                    <Listbox value={selectedCheckup} onChange={setSelectedCheckup}>
+                                                                                                        <div className="mt-2 relative">
+                                                                                                            <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] focus:outline-none focus:ring-1 focus:ring-[#EBEBEB] focus:border-[#EBEBEB] sm:text-sm">
+                                                                                                                <span className="block truncate">{selectedCheckup.name}</span>
+                                                                                                                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                                                                                                    <ChevronDownIcon className="h-5 w-5 text-[#144A6C]" aria-hidden="true" />
                                                                                                                 </span>
-                                                                                                                {selected && (
-                                                                                                                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600">
-                                                                                                                        <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                                                                                                                    </span>
-                                                                                                                )}
-                                                                                                            </>
+                                                                                                            </Listbox.Button>
+
+                                                                                                            <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                                                                                                {checkups.map((checkup) => (
+                                                                                                                    <Listbox.Option
+                                                                                                                        key={checkup.id}
+                                                                                                                        value={checkup}
+                                                                                                                        className={({ active }) =>
+                                                                                                                            `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-[#144A6C] text-white" : "text-gray-900"
+                                                                                                                            }`
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        {({ selected }) => (
+                                                                                                                            <>
+                                                                                                                                <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
+                                                                                                                                    {checkup.name}
+                                                                                                                                </span>
+                                                                                                                                {selected && (
+                                                                                                                                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600">
+                                                                                                                                        <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                                                                                                    </span>
+                                                                                                                                )}
+                                                                                                                            </>
+                                                                                                                        )}
+                                                                                                                    </Listbox.Option>
+                                                                                                                ))}
+                                                                                                            </Listbox.Options>
+                                                                                                        </div>
+                                                                                                    </Listbox>
+
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div className="flex flex-wrap -mx-3 mt-2 mb-4">
+                                                                                                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                                                                                    <label className="text-[#757575]" htmlFor="clinic-email">
+                                                                                                        Visit Date
+                                                                                                    </label>
+                                                                                                    <div className="relative">
+                                                                                                        <Singledatepicker />
+                                                                                                        <div className="absolute top-5 right-3 text-gray-500 pointer-events-none">
+                                                                                                            <svg
+                                                                                                                width={16}
+                                                                                                                height={18}
+                                                                                                                viewBox="0 0 16 18"
+                                                                                                                fill="none"
+                                                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                                            >
+                                                                                                                <path
+                                                                                                                    d="M1.25 7.5H14.75M5 4.5V1.5M11 4.5V1.5M6.05 16.5H9.95C11.6302 16.5 12.4702 16.5 13.112 16.173C13.6765 15.8854 14.1354 15.4265 14.423 14.862C14.75 14.2202 14.75 13.3802 14.75 11.7V7.8C14.75 6.11984 14.75 5.27976 14.423 4.63803C14.1354 4.07354 13.6765 3.6146 13.112 3.32698C12.4702 3 11.6302 3 9.95 3H6.05C4.36984 3 3.52976 3 2.88803 3.32698C2.32354 3.6146 1.8646 4.07354 1.57698 4.63803C1.25 5.27976 1.25 6.11984 1.25 7.8V11.7C1.25 13.3802 1.25 14.2202 1.57698 14.862C1.8646 15.4265 2.32354 15.8854 2.88803 16.173C3.52976 16.5 4.36984 16.5 6.05 16.5Z"
+                                                                                                                    stroke="#A1A5AA"
+                                                                                                                    strokeWidth="1.5"
+                                                                                                                    strokeLinecap="round"
+                                                                                                                />
+                                                                                                            </svg>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                                                                                    <label className="text-[#757575]" htmlFor="clinic-phone">
+                                                                                                        Next Visit Date
+                                                                                                    </label>
+                                                                                                    <div className="relative">
+                                                                                                        <Singledatepicker />
+                                                                                                        <div className="absolute top-5 right-3 text-gray-500 pointer-events-none">
+                                                                                                            <svg
+                                                                                                                width={16}
+                                                                                                                height={18}
+                                                                                                                viewBox="0 0 16 18"
+                                                                                                                fill="none"
+                                                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                                            >
+                                                                                                                <path
+                                                                                                                    d="M1.25 7.5H14.75M5 4.5V1.5M11 4.5V1.5M6.05 16.5H9.95C11.6302 16.5 12.4702 16.5 13.112 16.173C13.6765 15.8854 14.1354 15.4265 14.423 14.862C14.75 14.2202 14.75 13.3802 14.75 11.7V7.8C14.75 6.11984 14.75 5.27976 14.423 4.63803C14.1354 4.07354 13.6765 3.6146 13.112 3.32698C12.4702 3 11.6302 3 9.95 3H6.05C4.36984 3 3.52976 3 2.88803 3.32698C2.32354 3.6146 1.8646 4.07354 1.57698 4.63803C1.25 5.27976 1.25 6.11984 1.25 7.8V11.7C1.25 13.3802 1.25 14.2202 1.57698 14.862C1.8646 15.4265 2.32354 15.8854 2.88803 16.173C3.52976 16.5 4.36984 16.5 6.05 16.5Z"
+                                                                                                                    stroke="#A1A5AA"
+                                                                                                                    strokeWidth="1.5"
+                                                                                                                    strokeLinecap="round"
+                                                                                                                />
+                                                                                                            </svg>
+                                                                                                        </div>
+                                                                                                    </div>
+
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div className="w-full overflow-x-auto mt-3">
+                                                                                                <table className="min-w-full">
+                                                                                                    <thead className="bg-gray-50">
+                                                                                                        <tr>
+                                                                                                            <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
+                                                                                                                Material Name
+                                                                                                            </th>
+                                                                                                            <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
+                                                                                                                UOM
+                                                                                                            </th>
+                                                                                                            <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
+                                                                                                                Quantity
+                                                                                                            </th>
+                                                                                                            <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
+                                                                                                                Extra Qty
+                                                                                                            </th>
+                                                                                                            <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
+                                                                                                                Extra Cost
+                                                                                                            </th>
+                                                                                                            <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
+                                                                                                                Cost Without VAT
+                                                                                                            </th>
+                                                                                                        </tr>
+                                                                                                    </thead>
+                                                                                                    <tbody className="bg-white divide-y divide-[#EAECF0]">
+                                                                                                        {subscriptionsTable.length === 0 ? (
+                                                                                                            <tr>
+                                                                                                                <td
+                                                                                                                    colSpan={8}
+                                                                                                                    className="py-8 px-4 text-center text-gray-400 text-sm"
+                                                                                                                >
+                                                                                                                    <div className="flex flex-col items-center justify-center min-h-[500px]">
+                                                                                                                        <svg
+                                                                                                                            width={221}
+                                                                                                                            height={228}
+                                                                                                                            viewBox="0 0 221 228"
+                                                                                                                            fill="none"
+                                                                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                                                                        >
+                                                                                                                            <path
+                                                                                                                                d="M23.5351 99.8425C23.5351 99.8425 62.306 98.2899 70.6844 34.5588C78.1247 -22.0405 143.503 3.72142 162.401 26.2833C186.882 55.5102 173.832 105.787 205.501 112.138C237.17 118.49 216.49 189.106 168.418 182.346C108.618 173.938 123.086 208.882 105.134 223.673C92.2506 234.288 39.4234 224.069 37.6628 185.536C36.1812 153.11 22.5034 153.213 12.8086 149.536C-1.17365 144.234 -9.98398 105.83 23.5351 99.8425Z"
+                                                                                                                                fill="#CEE5E4"
+                                                                                                                            />
+                                                                                                                            <path
+                                                                                                                                d="M155.334 170.62L117.243 132.98L109.701 140.614L147.792 178.253L155.334 170.62Z"
+                                                                                                                                fill="#4CA3A3"
+                                                                                                                            />
+                                                                                                                            <path
+                                                                                                                                d="M169.885 180.733L140.25 151.45C140.085 151.286 139.819 151.288 139.656 151.453L128.439 162.804C128.276 162.969 128.278 163.235 128.443 163.398L158.078 192.682C158.243 192.845 158.509 192.843 158.672 192.678L169.889 181.327C170.052 181.162 170.05 180.896 169.885 180.733Z"
+                                                                                                                                fill="#144A6C"
+                                                                                                                            />
+                                                                                                                            <path
+                                                                                                                                d="M83.4827 151.911C109.688 151.911 130.932 130.667 130.932 104.461C130.932 78.2556 109.688 57.0117 83.4827 57.0117C57.2771 57.0117 36.0332 78.2556 36.0332 104.461C36.0332 130.667 57.2771 151.911 83.4827 151.911Z"
+                                                                                                                                fill="#144A6C"
+                                                                                                                            />
+                                                                                                                            <path
+                                                                                                                                d="M83.4826 144.168C105.412 144.168 123.19 126.391 123.19 104.461C123.19 82.5314 105.412 64.7539 83.4826 64.7539C61.5529 64.7539 43.7754 82.5314 43.7754 104.461C43.7754 126.391 61.5529 144.168 83.4826 144.168Z"
+                                                                                                                                fill="#F5FAFA"
+                                                                                                                            />
+                                                                                                                            <path
+                                                                                                                                d="M163.701 61.5666C152.571 57.9589 140.543 64.0605 136.921 75.2363C133.313 86.3663 139.415 98.3944 150.591 102.017C161.767 105.639 173.764 99.4774 177.372 88.3469C180.98 77.2163 174.832 65.1741 163.701 61.5666ZM160.343 71.928C161.589 72.3318 162.687 73.0965 163.497 74.1252C164.308 75.1538 164.795 76.4 164.896 77.7057C164.997 79.0114 164.709 80.3178 164.066 81.4591C163.424 82.6005 162.458 83.5254 161.289 84.1166C160.12 84.7078 158.802 84.9386 157.503 84.7797C156.203 84.6208 154.979 84.0795 153.987 83.2243C152.995 82.3691 152.28 81.2386 151.931 79.9762C151.583 78.7138 151.617 77.3763 152.03 76.1334C153.145 72.6947 156.904 70.8134 160.343 71.928ZM151.94 97.854C148.242 96.6616 145.074 94.2207 142.978 90.9493C146.9 88.7207 151.002 88.0999 154.712 89.3025C158.422 90.5051 161.439 93.3828 163.248 97.5193C159.632 98.9391 155.634 99.0575 151.94 97.854Z"
+                                                                                                                                fill="#2F6587"
+                                                                                                                            />
+                                                                                                                            <path
+                                                                                                                                d="M71.0631 162.989C69.1299 163.976 67.5327 165.513 66.4735 167.408C65.4143 169.302 64.9407 171.469 65.1126 173.632C65.2845 175.796 66.0941 177.86 67.4391 179.564C68.7841 181.267 70.604 182.534 72.6688 183.203C74.7335 183.872 76.9504 183.914 79.039 183.323C81.1276 182.733 82.9941 181.536 84.4026 179.884C85.811 178.233 86.6981 176.201 86.9516 174.045C87.2052 171.89 86.8138 169.707 85.827 167.774C84.5014 165.184 82.2025 163.225 79.4346 162.328C76.6668 161.431 73.6561 161.669 71.0631 162.989ZM73.6193 167.996C74.2214 167.689 74.9012 167.567 75.5726 167.647C76.2439 167.726 76.8765 168.003 77.3901 168.443C77.9037 168.883 78.2751 169.465 78.4573 170.116C78.6395 170.767 78.6242 171.457 78.4134 172.1C78.2026 172.742 77.8058 173.307 77.2733 173.724C76.7408 174.14 76.0965 174.389 75.4223 174.439C74.7481 174.489 74.0743 174.337 73.4864 174.004C72.8985 173.67 72.4229 173.169 72.12 172.565C71.7185 171.759 71.6508 170.828 71.9315 169.972C72.2121 169.117 72.8185 168.407 73.6193 167.996V167.996ZM80.0149 180.526C78.23 181.441 76.1828 181.706 74.2238 181.277C74.8419 179.032 76.1122 177.309 77.9058 176.393C79.6993 175.478 81.8504 175.427 84.0205 176.277C83.2186 178.115 81.8025 179.617 80.0149 180.526V180.526Z"
+                                                                                                                                fill="#2F6587"
+                                                                                                                            />
+                                                                                                                        </svg>
+                                                                                                                        <p className="text-[#144A6C] text-2xl mt-4">No Record Found!</p>
+                                                                                                                    </div>
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                        ) : (
+                                                                                                            subscriptionsTable.map((sub) => (
+                                                                                                                <tr key={sub.id} className="hover:bg-gray-50">
+                                                                                                                    <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
+                                                                                                                        {sub.user}
+                                                                                                                    </td>
+                                                                                                                    <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
+                                                                                                                        {sub.email}
+                                                                                                                    </td>
+                                                                                                                    <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
+                                                                                                                        {sub.plan}
+                                                                                                                    </td>
+                                                                                                                    <td className="px-6 py-4 whitespace-nowrap">
+                                                                                                                        <input
+                                                                                                                            type="number"
+                                                                                                                            className="w-20 px-2 py-1 border rounded text-sm text-[#475467]"
+                                                                                                                            placeholder="0"
+                                                                                                                        // Add onChange handler and value binding as needed
+                                                                                                                        />
+                                                                                                                    </td>
+                                                                                                                    <td className="px-6 py-4 whitespace-nowrap">
+                                                                                                                        <input
+                                                                                                                            type="number"
+                                                                                                                            className="w-20 px-2 py-1 border rounded text-sm text-[#475467]"
+                                                                                                                            placeholder="0.00"
+                                                                                                                        // Add onChange handler and value binding as needed
+                                                                                                                        />
+                                                                                                                    </td>
+                                                                                                                    <td className="px-6 py-4 text-sm text-[#475467] whitespace-nowrap">
+                                                                                                                        ${sub.amount.toFixed(2)}
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                            ))
                                                                                                         )}
-                                                                                                    </Listbox.Option>
-                                                                                                ))}
-                                                                                            </Listbox.Options>
-                                                                                        </div>
-                                                                                    </Listbox>
+                                                                                                    </tbody>
+                                                                                                </table>
+                                                                                            </div>
+                                                                                            <div className="mt-3">
+                                                                                                <div className="flex">
+                                                                                                    {/* === MARGIN === */}
+                                                                                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                                                                                        <label className="text-[#757575]">Margin</label>
+                                                                                                        <div className="flex gap-2">
+                                                                                                            {/* Dropdown */}
+                                                                                                            <Listbox
+                                                                                                                value={selectedProfit}
+                                                                                                                onChange={(value) => {
+                                                                                                                    setSelectedProfit(value);
+                                                                                                                    if (value.id === "select") {
+                                                                                                                        setInputValue(""); // optional: clear input
+                                                                                                                    }
+                                                                                                                }}
+                                                                                                                disabled={inputValue !== ""}
+                                                                                                            >
+                                                                                                                <div className="relative mt-2 w-56">
+                                                                                                                    <Listbox.Button
+                                                                                                                        className={`relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] sm:text-sm
+                ${inputValue !== "" ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
+              `}
+                                                                                                                    >
+                                                                                                                        <span className="block truncate">
+                                                                                                                            {selectedProfit ? selectedProfit.name : "Select margin"}
+                                                                                                                        </span>
+                                                                                                                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                                                                                                            <ChevronDownIcon className="h-5 w-5 text-[#144A6C]" aria-hidden="true" />
+                                                                                                                        </span>
+                                                                                                                    </Listbox.Button>
 
-                                                                                    {/* Input Field */}
-                                                                                    <input
-                                                                                        className={`mt-2 block w-56 shadow-sm text-gray-700 border rounded-lg py-3 pl-3 leading-tight focus:outline-none
-      ${selectedProfit !== null ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
-    `}
-                                                                                        type="text"
-                                                                                        value={inputValue}
-                                                                                        onChange={handleInputChange}
-                                                                                        disabled={selectedProfit !== null}
-                                                                                    />
-                                                                                </div>
+                                                                                                                    <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                                                                                                        {profits.map((profit) => (
+                                                                                                                            <Listbox.Option
+                                                                                                                                key={profit.id}
+                                                                                                                                value={profit}
+                                                                                                                                className={({ active }) =>
+                                                                                                                                    `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-[#144A6C] text-white" : "text-gray-900"
+                                                                                                                                    }`
+                                                                                                                                }
+                                                                                                                            >
+                                                                                                                                {({ selected }) => (
+                                                                                                                                    <>
+                                                                                                                                        <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
+                                                                                                                                            {profit.name}
+                                                                                                                                        </span>
+                                                                                                                                        {selected && (
+                                                                                                                                            <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600">
+                                                                                                                                                <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                                                                                                            </span>
+                                                                                                                                        )}
+                                                                                                                                    </>
+                                                                                                                                )}
+                                                                                                                            </Listbox.Option>
+                                                                                                                        ))}
+                                                                                                                    </Listbox.Options>
+                                                                                                                </div>
+                                                                                                            </Listbox>
 
-                                                                            </div>
-                                                                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                                <label className="text-[#757575]" htmlFor="clinic-phone">
-                                                                                    Discount
-                                                                                </label>
-                                                                                <div className="flex gap-2">
+                                                                                                            {/* Input */}
+                                                                                                            <input
+                                                                                                                type="text"
+                                                                                                                value={inputValue}
+                                                                                                                onChange={handleInputChange}
+                                                                                                                disabled={selectedProfit && selectedProfit.id !== "select"}
+                                                                                                                className={`mt-2 block w-56 shadow-sm text-gray-700 border rounded-lg py-3 pl-3 leading-tight focus:outline-none
+            ${selectedProfit && selectedProfit.id !== "select" ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
+          `}
+                                                                                                            />
+                                                                                                        </div>
+                                                                                                    </div>
 
-                                                                                    <Listbox value={selectedIncrease} onChange={handleDropdownChange1} disabled={inputValue1 !== ""}>
-                                                                                        <div className="relative mt-2">
-                                                                                            <Listbox.Button
-                                                                                                className={`relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] sm:text-sm
-          ${inputValue1 !== "" ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
-        `}
-                                                                                            >
-                                                                                                <span className="block truncate">
-                                                                                                    {selectedProfit ? `${selectedIncrease.name} — ${selectedIncrease.discount}` : "Select Discount"}
-                                                                                                </span>
-                                                                                                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                                                                                                    <ChevronDownIcon className="h-5 w-5 text-[#144A6C]" aria-hidden="true" />
-                                                                                                </span>
-                                                                                            </Listbox.Button>
+                                                                                                    {/* === DISCOUNT === */}
+                                                                                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                                                                                        <label className="text-[#757575]">Discount</label>
+                                                                                                        <div className="flex gap-2">
+                                                                                                            <Listbox
+                                                                                                                value={selectedIncrease}
+                                                                                                                onChange={(value) => {
+                                                                                                                    setSelectedIncrease(value);
+                                                                                                                    if (value.id === "select") {
+                                                                                                                        setInputValue1("");
+                                                                                                                    }
+                                                                                                                }}
+                                                                                                                disabled={inputValue1 !== ""}
+                                                                                                            >
+                                                                                                                <div className="relative mt-2 w-56">
+                                                                                                                    <Listbox.Button
+                                                                                                                        className={`relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] sm:text-sm
+                ${inputValue1 !== "" ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
+              `}
+                                                                                                                    >
+                                                                                                                        <span className="block truncate">
+                                                                                                                            {selectedIncrease ? `${selectedIncrease.name} — ${selectedIncrease.discount}` : "Select Discount"}
+                                                                                                                        </span>
+                                                                                                                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                                                                                                            <ChevronDownIcon className="h-5 w-5 text-[#144A6C]" aria-hidden="true" />
+                                                                                                                        </span>
+                                                                                                                    </Listbox.Button>
 
-                                                                                            <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                                                                                {increase.map((item) => (
-                                                                                                    <Listbox.Option
-                                                                                                        key={item.id}
-                                                                                                        value={item}
-                                                                                                        className={({ active }) =>
-                                                                                                            `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-[#144A6C] text-white" : "text-gray-900"
-                                                                                                            }`
-                                                                                                        }
-                                                                                                    >
-                                                                                                        {({ selected }) => (
-                                                                                                            <>
-                                                                                                                <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
-                                                                                                                    {item.name} — {item.discount}
-                                                                                                                </span>
-                                                                                                                {selected && (
-                                                                                                                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600">
-                                                                                                                        <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                                                                                                                    </span>
-                                                                                                                )}
-                                                                                                            </>
-                                                                                                        )}
-                                                                                                    </Listbox.Option>
-                                                                                                ))}
-                                                                                            </Listbox.Options>
-                                                                                        </div>
-                                                                                    </Listbox>
-                                                                                    <input
-                                                                                        className={`mt-2 block w-56 shadow-sm text-gray-700 border rounded-lg py-3 pl-3 leading-tight focus:outline-none
-      ${selectedProfit1 !== null ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
-    `}
-                                                                                        type="text"
-                                                                                        value={inputValue1}
-                                                                                        onChange={handleInputChange1}
-                                                                                        disabled={selectedProfit1 !== null}
-                                                                                    />
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="mt03">
-                                                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                                                                            {/* Notes Box */}
-                                                                            <div className="border border-gray-200 rounded-lg p-4">
-                                                                                <label htmlFor="notes" className="block text-sm font-medium text-gray-700 mb-2">
-                                                                                    Notes
-                                                                                </label>
-                                                                                <textarea
-                                                                                    id="notes"
-                                                                                    name="notes"
-                                                                                    rows={6}
-                                                                                    className="w-full rounded-md p-3 focus:outline-none resize-none"
+                                                                                                                    <Listbox.Options className="absolute z-10 mt-1 max-h-20 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                                                                                                        {increase.map((item) => (
+                                                                                                                            <Listbox.Option
+                                                                                                                                key={item.id}
+                                                                                                                                value={item}
+                                                                                                                                className={({ active }) =>
+                                                                                                                                    `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-[#144A6C] text-white" : "text-gray-900"
+                                                                                                                                    }`
+                                                                                                                                }
+                                                                                                                            >
+                                                                                                                                {({ selected }) => (
+                                                                                                                                    <>
+                                                                                                                                        <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
+                                                                                                                                            {item.name} — {item.discount}
+                                                                                                                                        </span>
+                                                                                                                                        {selected && (
+                                                                                                                                            <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600">
+                                                                                                                                                <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                                                                                                            </span>
+                                                                                                                                        )}
+                                                                                                                                    </>
+                                                                                                                                )}
+                                                                                                                            </Listbox.Option>
+                                                                                                                        ))}
+                                                                                                                    </Listbox.Options>
+                                                                                                                </div>
+                                                                                                            </Listbox>
 
-                                                                                />
-                                                                            </div>
+                                                                                                            <input
+                                                                                                                type="text"
+                                                                                                                value={inputValue1}
+                                                                                                                onChange={handleInputChange1}
+                                                                                                                disabled={selectedIncrease && selectedIncrease.id !== "select"}
+                                                                                                                className={`mt-2 block w-56 shadow-sm text-gray-700 border rounded-lg py-3 pl-3 leading-tight focus:outline-none
+            ${selectedIncrease && selectedIncrease.id !== "select" ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
+          `}
+                                                                                                            />
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
 
-                                                                            {/* Cost Summary Card */}
-                                                                            <div className="border border-gray-200 rounded-lg p-6 flex flex-col justify-between">
-                                                                                <div className="space-y-3">
-                                                                                    <div className="flex justify-between text-sm text-gray-700">
-                                                                                        <span>Cost</span>
-                                                                                        <span>$100.00</span>
-                                                                                    </div>
-                                                                                    <div className="flex justify-between text-sm text-gray-700">
-                                                                                        <span>Subtotal</span>
-                                                                                        <span>$100.00</span>
-                                                                                    </div>
-                                                                                    <div className="flex justify-between text-sm text-gray-700">
-                                                                                        <span>VAT</span>
-                                                                                        <span>$28,016.00</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div className="border-t border-gray-300 mt-4 pt-4 flex justify-between items-center">
-                                                                                    <span className="text-base font-semibold text-gray-900">
-                                                                                        Total With VAT
-                                                                                    </span>
-                                                                                    <span className="text-lg font-bold text-gray-900">
-                                                                                        $27,516.00
-                                                                                    </span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                                                            <div className="mt-3">
+                                                                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                                                                                                    {/* Notes Box */}
+                                                                                                    <div className="border border-gray-200 rounded-lg p-4">
+                                                                                                        <label htmlFor="notes" className="block text-sm font-medium text-gray-700 mb-2">
+                                                                                                            Notes
+                                                                                                        </label>
+                                                                                                        <textarea
+                                                                                                            id="notes"
+                                                                                                            name="notes"
+                                                                                                            rows={6}
+                                                                                                            className="w-full rounded-md p-3 focus:outline-none resize-none"
 
-                                                                </form>
+                                                                                                        />
+                                                                                                    </div>
+
+                                                                                                    {/* Cost Summary Card */}
+                                                                                                    <div className="border border-gray-200 rounded-lg p-6 flex flex-col justify-between">
+                                                                                                        <div className="space-y-3">
+                                                                                                            <div className="flex justify-between text-sm text-gray-700">
+                                                                                                                <span>Cost</span>
+                                                                                                                <span>$100.00</span>
+                                                                                                            </div>
+                                                                                                            <div className="flex justify-between text-sm text-gray-700">
+                                                                                                                <span>Subtotal</span>
+                                                                                                                <span>$100.00</span>
+                                                                                                            </div>
+                                                                                                            <div className="flex justify-between text-sm text-gray-700">
+                                                                                                                <span>VAT</span>
+                                                                                                                <span>$28,016.00</span>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div className="border-t border-gray-300 mt-4 pt-4 flex justify-between items-center">
+                                                                                                            <span className="text-base font-semibold text-gray-900">
+                                                                                                                Total With VAT
+                                                                                                            </span>
+                                                                                                            <span className="text-lg font-bold text-gray-900">
+                                                                                                                $27,516.00
+                                                                                                            </span>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                        </form>
                                                             </div>
 
                                                         </div>
@@ -2563,18 +2596,26 @@ export default function Patient() {
                                                                                             </div>
                                                                                             <div className="mt-3">
                                                                                                 <div className="flex">
+                                                                                                    {/* === MARGIN === */}
                                                                                                     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                                                        <label className="text-[#757575]" htmlFor="clinic-phone">
-                                                                                                            Margin
-                                                                                                        </label>
+                                                                                                        <label className="text-[#757575]">Margin</label>
                                                                                                         <div className="flex gap-2">
-                                                                                                            {/* Dropdown (Listbox) */}
-                                                                                                            <Listbox value={selectedProfit} onChange={handleDropdownChange} disabled={inputValue !== ""}>
+                                                                                                            {/* Dropdown */}
+                                                                                                            <Listbox
+                                                                                                                value={selectedProfit}
+                                                                                                                onChange={(value) => {
+                                                                                                                    setSelectedProfit(value);
+                                                                                                                    if (value.id === "select") {
+                                                                                                                        setInputValue(""); // optional: clear input
+                                                                                                                    }
+                                                                                                                }}
+                                                                                                                disabled={inputValue !== ""}
+                                                                                                            >
                                                                                                                 <div className="relative mt-2 w-56">
                                                                                                                     <Listbox.Button
                                                                                                                         className={`relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] sm:text-sm
-          ${inputValue !== "" ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
-        `}
+                ${inputValue !== "" ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
+              `}
                                                                                                                     >
                                                                                                                         <span className="block truncate">
                                                                                                                             {selectedProfit ? selectedProfit.name : "Select margin"}
@@ -2612,34 +2653,41 @@ export default function Patient() {
                                                                                                                 </div>
                                                                                                             </Listbox>
 
-                                                                                                            {/* Input Field */}
+                                                                                                            {/* Input */}
                                                                                                             <input
-                                                                                                                className={`mt-2 block w-56 shadow-sm text-gray-700 border rounded-lg py-3 pl-3 leading-tight focus:outline-none
-      ${selectedProfit !== null ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
-    `}
                                                                                                                 type="text"
                                                                                                                 value={inputValue}
                                                                                                                 onChange={handleInputChange}
-                                                                                                                disabled={selectedProfit !== null}
+                                                                                                                disabled={selectedProfit && selectedProfit.id !== "select"}
+                                                                                                                className={`mt-2 block w-56 shadow-sm text-gray-700 border rounded-lg py-3 pl-3 leading-tight focus:outline-none
+            ${selectedProfit && selectedProfit.id !== "select" ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
+          `}
                                                                                                             />
                                                                                                         </div>
-
                                                                                                     </div>
-                                                                                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
-                                                                                                        <label className="text-[#757575]" htmlFor="clinic-phone">
-                                                                                                            Discount
-                                                                                                        </label>
-                                                                                                        <div className="flex gap-2">
 
-                                                                                                            <Listbox value={selectedIncrease} onChange={handleDropdownChange1} disabled={inputValue1 !== ""}>
-                                                                                                                <div className="relative mt-2">
+                                                                                                    {/* === DISCOUNT === */}
+                                                                                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-start">
+                                                                                                        <label className="text-[#757575]">Discount</label>
+                                                                                                        <div className="flex gap-2">
+                                                                                                            <Listbox
+                                                                                                                value={selectedIncrease}
+                                                                                                                onChange={(value) => {
+                                                                                                                    setSelectedIncrease(value);
+                                                                                                                    if (value.id === "select") {
+                                                                                                                        setInputValue1("");
+                                                                                                                    }
+                                                                                                                }}
+                                                                                                                disabled={inputValue1 !== ""}
+                                                                                                            >
+                                                                                                                <div className="relative mt-2 w-56">
                                                                                                                     <Listbox.Button
                                                                                                                         className={`relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left shadow-sm border border-[#EBEBEB] sm:text-sm
-          ${inputValue1 !== "" ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
-        `}
+                ${inputValue1 !== "" ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
+              `}
                                                                                                                     >
                                                                                                                         <span className="block truncate">
-                                                                                                                            {selectedProfit ? `${selectedIncrease.name} — ${selectedIncrease.discount}` : "Select Discount"}
+                                                                                                                            {selectedIncrease ? `${selectedIncrease.name} — ${selectedIncrease.discount}` : "Select Discount"}
                                                                                                                         </span>
                                                                                                                         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                                                                                                             <ChevronDownIcon className="h-5 w-5 text-[#144A6C]" aria-hidden="true" />
@@ -2673,20 +2721,22 @@ export default function Patient() {
                                                                                                                     </Listbox.Options>
                                                                                                                 </div>
                                                                                                             </Listbox>
+
                                                                                                             <input
-                                                                                                                className={`mt-2 block w-56 shadow-sm text-gray-700 border rounded-lg py-3 pl-3 leading-tight focus:outline-none
-      ${selectedProfit1 !== null ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
-    `}
                                                                                                                 type="text"
                                                                                                                 value={inputValue1}
                                                                                                                 onChange={handleInputChange1}
-                                                                                                                disabled={selectedProfit1 !== null}
+                                                                                                                disabled={selectedIncrease && selectedIncrease.id !== "select"}
+                                                                                                                className={`mt-2 block w-56 shadow-sm text-gray-700 border rounded-lg py-3 pl-3 leading-tight focus:outline-none
+            ${selectedIncrease && selectedIncrease.id !== "select" ? "bg-gray-100 cursor-not-allowed opacity-60" : ""}
+          `}
                                                                                                             />
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
-                                                                                            <div className="mt03">
+
+                                                                                            <div className="mt-3">
                                                                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
                                                                                                     {/* Notes Box */}
                                                                                                     <div className="border border-gray-200 rounded-lg p-4">

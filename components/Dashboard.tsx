@@ -20,9 +20,9 @@ export default function Dashboard() {
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && 
-          !dropdownRef.current.contains(event.target as Node) && 
-          !buttonRef.current?.contains(event.target as Node)) {
+      if (dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node) &&
+        !buttonRef.current?.contains(event.target as Node)) {
         setShowDropdown(false);
       }
     }
@@ -40,11 +40,11 @@ export default function Dashboard() {
       <h1 className='text-[#144A6C] font-normal text-2xl'>Dashboard</h1>
       <div className="relative w-full h-[420px] mt-5">
         <Image
-          src="/overlay.png"
+          src="/new.png"
           alt="Doctors"
           fill
           className="object-cover rounded-[12px]"
-          style={{ borderRadius: '12px' }} // Added inline style for border radius
+          style={{ borderRadius: '12px' }}
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent rounded-[12px]" />
@@ -61,7 +61,7 @@ export default function Dashboard() {
           </button>
 
           {showDropdown && (
-            <div 
+            <div
               ref={dropdownRef}
               className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-lg shadow-md z-40 overflow-hidden"
             >
@@ -83,11 +83,11 @@ export default function Dashboard() {
         {/* Total Revenue Text */}
         <div className="absolute top-8 left-8 text-white">
           <h2 className="text-xl font-normal">Total Revenue</h2>
-          <p className="text-5xl font-normal mt-4">$5,045.00</p>
+          <p className="text-6xl font-normal mt-[50px]">$5,045.00</p>
         </div>
 
         {/* Metric Cards INSIDE image */}
-        <div className="absolute bottom-4 left-0 w-full px-6 flex gap-3 justify-between whitespace-nowrap overflow-x-auto pb-2">
+        <div className="absolute bottom-5 left-0 w-full px-6 flex gap-3 justify-between whitespace-nowrap overflow-x-auto pb-4">
           {metrics.map((item, index) => (
             <div
               key={index}

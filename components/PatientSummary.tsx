@@ -9,45 +9,53 @@ const PatientSummary = () => {
     { label: 'Total', value: 100, color: '#D4EDED' },
   ];
 
-  return (
-    <div className="w-full p-3">
-      {/* Title */}
-      <h3 className="text-[#101828] text-2xl font-normal mb-8">Total Patients</h3>
+  const total = data.reduce((acc, cur) => acc + cur.value, 0);
 
-      {/* Stats row with vertical separators */}
-      <div className="flex justify-between mb-20">
+  return (
+    <div className="w-full p-2">
+      {/* Title */}
+      <h3 className="text-[#101828] text-xl font-medium mb-8">Total Patients</h3>
+
+      {/* Stats with vertical dividers */}
+      <div className="flex justify-between mb-[200px]">
         {data.map((item, index) => (
           <React.Fragment key={item.label}>
-            <div className="flex-1 text-center px-4">
-              <p className="text-sm text-[#64748B]">{item.label}</p>
-              <p className="text-[#0F172A] text-3xl font-normal mb-2">{item.value}</p>
+            <div className="flex-1 text-center">
+              {/* Dot and label */}
+              <div className="flex items-center justify-center gap-2 mb-1">
+                <span
+                  className="h-2 w-2 rounded-full"
+                  style={{ backgroundColor: item.color }}
+                ></span>
+                <p className="text-sm text-[#64748B]">{item.label}</p>
+              </div>
 
+              {/* Value */}
+              <p className="text-[#0F172A] text-2xl font-semibold">{item.value}</p>
             </div>
+
+            {/* Divider except after last item */}
             {index < data.length - 1 && (
-              <div className="border-r border-[#E2E8F0] h-12 self-center"></div>
+              <div className="border-r border-[#E2E8F0] h-14 self-center"></div>
             )}
           </React.Fragment>
         ))}
       </div>
 
-      {/* Segmented bar - taller with more spacing */}
-      <div className="mb-4">
-        <div className="flex h-4 w-full overflow-hidden rounded-full bg-gray-100">
-          {data.map((item, index) => (
-            <div
-              key={item.label}
-              style={{
-                width: `${(item.value / 300) * 100}%`,
-                backgroundColor: item.color,
-                marginLeft: index !== 0 ? '2px' : '0'
-              }}
-            />
-          ))}
-        </div>
-      </div>
+      {/* Segmented bar */}
+      <div className="w-full h-[50px] overflow-hidden flex">
+        {data.map((item, index) => (
+          <div
 
-      {/* Bottom border */}
-      <div className="border-t border-[#E2E8F0] pt-4"></div>
+            key={item.label}
+            style={{
+              width: `${(item.value / total) * 100}%`,
+              backgroundColor: item.color,
+            }}
+            className={index !== 0 ? '' : ''}
+          ></div>
+        ))}
+      </div>
     </div>
   );
 };

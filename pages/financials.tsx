@@ -662,7 +662,7 @@ export default function Patient() {
                     {selectedTab === 0 && (
                         <>
                             <div className="flex-1 overflow-auto  bg-[#CEE5E433]">
-                                <div className="card h-[calc(100vh-235px)] flex flex-col">
+                                <div className="card h-[calc(100vh-100px)] flex flex-col">
                                     <div className="card-body flex-1 flex flex-col overflow-hidden">
                                         <div className="content-inneres p-4">
                                             <div className="flex md:items-center justify-between md:flex-row flex-col items-start">
@@ -767,30 +767,30 @@ export default function Patient() {
                                                                     <div className="w-full overflow-x-auto mt-3">
                                                                         <table className="min-w-full">
                                                                             <thead className="bg-gray-50">
-                                                                                <tr className="pt-4 pr-8 pb-3 pl-8 rounded-bl-lg">
-                                                                                    <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
+                                                                                <tr>
+                                                                                    <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider w-[440px]">
                                                                                         Patients
                                                                                     </th>
-                                                                                    <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
+                                                                                    <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider w-[205px]">
                                                                                         August - 2025
                                                                                     </th>
-                                                                                    <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
+                                                                                    <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider w-[295px]">
                                                                                         July - 2025
                                                                                     </th>
-                                                                                    <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
+                                                                                    <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider w-[317px]">
                                                                                         June - 2025
                                                                                     </th>
-                                                                                    <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
+                                                                                    <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider w-[317px]">
                                                                                         May - 2025
                                                                                     </th>
-                                                                                    <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
+                                                                                    <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider w-[317px]">
                                                                                         April - 2025
                                                                                     </th>
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody className="bg-white divide-y divide-[#EAECF0]">
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Total Patients
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -809,9 +809,8 @@ export default function Patient() {
                                                                                         06
                                                                                     </td>
                                                                                 </tr>
-
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Existing Patients
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -830,9 +829,8 @@ export default function Patient() {
                                                                                         06
                                                                                     </td>
                                                                                 </tr>
-
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold w-[200px]">
                                                                                         New Patients
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold">
@@ -857,11 +855,11 @@ export default function Patient() {
                                                                     <div className="w-full overflow-x-auto mt-3">
                                                                         <table className="min-w-full">
                                                                             <thead className="bg-gray-50">
-                                                                                <tr className="pt-4 pr-8 pb-3 pl-8 rounded-bl-lg">
-                                                                                    <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
+                                                                                <tr>
+                                                                                    <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider w-[200px]">
                                                                                         Income Statement
                                                                                     </th>
-                                                                                    <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
+                                                                                    <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider w-[200px]">
                                                                                         August - 2025
                                                                                     </th>
                                                                                     <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
@@ -880,7 +878,7 @@ export default function Patient() {
                                                                             </thead>
                                                                             <tbody className="bg-white divide-y divide-[#EAECF0]">
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold w-[200px]">
                                                                                         Sales
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold">
@@ -901,7 +899,7 @@ export default function Patient() {
                                                                                 </tr>
 
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Advancement
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -922,7 +920,7 @@ export default function Patient() {
                                                                                 </tr>
 
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold w-[200px]">
                                                                                         Total Sales
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold">
@@ -943,7 +941,7 @@ export default function Patient() {
                                                                                 </tr>
 
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Payments to other doctors and nurses
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -962,8 +960,9 @@ export default function Patient() {
                                                                                         $ 06
                                                                                     </td>
                                                                                 </tr>
+
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Guards
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -984,7 +983,7 @@ export default function Patient() {
                                                                                 </tr>
 
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Scans
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -1005,7 +1004,7 @@ export default function Patient() {
                                                                                 </tr>
 
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Inputs
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -1026,7 +1025,7 @@ export default function Patient() {
                                                                                 </tr>
 
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Meals
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -1047,7 +1046,7 @@ export default function Patient() {
                                                                                 </tr>
 
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Dental Society
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -1068,7 +1067,7 @@ export default function Patient() {
                                                                                 </tr>
 
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold w-[200px]">
                                                                                         Fixed Expenses
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold">
@@ -1087,8 +1086,9 @@ export default function Patient() {
                                                                                         06
                                                                                     </td>
                                                                                 </tr>
+
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Rent
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -1109,7 +1109,7 @@ export default function Patient() {
                                                                                 </tr>
 
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Utilities
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -1130,7 +1130,7 @@ export default function Patient() {
                                                                                 </tr>
 
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Gasoline
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -1149,8 +1149,9 @@ export default function Patient() {
                                                                                         $ 06
                                                                                     </td>
                                                                                 </tr>
+
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Maintenance
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -1171,7 +1172,7 @@ export default function Patient() {
                                                                                 </tr>
 
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Mortgage
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -1192,7 +1193,7 @@ export default function Patient() {
                                                                                 </tr>
 
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Cleaning
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -1211,8 +1212,9 @@ export default function Patient() {
                                                                                         $ 06
                                                                                     </td>
                                                                                 </tr>
+
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Office Supplies
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -1231,8 +1233,9 @@ export default function Patient() {
                                                                                         $ 06
                                                                                     </td>
                                                                                 </tr>
+
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Marketing
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -1253,7 +1256,7 @@ export default function Patient() {
                                                                                 </tr>
 
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Professional Services
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -1274,7 +1277,7 @@ export default function Patient() {
                                                                                 </tr>
 
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Others
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -1293,8 +1296,9 @@ export default function Patient() {
                                                                                         $ 06
                                                                                     </td>
                                                                                 </tr>
+
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Wages
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -1313,8 +1317,9 @@ export default function Patient() {
                                                                                         $ 06
                                                                                     </td>
                                                                                 </tr>
+
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold w-[200px]">
                                                                                         Cash Flow from Operations
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold">
@@ -1333,8 +1338,9 @@ export default function Patient() {
                                                                                         $ 06
                                                                                     </td>
                                                                                 </tr>
+
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         CAPEX
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -1353,8 +1359,9 @@ export default function Patient() {
                                                                                         $ 06
                                                                                     </td>
                                                                                 </tr>
+
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Machinery Sales
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -1373,8 +1380,9 @@ export default function Patient() {
                                                                                         $ 06
                                                                                     </td>
                                                                                 </tr>
+
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Acquisitions
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -1395,7 +1403,7 @@ export default function Patient() {
                                                                                 </tr>
 
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold w-[200px]">
                                                                                         Cash Flow from Investments
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold">
@@ -1414,8 +1422,9 @@ export default function Patient() {
                                                                                         $ 06
                                                                                     </td>
                                                                                 </tr>
+
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Increase in Debt
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -1434,8 +1443,9 @@ export default function Patient() {
                                                                                         $ 06
                                                                                     </td>
                                                                                 </tr>
+
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Debt Payment
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -1454,8 +1464,9 @@ export default function Patient() {
                                                                                         $ 06
                                                                                     </td>
                                                                                 </tr>
+
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Taxes
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
@@ -1476,28 +1487,8 @@ export default function Patient() {
                                                                                 </tr>
 
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         VAT balance
-                                                                                    </td>
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
-                                                                                        $ 55
-                                                                                    </td>
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
-                                                                                        $ 60
-                                                                                    </td>
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
-                                                                                        $ 60
-                                                                                    </td>
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
-                                                                                        $ 60
-                                                                                    </td>
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
-                                                                                        $ 06
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
-                                                                                        Interests
                                                                                     </td>
                                                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
                                                                                         $ 55

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 import ClinicCard from "../components/ClinicCard";
+
 const DoctorsTable = [
   {
     id: "D001",
