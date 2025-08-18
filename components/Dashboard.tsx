@@ -7,6 +7,7 @@ import DashboardStructure from "../components/DashboardStructure"
 export default function Dashboard() {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
 
   const metrics = [
     { label: "Total Sales", value: "$5,045.00" },
@@ -19,7 +20,9 @@ export default function Dashboard() {
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (dropdownRef.current && 
+          !dropdownRef.current.contains(event.target as Node) && 
+          !buttonRef.current?.contains(event.target as Node)) {
         setShowDropdown(false);
       }
     }
@@ -34,18 +37,20 @@ export default function Dashboard() {
 
   return (
     <div className="relative w-full rounded-xl overflow-hidden">
-      <h1>Dahsboard</h1>
-      <div className="relative w-full h-[420px]">
-        {/* <Image
+      <h1 className='text-[#144A6C] font-normal text-2xl'>Dashboard</h1>
+      <div className="relative w-full h-[420px] mt-5">
+        <Image
           src="/overlay.png"
           alt="Doctors"
           fill
-          className="object-cover"
+          className="object-cover rounded-[12px]"
+          style={{ borderRadius: '12px' }} // Added inline style for border radius
           priority
-        /> */}
-        {/* <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent z-10" /> */}
-        {/* <div ref={dropdownRef} className="absolute top-4 right-4 z-30">
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent z-10 rounded-[12px]" />
+        <div className="absolute top-4 right-4 z-30">
           <button
+            ref={buttonRef}
             onClick={() => setShowDropdown(prev => !prev)}
             className="flex items-center gap-1 bg-white px-4 py-2 rounded-md shadow text-sm text-gray-700 hover:bg-gray-100"
           >
@@ -56,13 +61,16 @@ export default function Dashboard() {
           </button>
 
           {showDropdown && (
-            <div className="absolute right-0 mt-2 w-40 bg-white border rounded shadow-md z-40">
+            <div 
+              ref={dropdownRef}
+              className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-lg shadow-md z-40 overflow-hidden"
+            >
               <ul className="text-sm text-gray-700">
                 {["Today", "This Week", "This Month"].map(option => (
                   <li
                     key={option}
                     onClick={() => handleDropdownSelect(option)}
-                    className="px-2 py-3 hover:bg-[#144A6C] hover:text-[#fff] hover:rounded-lg cursor-pointer"
+                    className="px-4 py-2 hover:bg-[#144A6C] hover:text-white cursor-pointer transition-colors"
                   >
                     {option}
                   </li>
@@ -70,20 +78,20 @@ export default function Dashboard() {
               </ul>
             </div>
           )}
-        </div> */}
+        </div>
 
         {/* Total Revenue Text */}
-        {/* <div className="absolute top-8 left-8 z-20 text-white">
-          <h2 className="text-1xl font-normal">Total Revenue</h2>
+        <div className="absolute top-8 left-8 z-20 text-white">
+          <h2 className="text-xl font-normal">Total Revenue</h2>
           <p className="text-5xl font-normal mt-4">$5,045.00</p>
-        </div> */}
+        </div>
 
         {/* Metric Cards INSIDE image */}
-        {/* <div className="absolute bottom-4 left-0 w-full px-6 flex flex-wrap gap-4 justify-between z-20 whitespace-nowrap">
+        <div className="absolute bottom-4 left-0 w-full px-6 flex gap-3 justify-between z-20 whitespace-nowrap overflow-x-auto pb-2">
           {metrics.map((item, index) => (
             <div
               key={index}
-              className="bg-white/95 backdrop-blur-sm w-[200px] h-[110px] rounded-lg shadow-md px-5 py-4 flex flex-col justify-between"
+              className="bg-white backdrop-blur-sm min-w-[230px] h-[110px] rounded-lg shadow-md px-5 py-4 flex flex-col justify-between"
             >
               <div className="flex justify-between items-center text-sm font-medium text-[#6B6B6B]">
                 <span>{item.label}</span>
@@ -123,17 +131,16 @@ export default function Dashboard() {
                     </linearGradient>
                   </defs>
                 </svg>
-
               </div>
               <div className="text-2xl font-normal text-[#000]">
                 {item.value}
               </div>
             </div>
           ))}
-        </div> */}
+        </div>
       </div>
       <div className="mt-3">
-        {/* <DashboardStructure/> */}
+        <DashboardStructure />
       </div>
     </div>
   );

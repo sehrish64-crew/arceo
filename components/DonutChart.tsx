@@ -12,13 +12,32 @@ const DonutChart = () => {
       chart: {
         type: 'donut',
         height: 280,
+        animations: {
+          enabled: true,
+          easing: 'easeinout',
+          speed: 800,
+        },
       },
-      series: [40, 30, 15, 15], // Example values (you can adjust)
-      labels: ['Booked', 'Cancelled', 'Pending', 'Others'],
-      colors: ['#4CA6AF', '#144A6C', '#E6ECEC', '#F3F6F6'],
+      series: [35, 25, 20, 20],
+      labels: ['Completed', 'Pending', 'Cancelled', 'Rescheduled'],
+      colors: ['#144A6C', '#CEE5E4', '#88C8CE', '#F5FAFA'],
       legend: {
         show: false,
       },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200,
+            },
+            legend: {
+              position: 'bottom',
+            },
+          },
+        },
+      ],
+      borderRadius: 12, 
       dataLabels: {
         enabled: false,
       },
@@ -26,44 +45,63 @@ const DonutChart = () => {
         pie: {
           donut: {
             size: '70%',
+            background: '#fff',
             labels: {
               show: true,
               name: {
                 show: true,
-                fontSize: '22px',
-                fontWeight: 600,
-                color: '#0F172A', // dark text color
+                fontSize: '18px',
+                fontWeight: 500,
+                color: '#0F172A',
                 offsetY: -10,
               },
               value: {
                 show: true,
-                fontSize: '24px',
-                fontWeight: 700,
-                color: '#0F172A',
+                fontSize: '28px',
+                fontWeight: 600,
+                color: '#144A6C',
                 offsetY: 10,
-                formatter: (val: number) => val.toString(),
+                formatter: (val: number) => `${val}%`,
               },
               total: {
                 show: true,
-                fontSize: '16px',
-                fontWeight: 500,
+                label: 'Total',
                 color: '#475569',
-                formatter: () => 100, // example total
+                fontSize: '16px',
+                fontWeight: 400,
+                formatter: () => '100%',
               },
             },
           },
+          customScale: 0.9,
+          offsetY: 5,
+          borderRadius: 12, // 12px border radius for all segments
         },
       },
       stroke: {
         show: true,
-        width: 5,
-        colors: ['#fff'],
+        width: 0, // Set to 0 to let borderRadius take effect
+      },
+      states: {
+        hover: {
+          filter: {
+            type: 'darken',
+            value: 0.1,
+          },
+        },
       },
       tooltip: {
         enabled: true,
         fillSeriesColor: false,
+        style: {
+          fontSize: '14px',
+          fontFamily: 'inherit',
+        },
         y: {
-          formatter: (val: number) => `${val} bookings`,
+          formatter: (val: number) => `${val}%`,
+          title: {
+            formatter: (seriesName: string) => seriesName,
+          },
         },
       },
     };
@@ -79,31 +117,35 @@ const DonutChart = () => {
   }, []);
 
   return (
-    <div>
-     
+    <div className="donut-chart-container">
       <div ref={chartRef} />
-      <p
-        style={{
-          fontSize: 18,
-          fontWeight: 300,
-          color: '#0F172A',
-          textAlign: 'center',
-          marginTop: 10,
-        }}
-      >
-        Total Material Reorders
-      </p>
-      <p
-        style={{
-          fontSize: 32,
-          fontWeight: 'normal',
-          color: '#0F172A',
-          textAlign: 'center',
-          margin: 0,
-        }}
-      >
-        700
-      </p>
+      <div className="chart-label">
+        <p className="chart-title">Total Material Reorders</p>
+        <p className="chart-value">700</p>
+      </div>
+      <style jsx>{`
+        .donut-chart-container {
+          position: relative;
+          width: 100%;
+          height: 100%;
+        }
+        .chart-label {
+          text-align: center;
+          margin-top: 10px;
+        }
+        .chart-title {
+          font-size: 18px;
+          font-weight: 300;
+          color: #0F172A;
+          margin-bottom: 5px;
+        }
+        .chart-value {
+          font-size: 32px;
+          font-weight: normal;
+          color: #0F172A;
+          margin: 0;
+        }
+      `}</style>
     </div>
   );
 };

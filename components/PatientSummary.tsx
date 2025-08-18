@@ -9,42 +9,45 @@ const PatientSummary = () => {
     { label: 'Total', value: 100, color: '#D4EDED' },
   ];
 
-  const total = data.reduce((sum, item) => sum + item.value, 0);
-
   return (
-    <div className="w-full max-w-sm">
-      <h3 className="text-[#0F172A] text-sm font-medium mb-6">Total Patients</h3>
+    <div className="w-full p-3">
+      {/* Title */}
+      <h3 className="text-[#101828] text-2xl font-normal mb-8">Total Patients</h3>
 
-      <div className="flex justify-between mb-6">
-        {data.map((item) => (
-          <div key={item.label} className="flex-1 text-center">
-            <p className="text-[#0F172A] text-xl font-semibold">{item.value}</p>
-            <div className="flex justify-center items-center gap-1 mt-1">
-              <span
-                className="w-2 h-2 rounded-full"
-                style={{ backgroundColor: item.color }}
-              ></span>
-              <span className="text-xs text-[#64748B]">{item.label}</span>
+      {/* Stats row with vertical separators */}
+      <div className="flex justify-between mb-20">
+        {data.map((item, index) => (
+          <React.Fragment key={item.label}>
+            <div className="flex-1 text-center px-4">
+              <p className="text-sm text-[#64748B]">{item.label}</p>
+              <p className="text-[#0F172A] text-3xl font-normal mb-2">{item.value}</p>
+
             </div>
-          </div>
+            {index < data.length - 1 && (
+              <div className="border-r border-[#E2E8F0] h-12 self-center"></div>
+            )}
+          </React.Fragment>
         ))}
       </div>
 
-      {/* Bottom segmented bar */}
-      <div className="flex h-3 w-full overflow-hidden rounded-md">
-        {data.map((item) => {
-          const widthPercent = (item.value / total) * 100;
-          return (
+      {/* Segmented bar - taller with more spacing */}
+      <div className="mb-4">
+        <div className="flex h-4 w-full overflow-hidden rounded-full bg-gray-100">
+          {data.map((item, index) => (
             <div
               key={item.label}
               style={{
-                width: `${widthPercent}%`,
+                width: `${(item.value / 300) * 100}%`,
                 backgroundColor: item.color,
+                marginLeft: index !== 0 ? '2px' : '0'
               }}
             />
-          );
-        })}
+          ))}
+        </div>
       </div>
+
+      {/* Bottom border */}
+      <div className="border-t border-[#E2E8F0] pt-4"></div>
     </div>
   );
 };
