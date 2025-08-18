@@ -47,8 +47,8 @@ export default function Dashboard() {
           style={{ borderRadius: '12px' }} // Added inline style for border radius
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent z-10 rounded-[12px]" />
-        <div className="absolute top-4 right-4 z-30">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent rounded-[12px]" />
+        <div className="absolute top-4 right-4">
           <button
             ref={buttonRef}
             onClick={() => setShowDropdown(prev => !prev)}
@@ -81,13 +81,13 @@ export default function Dashboard() {
         </div>
 
         {/* Total Revenue Text */}
-        <div className="absolute top-8 left-8 z-20 text-white">
+        <div className="absolute top-8 left-8 text-white">
           <h2 className="text-xl font-normal">Total Revenue</h2>
           <p className="text-5xl font-normal mt-4">$5,045.00</p>
         </div>
 
         {/* Metric Cards INSIDE image */}
-        <div className="absolute bottom-4 left-0 w-full px-6 flex gap-3 justify-between z-20 whitespace-nowrap overflow-x-auto pb-2">
+        <div className="absolute bottom-4 left-0 w-full px-6 flex gap-3 justify-between whitespace-nowrap overflow-x-auto pb-2">
           {metrics.map((item, index) => (
             <div
               key={index}

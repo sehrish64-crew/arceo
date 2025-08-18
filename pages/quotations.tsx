@@ -2117,33 +2117,33 @@ export default function Patient() {
                                                                     </form>
                                                                 </div>
                                                             </div>
-                                                           
+
                                                         </form>
                                                     </div>
- <div className="bg-white  gap-2 py-3 sm:flex sm:flex-row-reverse border-t border-[#E5E7EB]  mt-5">
-                                                                <button
-                                                                    type="button"
-                                                                    className="bg-[#144A6C] pl-4 pr-4 py-2 text-white flex items-center space-x-2 rounded-lg transition-colors whitespace-nowrap justify-center text-center"
-                                                                    onClick={() => {
-                                                                        setApprovedClinic(false);
-                                                                        setClinicModalAnimation2(false);
-                                                                    }}
-                                                                >
-                                                                    Convert
-                                                                </button>
-                                                                <button
-                                                                    type="button"
-                                                                    className="bg-[#fff] pl-4 pr-4 py-2 text-[#144A6C] flex items-center space-x-2 rounded-lg transition-colors whitespace-nowrap justify-center text-center border border-[#EBEBEB]"
-                                                                    onClick={() => {
-                                                                        setTimeout(() => {
-                                                                            setApprovedClinic(false);
-                                                                        }, 500);
-                                                                        setClinicModalAnimation2(false);
-                                                                    }}
-                                                                >
-                                                                    Cancel
-                                                                </button>
-                                                            </div>
+                                                    <div className="bg-white  gap-2 py-3 sm:flex sm:flex-row-reverse border-t border-[#E5E7EB]  mt-5">
+                                                        <button
+                                                            type="button"
+                                                            className="bg-[#144A6C] pl-4 pr-4 py-2 text-white flex items-center space-x-2 rounded-lg transition-colors whitespace-nowrap justify-center text-center"
+                                                            onClick={() => {
+                                                                setApprovedClinic(false);
+                                                                setClinicModalAnimation2(false);
+                                                            }}
+                                                        >
+                                                            Convert
+                                                        </button>
+                                                        <button
+                                                            type="button"
+                                                            className="bg-[#fff] pl-4 pr-4 py-2 text-[#144A6C] flex items-center space-x-2 rounded-lg transition-colors whitespace-nowrap justify-center text-center border border-[#EBEBEB]"
+                                                            onClick={() => {
+                                                                setTimeout(() => {
+                                                                    setApprovedClinic(false);
+                                                                }, 500);
+                                                                setClinicModalAnimation2(false);
+                                                            }}
+                                                        >
+                                                            Cancel
+                                                        </button>
+                                                    </div>
 
                                                 </div>
                                             </div>

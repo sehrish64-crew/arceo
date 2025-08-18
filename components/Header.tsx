@@ -1,10 +1,15 @@
 "use client";
 
 import Link from "next/link";
+
 import { Bell, Settings, User, ChevronDown, Menu, X } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
-
+import { Listbox } from "@headlessui/react";
+import InventoryModal from "./InventoryModal"; // Import the new modal component
+import PatientModal from "./PatientModal"; // Import the new modal component
+import DoctorModal from "./DoctorModal"; // Import the new modal component
+import ClinicModal from "./ClinicModal"; // Import the new modal component
 interface HeaderProps {
   onToggleSidebar: () => void;
   isSidebarOpen: boolean;
@@ -16,14 +21,18 @@ export default function Header({
 }: HeaderProps) {
   const pathname = usePathname();
   const isActive = pathname === "/setting";
-  const [isOpen, setIsOpen] = useState(false);
+  const [isInventoryModalOpen, setIsInventoryModalOpen] = useState(false);
+  const [isPatientModalOpen, setIsPatientModalOpen] = useState(false);
+  const [isDoctorModalOpen, setIsDoctorModalOpen] = useState(false);
+  const [isClinicModalOpen, setIsClinicModalOpen] = useState(false);
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false); // State for Notification Dropdown
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close when clicking outside
+  // Close notification dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
+        setIsNotificationOpen(false);
       }
     }
 
@@ -57,30 +66,30 @@ export default function Header({
           </div>
           <nav className="hidden xl:flex items-center space-x-6">
             <div className="flex flex-wrap gap-4">
-              <Link
-                href="/inventory"
+              <button
+                onClick={() => setIsInventoryModalOpen(true)}
                 className="w-44 text-[#144A6C] text-center font-regular transition-colors whitespace-nowrap bg-[#FAFAFA] px-4 py-2 rounded-lg shadow-sm border border-[#F0F0F0]"
               >
                 Add Inventory
-              </Link>
-              <Link
-                href="/patient"
-                className="w-44 text-center text-[#144A6C] font-regular transition-colors whitespace-nowrap bg-[#FAFAFA] px-4 py-2 rounded-lg shadow-sm border border-[#F0F0F0]"
+              </button>
+              <button
+                onClick={() => setIsPatientModalOpen(true)}
+                className="w-44 text-[#144A6C] text-center font-regular transition-colors whitespace-nowrap bg-[#FAFAFA] px-4 py-2 rounded-lg shadow-sm border border-[#F0F0F0]"
               >
                 Add Patient
-              </Link>
-              <Link
-                href="/doctors"
-                className="w-44 text-center text-[#144A6C] font-regular transition-colors whitespace-nowrap bg-[#FAFAFA] px-4 py-2 rounded-lg shadow-sm border border-[#F0F0F0]"
+              </button>
+              <button
+                onClick={() => setIsDoctorModalOpen(true)}
+                className="w-44 text-[#144A6C] text-center font-regular transition-colors whitespace-nowrap bg-[#FAFAFA] px-4 py-2 rounded-lg shadow-sm border border-[#F0F0F0]"
               >
                 Add Doctor
-              </Link>
-              <Link
-                href="/clinic"
-                className="w-44 text-center text-[#144A6C] font-regular transition-colors whitespace-nowrap bg-[#FAFAFA] px-4 py-2 rounded-lg shadow-sm border border-[#F0F0F0]"
+              </button>
+              <button
+                onClick={() => setIsClinicModalOpen(true)}
+                className="w-44 text-[#144A6C] text-center font-regular transition-colors whitespace-nowrap bg-[#FAFAFA] px-4 py-2 rounded-lg shadow-sm border border-[#F0F0F0]"
               >
                 Add Clinic
-              </Link>
+              </button>
             </div>
           </nav>
         </div>
@@ -99,18 +108,18 @@ export default function Header({
             <span className="hidden lg:block">Settings</span>
           </Link>
 
-          {/* Notification Dropdown - Fixed Version */}
+          {/* Notification Dropdown */}
           <div className="relative" ref={dropdownRef}>
             <button
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={() => setIsNotificationOpen(!isNotificationOpen)}
               className="w-auto lg:w-44 text-[#144A6C] text-center font-medium transition-colors whitespace-nowrap bg-[#FAFAFA] px-4 py-2 rounded-lg shadow-sm border border-[#F0F0F0] flex items-center space-x-2 justify-center hover:bg-[#F0F0F0]"
             >
               <Bell className="w-4 h-4" />
               <span className="hidden lg:block">Notification</span>
-              <ChevronDown className={`w-3 h-3 hidden lg:block transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown className={`w-3 h-3 hidden lg:block transition-transform ${isNotificationOpen ? 'rotate-180' : ''}`} />
             </button>
 
-            {isOpen && (
+            {isNotificationOpen && (
               <div className="absolute right-0 mt-2 w-72 bg-white border border-gray-200 rounded-lg shadow-xl z-[100]">
                 <div className="p-4 border-b border-gray-100 font-semibold text-[#144A6C]">
                   Notifications
@@ -140,7 +149,7 @@ export default function Header({
                 <div className="p-3 text-center border-t border-gray-100">
                   <button
                     className="text-sm text-[#144A6C] hover:underline"
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => setIsNotificationOpen(false)}
                   >
                     View all notifications
                   </button>
@@ -149,6 +158,23 @@ export default function Header({
             )}
           </div>
 
+          {/* Render the InventoryModal component */}
+          <InventoryModal
+            isOpen={isInventoryModalOpen}
+            onClose={() => setIsInventoryModalOpen(false)}
+          />
+          <PatientModal
+            isOpen={isPatientModalOpen}
+            onClose={() => setIsPatientModalOpen(false)}
+          />
+          <DoctorModal
+            isOpen={isDoctorModalOpen}
+            onClose={() => setIsDoctorModalOpen(false)}
+          />
+          <ClinicModal
+            isOpen={isClinicModalOpen}
+            onClose={() => setIsClinicModalOpen(false)}
+          />
           {/* Avatar */}
           <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
             <img src="/admin.png" alt="Admin" />
