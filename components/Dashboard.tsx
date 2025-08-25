@@ -91,7 +91,7 @@ export default function Dashboard() {
           {metrics.map((item, index) => (
             <div
               key={index}
-              className="bg-white backdrop-blur-sm min-w-[230px] h-[110px] rounded-lg shadow-md px-5 py-4 flex flex-col justify-between"
+              className="bg-white backdrop-blur-sm w-full h-[110px] rounded-lg shadow-md px-5 py-4 flex flex-col justify-between"
             >
               <div className="flex justify-between items-center text-sm font-medium text-[#6B6B6B]">
                 <span>{item.label}</span>
