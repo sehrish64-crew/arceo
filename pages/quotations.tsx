@@ -2804,6 +2804,18 @@ export default function Patient() {
                                                                                                 setClinicModalAnimation(false);
                                                                                             }}
                                                                                         >
+                                                                                            Approve
+                                                                                        </button>
+                                                                                        <button
+                                                                                            type="button"
+                                                                                            className="bg-[#fff] pl-4 pr-4 py-2 text-[#144A6C] flex items-center space-x-2 rounded-lg transition-colors whitespace-nowrap justify-center text-center border border-[#EBEBEB]"
+                                                                                            onClick={() => {
+                                                                                                setTimeout(() => {
+                                                                                                    setShowClinicModal(false);
+                                                                                                }, 500);
+                                                                                                setClinicModalAnimation(false);
+                                                                                            }}
+                                                                                        >
                                                                                             Cancel
                                                                                         </button>
                                                                                     </div>

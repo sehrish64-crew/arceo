@@ -145,15 +145,6 @@ export default function Header({
                     <p className="text-xs text-gray-400">3 days ago</p>
                   </li>
                 </ul>
-
-                <div className="p-3 text-center border-t border-gray-100">
-                  {/* <button
-                    className="text-sm text-[#144A6C] hover:underline"
-                    onClick={() => setIsNotificationOpen(false)}
-                  >
-                    View all notifications
-                  </button> */}
-                </div>
               </div>
             )}
           </div>

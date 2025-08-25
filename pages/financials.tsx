@@ -9,6 +9,9 @@ import Singledatepicker from "../components/Singledatepicker"
 const Apex = dynamic(() => import("../components/Apexchart"), {
     ssr: false,
 });
+const Existingexpense = dynamic(() => import("../components/Existingexpense"), {
+    ssr: false,
+});
 const StackedAreaChart = dynamic(
     () => import("../components/StackedAreaChart"),
     {
@@ -878,22 +881,22 @@ export default function Patient() {
                                                                             </thead>
                                                                             <tbody className="bg-white divide-y divide-[#EAECF0]">
                                                                                 <tr className="hover:bg-gray-50">
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold w-[200px]">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] w-[200px]">
                                                                                         Sales
                                                                                     </td>
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
                                                                                         $ 55
                                                                                     </td>
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
                                                                                         $ 55
                                                                                     </td>
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
                                                                                         $ 55
                                                                                     </td>
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
                                                                                         $ 55
                                                                                     </td>
-                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467] font-bold">
+                                                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#475467]">
                                                                                         $ 55
                                                                                     </td>
                                                                                 </tr>
@@ -2405,19 +2408,8 @@ export default function Patient() {
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
-
-                                                                                            <div className="flex flex-wrap -mx-3 mt-2 mb-4">
-                                                                                                <div className="w-full px-3 mb-6 md:mb-0 text-start">
-                                                                                                    <label className="text-[#757575]" htmlFor="expense-name">
-                                                                                                        Expense Name
-                                                                                                    </label>
-                                                                                                    <input
-                                                                                                        className="mt-2 block w-full shadow-sm text-gray-700 border rounded-lg py-3 pl-3 pr-10 leading-tight focus:outline-none focus:bg-white dark:border-[#EBEBEB]"
-                                                                                                        id="expense-name"
-                                                                                                        type="text"
-                                                                                                    />
-                                                                                                </div>
-                                                                                            </div>
+                                                                                            
+                                                                                            <Existingexpense/>
 
                                                                                             {occurrence === 'Recurring' && (
                                                                                                 <div className="flex flex-wrap -mx-3 mt-2 mb-4">

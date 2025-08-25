@@ -1,7 +1,22 @@
 'use client';
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
-import InvoiceTable from "../components/InvoiceTable"
+const Select = dynamic(() => import('@/components/ui/select').then(mod => mod.Select), {
+  ssr: false,
+});
+
+const SelectTrigger = dynamic(() => import('@/components/ui/select').then(mod => mod.SelectTrigger), {
+  ssr: false,
+});
+const SelectValue = dynamic(() => import('@/components/ui/select').then(mod => mod.SelectValue), {
+  ssr: false,
+});
+const SelectContent = dynamic(() => import('@/components/ui/select').then(mod => mod.SelectContent), {
+  ssr: false,
+});
+const SelectItem = dynamic(() => import('@/components/ui/select').then(mod => mod.SelectItem), {
+  ssr: false,
+});
 const DonutChart = dynamic(() => import('../components/DonutChart'), {
     ssr: false,
 });
@@ -407,7 +422,35 @@ export default function DashboardStructure() {
 
             <div className="card h-[calc(100vh-235px)] flex flex-col mt-5">
                 <div className="card-body flex-1 flex flex-col overflow-hidden">
-                    <h2 className="text-2xl font-normal mb-8 mt-3">Near-end Stocks</h2>
+                    <div className="flex justify-between items-center flex-col md:flex-row pr-3">
+                        <h2 className="text-2xl font-normal mb-8 mt-3">Near-end Stocks</h2>
+                        <div className="slct">
+
+                            <Select>
+                                <SelectTrigger className="bg-[#fff] border border-[#F0F0F0] pl-10 pr-10 rounded-lg text-sm text-[#333] font-normal">
+                                    <SelectValue placeholder="Sort by" />
+                                </SelectTrigger>
+
+                                <SelectContent className="rounded-lg border border-[#F0F0F0] shadow-sm">
+                                    <SelectItem
+                                        value="monthly"
+                                        className="text-sm font-normal py-2 px-3 pl-8 relative bg-[#fff] hover:bg-[#eee]"
+                                        style={{ fontFamily: "Poppins" }}
+                                    >
+                                        Lowest to Highest
+                                    </SelectItem>
+
+                                    <SelectItem
+                                        value="weekly"
+                                        className="text-sm font-normal py-2 px-3 pl-8 relative bg-[#fff] hover:bg-[#eee]"
+                                        style={{ fontFamily: "Poppins" }}
+                                    >
+                                         Highest to Lowest
+                                    </SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                    </div>
                     <div className="w-full overflow-x-auto">
                         <table className="min-w-full">
                             <thead className="bg-gray-50">
