@@ -12,7 +12,10 @@ interface Doctor {
 }
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-
+import dynamic from "next/dynamic";
+const PricingBilling = dynamic(() => import("../components/PricingBilling"), {
+    ssr: false,
+});
 export default function Patient() {
     const doctors: Doctor[] = [
         {
@@ -270,10 +273,16 @@ export default function Patient() {
                     </div>
                 </div>
             )}
+
             <div className="flex flex-col h-full bg-white lg:rounded-r-lg">
+             <PricingBilling/>
+            </div>
+
+
+            <div className="flex flex-col h-full bg-white lg:rounded-r-lg mt-5">
                 {/* Header - Same background as sidebar */}
                 <div className="set-header pb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 flex-shrink-0 lg:rounded-tr-lg">
-                    <h1 className="text-3xl font-regular text-[#144A6C]">Billing</h1>
+                    <h1 className="text-3xl font-regular text-[#144A6C]">Billing History</h1>
                     <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
                         <div className="relative">
                             <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-[#6B7280]" />
@@ -297,7 +306,7 @@ export default function Patient() {
                             <div className="card-body flex-1 flex flex-col overflow-hidden">
                                 <div className="w-full overflow-x-auto">
                                     <table className="min-w-full">
-                                       <thead className="bg-gray-50">
+                                        <thead className="bg-gray-50">
                                             <tr className="pt-4 pr-8 pb-3 pl-8 rounded-bl-lg">
                                                 <th className="px-6 py-3 text-left text-sm font-medium text-[#475467] uppercase tracking-wider">
                                                     Invoice Number
